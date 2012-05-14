@@ -1,4 +1,5 @@
 body {
+  background-color: black;
   font-family: 'Limelight', cursive;
 }
 ul, ol {
@@ -7,7 +8,7 @@ ul, ol {
   padding: 0;
 }
 
-.content {
+#content {
   float: left;
   width: 910px;
 }
@@ -61,11 +62,12 @@ ul, ol {
   position: fixed;
   right: 0;
 }
-.legend {
+#legend {
   margin-top: 2px;
 
 }
 .legend_item {
+  background-color: #af2626;
   text-transform: uppercase;
   font-size: 40px;
   text-align: center;
@@ -73,10 +75,48 @@ ul, ol {
   height: 40px;
   color: white;
 }
+.legend_item:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 .legend_item + .legend_item {
   margin-top: 1px;
 }
-.legend_item {
-  background-color: #af2626;
+
+.isotope,
+.isotope .isotope-item {
+  /* change duration value to whatever you like */
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+      -ms-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
 }
 
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+      -ms-transition-property:     -ms-transform, opacity;
+       -o-transition-property:         top, left, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
+}
