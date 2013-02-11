@@ -1,0 +1,27 @@
+<div id="venues_collection">
+  <ul class="venues">
+    <li class="venue" ng-repeat="venue in venues">
+      <a href="#" class="thumbnail">
+        <img ng-src="{{ venue.image }}" />
+      </a>
+      <span class="name">{{ venue.name }}</span>
+      <ul class="ratings">
+        <li class="rating food">{{ venue.ratings.food }}</li>
+        <li class="rating service">{{ venue.ratings.service }}</li>
+        <li class="rating atmosphere">{{ venue.ratings.atmosphere }}</li>
+        <li class="rating uniqueness">{{ venue.ratings.uniqueness }}</li>
+        <li class="rating bathroom">{{ venue.ratings.bathroom }}</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="sidebar">
+  <ul id="legend" yoshinom-sort-keys>
+    <li class="legend_item" yoshinom-sort-class="food">Food</li>
+    <li class="legend_item" yoshinom-sort-class="service">Service</li>
+    <li class="legend_item" yoshinom-sort-class="atmosphere">Atmos</li>
+    <li class="legend_item" yoshinom-sort-class="uniqueness">Unique</li>
+    <li class="legend_item" yoshinom-sort-class="bathroom">BTHRM</li>
+  </ul>
+</div>

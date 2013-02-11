@@ -1,87 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="yoshinom">
   <head>
     <title>Venice Series | Yoshinom</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet/less" href="less/yoshinom.less">
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.3.0/less-1.3.0.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script src="http://isotope.metafizzy.co/jquery.isotope.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.0.0/knockout-min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="js/lib/jquery.isotope.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+
     <link href='http://fonts.googleapis.com/css?family=Limelight|Poiret+One|Londrina+Sketch|Londrina+Outline|Fredoka+One' rel='stylesheet' type='text/css'>
+    <!--link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet"-->
   </head>
 
   <body>
     <!--img src="img/YOSHINOM1.png" width="320" height="151"/-->
 
-    <div id="content">
-      <ul class="venues" data-bind="foreach: venues">
-        <li class="venue">
-          <a href="#" class="thumbnail">
-            <img data-bind="attr: { src: image }" />
-          </a>
-          <span class="name" data-bind="text: name"></span>
-          <ul class="ratings">
-            <li class="rating" data-bind="text: food"></li>
-            <li class="rating" data-bind="text: service"></li>
-            <li class="rating" data-bind="text: atmos"></li>
-            <li class="rating" data-bind="text: unique"></li>
-            <li class="rating" data-bind="text: bthrm"></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+    <div id="content" ng-view></div>
 
-    <div class="sidebar">
-      <ul id="legend">
-        <li class="legend_item" data-id="food">Food</li>
-        <li class="legend_item" data-id="service">Service</li>
-        <li class="legend_item" data-id="atmos">Atmos</li>
-        <li class="legend_item" data-id="unique">Unique</li>
-        <li class="legend_item" data-id="bthrm">BTHRM</li>
-      </ul>
-    </div>
-
-    <script>
-      function randRating() {
-        return Math.floor(Math.random() * (5 - 1 + 1) + 1);
-      }
-
-      ko.applyBindings({
-        venues: _.range(11).map(function(i) {
-          return {
-            name: 'Pho So 1',
-            image: 'img/photo_' + i + '.jpg',
-            food: randRating(),
-            service: randRating(),
-            atmos: randRating(),
-            unique: randRating(),
-            bthrm: randRating()
-          };
-        })
-      });
-
-      $(document).ready(function() {
-        var ratingGetSortData = {};
-        _.chain($('.legend_item').toArray())
-        .map(function(legendItem) { return $(legendItem).attr('data-id'); })
-        .each(function(ratingType) {
-          ratingGetSortData[ratingType] = function($venue) {
-            return parseFloat($venue.find('[data-bind="text: ' + ratingType + '"]').text());
-          }
-        });
-
-        $('.venues').isotope({ getSortData: ratingGetSortData });
-
-        $('.legend_item').click(function() {
-          $('.venues').isotope({
-            sortBy: $(this).attr('data-id'),
-            sortAscending: false
-          });
-        });
-      });
-    </script>
-
+    <script src="coffee/yoshinom.js"></script>
   </body>
 </html>
