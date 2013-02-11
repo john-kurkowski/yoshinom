@@ -6,11 +6,7 @@
       </a>
       <span class="name">{{ venue.name }}</span>
       <ul class="ratings">
-        <li class="rating food">{{ venue.ratings.food }}</li>
-        <li class="rating service">{{ venue.ratings.service }}</li>
-        <li class="rating atmosphere">{{ venue.ratings.atmosphere }}</li>
-        <li class="rating uniqueness">{{ venue.ratings.uniqueness }}</li>
-        <li class="rating bathroom">{{ venue.ratings.bathroom }}</li>
+        <li class="rating {{ratingClass}}" ng-repeat="ratingClass in ratingClasses"><span ng-show="venue.ratings[ratingClass] >= 0">{{ venue.ratings[ratingClass] }}</span></li>
       </ul>
     </li>
   </ul>

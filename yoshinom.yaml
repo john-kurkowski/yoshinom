@@ -1,0 +1,155 @@
+---
+# Food Service Atmosphere Uniqueness Bathroom
+venues:
+  - name: Zinque
+    ratings: [3, 3, 4, 3, 3]
+    tags: [Venice]
+    images:
+      - https://dl.dropbox.com/s/j0ddfl290phniuw/Photo%20Feb%2010%2C%203%2011%2052%20PM.jpg
+
+  - name: Providence
+    ratings: [4, 4, 3, 5, 5]
+    images:
+      - https://dl.dropbox.com/s/81o2j2fxyl1srni/Photo%20Feb%2010%2C%203%2025%2018%20PM.jpg
+
+  - name: Son of a Gun
+    images:
+      - https://dl.dropbox.com/s/aj2swaiko7ycbdr/Photo%20Feb%2010%2C%203%2033%2054%20PM.jpg
+      - http://instagr.am/p/VQYQ7qC4_2/
+    ratings: [5, 4, 4, 5, -1]
+
+  - name: Bonano's Chicken
+    images:
+      - https://dl.dropbox.com/s/5r7d55o9jj6k93q/Photo%20Feb%2010%2C%203%2035%2043%20PM.jpg
+    ratings: [5, 3, 2, 3, -1]
+
+  - name: Yabu
+    images:
+      - https://dl.dropbox.com/s/kdhz6uruhfo80pa/Photo%20Feb%2010%2C%203%2039%2048%20PM.jpg
+      - http://instagr.am/p/O3CAKhC419/
+    ratings: [5, 4, 3, 3, -1]
+
+  - name: Cafe Brasil
+    images:
+      - https://dl.dropbox.com/s/s7h7auxrpv1pgor/Photo%20Feb%2010%2C%204%2039%2005%20PM.jpg
+    ratings: [5, 4, 4, 3, 2]
+
+  - name: Earl's Gourmet Grub
+    images:
+      - https://dl.dropbox.com/s/p4214ns9g3oy97n/Photo%20Feb%2010%2C%204%2033%2022%20PM.jpg
+    ratings: [4, 3, 4, 4, -1]
+
+  - name: Tsujita
+    images:
+      - https://dl.dropbox.com/s/c0aepxo6uw73mgm/Photo%20Feb%2010%2C%205%2005%2030%20PM.jpg
+    ratings: [5, 5, 5, 4, 3]
+
+  - name: Malibu Seafood
+    images:
+      - https://dl.dropbox.com/s/67xd7tu5ud4ubcw/Photo%20Feb%2010%2C%205%2014%2023%20PM.jpg
+    ratings: [5, 3, 5, 3, 3]
+
+  - name: Urth Cafe
+    images:
+      - https://dl.dropbox.com/s/5pjuyfjzckxkd1d/Photo%20Feb%2010%2C%205%2021%2006%20PM.jpg
+    ratings: [4, 3, 4, 4, 3]
+
+  - name: Tasting Kitchen
+    tags: [Venice]
+    images:
+      - http://instagr.am/p/VkJz_8C42W/
+      - http://instagr.am/p/VkGwPIi4xK/
+    ratings: [4, 5, 5, 4, 3]
+
+  - name: Hostaria del Piccolo
+    images:
+      - http://instagr.am/p/Vh8jfgi42D/
+    ratings: [5, 4, 4, 4, -1]
+
+  - name: Mountain Cafe
+    images:
+      - http://instagr.am/p/UCjdj5i477/
+    ratings: [5, 3, 2, 3, -1]
+
+  - name: Cafe Fiore
+    images:
+      - http://instagr.am/p/T7I91FC40_/
+    ratings: [4, 4, 3, 3, -1]
+
+  - name: Santa Monica Seafood
+    images:
+      - http://instagr.am/p/StJmBPi46E/
+    ratings: [5, 4, 3, 3, 4]
+
+  - name: Conservatory Grill @ The Montage
+    images:
+      - http://instagr.am/p/SoB6LNi409/
+    ratings: [5, 4, 5, 4, 4]
+
+  - name: Golden Road Brewery
+    images:
+      - http://instagr.am/p/SHrZbBi47b/
+    ratings: [5, 3, 3, 4, -1]
+
+  - name: Freddy Small's
+    images:
+      - http://instagr.am/p/QfkZ_XC4_A/
+    ratings: [5, 5, 4, 4, 3]
+
+  - name: Seven Grand
+    images:
+      - http://instagr.am/p/SKPVrmi4wE/
+    ratings: [5, 3, 3, 3, -1]
+
+  - name: Tripel
+    images:
+      - http://instagr.am/p/QN0BBPi46g/
+    ratings: [3, 4, 4, 5, -1]
+
+  - name: Oldfield's
+    images:
+      - http://instagr.am/p/Pi54RRi45p/
+    ratings: [5, 4, 3, 4, -1]
+
+  - name: Nongla
+    images:
+      - http://instagr.am/p/PDv3zkC45r/
+    ratings: [4, 3, 3, 3, -1]
+
+  - name: Sugarfish
+    images:
+      - http://instagr.am/p/Lb9maTC4_L/
+    ratings: [5, 3, 4, 5, 4]
+
+  - name: Marla's
+    tags: [Venice]
+    images:
+      - http://instagr.am/p/LZtEtni408/
+    ratings: [5, 5, 5, 3, -1]
+
+  - name: Venice Ale House
+    tags: [Venice]
+    images:
+      - http://instagr.am/p/JTGQc5i49b/
+    ratings: [4, 3, 4, 3, 3]
+
+  - name: Food
+    images:
+      - http://instagr.am/p/ImzQ1Ui4V/
+    ratings: [3, 3, 4, 4, 4]
+
+  - name: Wurstküche
+    images:
+      - http://instagr.am/p/IoAZffC4we/
+    ratings: [4, 3, 4, 5, 3]
+
+  - name: Philippe's
+    images:
+      - http://instagr.am/p/I3IG08i4x6/
+    ratings: [4, 3, 3, 5, 3]
+
+  - name: Larry's
+    tags: [Venice]
+    images:
+      - http://instagr.am/p/KTYlKkC48q/
+    ratings: [4, 3, 4, 4, -1]

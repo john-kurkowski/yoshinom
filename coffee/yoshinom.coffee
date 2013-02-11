@@ -1,13 +1,11 @@
-randRating = ->
-  Math.floor(Math.random() * (5 - 1 + 1) + 1)
+ratingClasses = ['food', 'service', 'atmosphere', 'uniqueness', 'bathroom']
 
 yoshinom = angular.module('yoshinom', [])
 
 yoshinom.directive 'yoshinomSortKeys', ($timeout) ->
   (scope, element, attrs) ->
     initIsotopeAfterDom = ->
-      sortClasses = element.find('[yoshinom-sort-class]').map ($elem) -> $(@).attr('yoshinom-sort-class')
-      isotopeGetSortData = _.object(_.map(sortClasses, (cls) ->
+      isotopeGetSortData = _.object(_.map(ratingClasses, (cls) ->
         getterForClass = ($elem) -> parseFloat($elem.find(".#{cls}").text())
         [cls, getterForClass]
       ))
@@ -32,13 +30,39 @@ yoshinom.config ($routeProvider) ->
       controller: ListCtrl
       templateUrl: 'list.html'
 
-ListCtrl = ($scope) ->
-  $scope.venues = _.range(11).map (i) ->
-    name: 'Pho So 1'
-    image: "img/photo_#{i}.jpg"
-    ratings:
-      food: randRating()
-      service: randRating()
-      atmosphere: randRating()
-      uniqueness: randRating()
-      bathroom: randRating()
+ListCtrl = ($scope, $http) ->
+  $scope.ratingClasses = ratingClasses
+
+  $http
+    .get('yoshinom.yaml')
+    .success (data, status, headers, config) ->
+      db = jsyaml.load(data)
+      $scope.venues = _.map db.venues, (venueConf) ->
+        venue =
+          name: venueConf.name
+          ratings:
+            food: venueConf.ratings[0]
+            service: venueConf.ratings[1]
+            atmosphere: venueConf.ratings[2]
+            uniqueness: venueConf.ratings[3]
+            bathroom: venueConf.ratings[4]
+
+        firstImage = venueConf.images[0]
+        isInstagramShortlink = firstImage.indexOf('http://instagr.am') isnt -1
+        if isInstagramShortlink
+          # can't use $http due to https://github.com/angular/angular.js/issues/1551
+          $.ajax
+            url: 'http://api.instagram.com/oembed'
+            dataType: 'jsonp',
+            data:
+              url: firstImage
+              maxwidth: 500
+            cache: true
+            success: (data, textStatus, jqXHR) ->
+              venue.image = data.url
+              $scope.$apply()
+
+        else
+          venue.image = firstImage
+
+        venue
