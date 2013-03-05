@@ -6,17 +6,23 @@ venues:
     tags: [Venice]
     images:
       - https://dl.dropbox.com/s/j0ddfl290phniuw/Photo%20Feb%2010%2C%203%2011%2052%20PM.jpg
+    review:
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
   - name: Providence
     ratings: [4, 4, 3, 5, 5]
     images:
       - https://dl.dropbox.com/s/81o2j2fxyl1srni/Photo%20Feb%2010%2C%203%2025%2018%20PM.jpg
+    review:
+      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
 
   - name: Son of a Gun
+    ratings: [5, 4, 4, 5, -1]
     images:
       - https://dl.dropbox.com/s/aj2swaiko7ycbdr/Photo%20Feb%2010%2C%203%2033%2054%20PM.jpg
       - http://instagr.am/p/VQYQ7qC4_2/
-    ratings: [5, 4, 4, 5, -1]
+    review:
+      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
 
   - name: Bonano's Chicken
     images:
@@ -81,7 +87,7 @@ venues:
       - http://instagr.am/p/StJmBPi46E/
     ratings: [5, 4, 3, 3, 4]
 
-  - name: Conservatory Grill @ The Montage
+  - name: Conservatory Grill
     images:
       - http://instagr.am/p/SoB6LNi409/
     ratings: [5, 4, 5, 4, 4]

@@ -37,19 +37,19 @@ ListCtrl = ($scope, $http) ->
     .get('yoshinom.yaml')
     .success (data, status, headers, config) ->
       db = jsyaml.load(data)
-      $scope.venues = _.map db.venues, (venueConf) ->
-        venue =
-          name: venueConf.name
-          ratings:
-            food: venueConf.ratings[0]
-            service: venueConf.ratings[1]
-            atmosphere: venueConf.ratings[2]
-            uniqueness: venueConf.ratings[3]
-            bathroom: venueConf.ratings[4]
+      $scope.venues = _.map db.venues, (venue) ->
+        venue.ratings =
+          food: venue.ratings[0]
+          service: venue.ratings[1]
+          atmosphere: venue.ratings[2]
+          uniqueness: venue.ratings[3]
+          bathroom: venue.ratings[4]
 
-        firstImage = venueConf.images[0]
+        firstImage = venue.images[0]
         isInstagramShortlink = firstImage.indexOf('http://instagr.am') isnt -1
         if isInstagramShortlink
+          venue.imageLink = firstImage
+
           # can't use $http due to https://github.com/angular/angular.js/issues/1551
           $.ajax
             url: 'http://api.instagram.com/oembed'
