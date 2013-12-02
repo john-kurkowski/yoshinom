@@ -1,9 +1,10 @@
 exports.config =
-  # See http://brunch.io/#documentation for docs.
   files:
     javascripts:
-      joinTo: 'app.js'
+      joinTo:
+        'assets/app.js': /^app/
+        'assets/vendor.js': /^(bower_components|vendor)/
     stylesheets:
-      joinTo: 'app.css'
+      joinTo: 'assets/app.css'
     templates:
-      joinTo: 'app.js'
+      joinTo: 'assets/app.js'

@@ -1,7 +1,29 @@
 {
-  "name": "your-app",
+  "name": "yoshinom",
   "version": "0.0.1",
   "main": "public/app.js",
-  "dependencies": {},
-  "overrides": {}
+  "homepage": "http://yoshinom.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.3",
+    "angular-route": "~1.2.3",
+    "lodash": "~2.4.0",
+    "isotope": "~1.5.25",
+    "jquery": "~2.0.3"
+  },
+  "overrides": {
+    "isotope": {
+      "main": "jquery.isotope.js",
+      "dependencies": {
+        "jquery": "~2.0.3"
+      }
+    }
+  }
 }

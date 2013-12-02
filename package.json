@@ -16,6 +16,9 @@
     "css-brunch": ">= 1.0 < 1.8",
     "uglify-js-brunch": ">= 1.0 < 1.8",
     "clean-css-brunch": ">= 1.0 < 1.8",
-    "auto-reload-brunch": ">= 1.0 < 1.8"
+    "auto-reload-brunch": ">= 1.0 < 1.8",
+    "coffee-script-brunch": ">= 1.0 < 2.0",
+    "less-brunch": ">= 1.0 < 1.8",
+    "yaml-brunch": "~1.0.1"
   }
 }
