@@ -1,8 +1,8 @@
 <div id="venues_collection">
   <ul class="venues">
-    <li class="venue" ng-repeat="venue in venues">
-      <a yoshinom-venue-hover href="#{{ venue.name }}" class="thumbnail">
-        <img ng-src="{{ venue.image }}" />
+    <li class="venue" ng-class="{reviewed: venue.review}" ng-repeat="venue in venues">
+      <a yoshinom-venue-hover href="#{{ venue.name }}">
+        <img ng-src="{{ venue.image }}" class="thumbnail"/>
       </a>
 
       <ul class="links">

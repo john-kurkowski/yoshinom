@@ -69,25 +69,31 @@ ul, ol {
   height: 300px;
   margin-left: 2px;
   margin-bottom: 2px;
+
+  &:hover {
+    .review, .map_link, .image_link {
+      display: inline;
+    }
+
+    &.reviewed .thumbnail {
+      opacity: 0.5;
+      transition-property: transform, opacity;
+      transition-duration: 0.2s;
+    }
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
 }
+
 .review {
   display: none;
   position: absolute;
   top: 0;
   margin: 2px 5px;
   width: @review_width;
-}
-.venue:hover {
-  .thumbnail {
-    opacity: 0.5;
-  }
-  .review, .map_link, .image_link {
-    display: inline;
-  }
-}
-.venue img {
-  display: block;
-  max-width: 100%;
 }
 
 .name {
@@ -142,11 +148,13 @@ ul, ol {
   padding: 8px;
   height: 40px;
   color: white;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
-.legend_item:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
+
 .legend_item + .legend_item {
   margin-top: 1px;
 }
