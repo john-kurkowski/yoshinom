@@ -17,7 +17,7 @@ yoshinom.directive 'yoshinomSortKeys', ($timeout) ->
 
 yoshinom.directive 'yoshinomSortClass', ->
   (scope, element, attrs) ->
-    element.click ->
+    element.bind 'click', ->
       $('.venues').isotope
         sortBy: attrs.yoshinomSortClass
         sortAscending: false
