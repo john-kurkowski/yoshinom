@@ -22,7 +22,8 @@ yoshinom.directive 'yoshinomSortClass', ->
         sortBy: attrs.yoshinomSortClass
         sortAscending: false
 
-yoshinom.config ($routeProvider) ->
+yoshinom.config ($routeProvider, $locationProvider) ->
+  $locationProvider.html5Mode(true)
   $routeProvider
     .when '/',
       redirectTo: '/series/venice' # TODO
