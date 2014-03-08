@@ -9,5 +9,6 @@ exports.config =
     templates:
       joinTo: 'assets/app.js'
 
-  angularTemplate:
-    moduleName: 'yoshinom'
+  plugins:
+    angularTemplate:
+      moduleName: 'yoshinom'

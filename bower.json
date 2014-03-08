@@ -12,8 +12,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.3",
-    "angular-route": "~1.2.3",
+    "angular": "~1.2.14",
+    "angular-route": "~1.2.14",
     "lodash": "~2.4.0",
     "isotope": "~1.5.25",
     "jquery": "~2.0.3"
