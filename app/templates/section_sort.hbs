@@ -1,0 +1,25 @@
+<ul class="venues">
+  {{#each venue in arrangedContent}}
+    <li class="venue" {{bind-attr class="reviewed:venue.review"}}>
+      {{#link-to "venue" venue.name}}
+        <img {{bind-attr src=venue.image}} class="thumbnail"/>
+      {{/link-to}}
+
+      <ul class="links">
+        <li class="name">{{venue.name}}</li>
+        <li class="map_link">{{venue.mapLink}}</li>
+        <li class="image_link">{{venue.imageLink}}</li>
+      </ul>
+
+      <ul class="ratings">
+        <li class="rating food"><span>{{venue.ratings.food}}</span></li>
+        <li class="rating service"><span>{{venue.ratings.service}}</span></li>
+        <li class="rating atmosphere"><span>{{venue.ratings.atmosphere}}</span></li>
+        <li class="rating uniqueness"><span>{{venue.ratings.uniqueness}}</span></li>
+        <li class="rating bathroom"><span>{{venue.ratings.bathroom}}</span></li>
+      </ul>
+
+      <span class="review">{{venue.review}}</span>
+    </li>
+  {{/each}}
+</ul>

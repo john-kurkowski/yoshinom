@@ -8,7 +8,4 @@ exports.config =
       joinTo: 'assets/app.css'
     templates:
       joinTo: 'assets/app.js'
-
-  plugins:
-    angularTemplate:
-      moduleName: 'yoshinom'
+      precompile: true

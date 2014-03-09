@@ -1,6 +1,3 @@
-window.yoshinom = angular.module('yoshinom', ['ngRoute'])
-
-require 'yoshinom/globals'
-require 'yoshinom/directives'
+window.Yoshinom = require 'yoshinom/app'
 require 'yoshinom/router'
-require 'yoshinom/templates/list'
+require 'yoshinom/sections'

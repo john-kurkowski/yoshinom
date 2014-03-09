@@ -1,10 +1,66 @@
-controllers = require 'yoshinom/controllers'
+Yoshinom.Router.map ->
+  @resource 'sections', { path: '/' }, ->
+    @resource 'section', { path: '/:section' }, ->
+      @resource 'section.sort', { path: '/:sort' }, ->
+        @resource 'venue', { path: '/:venue' }
 
-yoshinom.config ($routeProvider, $locationProvider) ->
-  $locationProvider.html5Mode(true)
-  $routeProvider
-    .when '/',
-      redirectTo: '/series/venice' # TODO
-    .when '/series/venice',
-      controller: controllers.ListCtrl
-      templateUrl: 'yoshinom/templates/list.html'
+Yoshinom.Router.reopen
+  location: 'history'
+
+Yoshinom.SectionsIndexRoute = Ember.Route.extend
+  beforeModel: ->
+    @transitionTo 'section.sort', 'westla', 'food' # the only one we got
+
+Yoshinom.SectionRoute = Ember.Route.extend
+  model: (params) ->
+    venueConfs = switch params.section
+      when 'westla' then require('yoshinom/reviews').venues
+
+    if not venueConfs
+      return @transitionTo 'fourOhFour' # TODO
+
+    venuePromises = venueConfs.map parseVenuePromise
+    Ember.RSVP.all(venuePromises).then (venues) ->
+      section: params.section
+      venues: venues
+
+Yoshinom.SectionSortRoute = Ember.Route.extend
+  setupController: (controller) ->
+    sorts = ['food', 'service', 'atmosphere', 'uniqueness', 'bathroom']
+    sort = @get('currentModel.sort')
+    if sorts.contains sort
+      sorts.removeObject sort
+      sorts.unshift sort
+
+    controller.setProperties
+      sortProperties: sorts.map (sort) -> "ratings.#{sort}"
+      sortAscending: false
+
+parseVenuePromise = (venue) ->
+  venue.ratings =
+    food: venue.ratings[0]
+    service: venue.ratings[1]
+    atmosphere: venue.ratings[2]
+    uniqueness: venue.ratings[3]
+    bathroom: venue.ratings[4]
+
+  firstImage = venue.images[0]
+  isInstagramShortlink = firstImage.indexOf('http://instagr.am') isnt -1
+  if isInstagramShortlink
+    venue.imageLink = firstImage
+    promise = $.ajax
+      url: 'http://api.instagram.com/oembed'
+      dataType: 'jsonp',
+      data:
+        url: firstImage
+        maxwidth: 500
+      cache: true
+
+
+    promise.then (data) ->
+      venue.image = data.url
+      venue
+
+  else
+    venue.image = firstImage
+    Ember.RSVP.resolve(venue)
