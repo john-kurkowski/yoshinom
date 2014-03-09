@@ -20,19 +20,18 @@ Yoshinom.SectionRoute = Ember.Route.extend
       return @transitionTo 'fourOhFour' # TODO
 
     venuePromises = venueConfs.map parseVenuePromise
-    Ember.RSVP.all(venuePromises).then (venues) ->
+    Ember.RSVP.all(venuePromises).then (venues) -> Ember.Object.create
       section: params.section
       venues: venues
 
 Yoshinom.SectionSortRoute = Ember.Route.extend
-  setupController: (controller) ->
+  setupController: (controller, model) ->
     sorts = ['food', 'service', 'atmosphere', 'uniqueness', 'bathroom']
-    sort = @get('currentModel.sort')
-    if sorts.contains sort
-      sorts.removeObject sort
-      sorts.unshift sort
+    if sorts.contains model.sort
+      sorts.unshift model.sort
 
     controller.setProperties
+      content: @modelFor('section').get('venues')
       sortProperties: sorts.map (sort) -> "ratings.#{sort}"
       sortAscending: false
 

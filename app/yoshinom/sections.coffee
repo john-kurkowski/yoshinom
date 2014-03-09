@@ -11,7 +11,4 @@ Yoshinom.SectionView = Ember.View.extend
 Yoshinom.SectionSortView = Ember.View.extend
   templateName: 'app/templates/section_sort'
 
-Yoshinom.SectionSortController = Ember.ArrayController.extend
-  needs: ['section']
-
-  content: Em.computed.alias 'controllers.section.content.venues'
+Yoshinom.SectionSortController = Ember.ArrayController.extend()
