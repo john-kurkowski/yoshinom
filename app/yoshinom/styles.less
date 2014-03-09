@@ -20,6 +20,7 @@ h3 {
 }
 body {
   font-size: @font-size-primary;
+  line-height: 28px;
 }
 small {
   font-size: @font-size-secondary;
@@ -86,10 +87,6 @@ a {
   margin: 1em;
 
   &:hover {
-    .review {
-      display: inline;
-    }
-
     &.reviewed .thumbnail {
       opacity: 0.5;
       transition-property: transform, opacity;
@@ -117,8 +114,8 @@ a {
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 4px 8px;
-  margin: 2px;
+  padding: 0 4px;
+  margin: 4px;
 }
 .map_link {
   display: none;
