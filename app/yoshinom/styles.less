@@ -4,6 +4,7 @@
 @font-size-primary: 15px;
 @font-size-secondary: 12px;
 
+@venue_width: 300px;
 @venue_caption: rgba(0, 0, 0, 0.5);
 @ratings_width: 14%;
 @review_width: 100% - @ratings_width;
@@ -80,12 +81,12 @@ a {
 
 .venue {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: @venue_width;
+  height: @venue_width;
   margin: 1em;
 
   &:hover {
-    .review, .map_link, .image_link {
+    .review {
       display: inline;
     }
 
@@ -106,7 +107,7 @@ a {
   display: none;
   position: absolute;
   top: 0;
-  margin: 2px 5px;
+  padding: 2px 5px;
   width: @review_width;
 }
 
@@ -127,10 +128,14 @@ a {
 }
 
 .ratings {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: @venue_width;
   position: absolute;
   top: 0;
   right: 0;
-  margin: 0;
+  padding: 1px;
   text-align: center;
   width: @ratings_width;
   list-style: none;
@@ -140,9 +145,7 @@ a {
   height: 49px;
   font-size: 32px;
   padding-top: 10px;
-}
-.rating + .rating {
-  margin-top: 1px;
+  height: @venue_width / 5 - 1;
 }
 
 .sidebar {
