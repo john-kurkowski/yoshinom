@@ -58,8 +58,8 @@ parseVenuePromise = (venue) ->
 
     promise.then (data) ->
       venue.image = data.url
-      venue
+      Ember.Object.create(venue)
 
   else
     venue.image = firstImage
-    Ember.RSVP.resolve(venue)
+    Ember.RSVP.resolve Ember.Object.create(venue)

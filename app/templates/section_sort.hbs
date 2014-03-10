@@ -1,7 +1,7 @@
 <ul class="venues">
   {{#each venue in arrangedContent}}
-    <li class="venue" {{bind-attr class="reviewed:venue.review"}}>
-      {{#link-to "venue" venue.name}}
+    <li class="venue" {{bind-attr class="venue.review:reviewed venue.showDetails:details"}}>
+      {{#link-to "venue" venue.name action="showVenue" actionParam=venue}}
         <img {{bind-attr src=venue.image}} class="thumbnail"/>
       {{/link-to}}
 
