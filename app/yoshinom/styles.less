@@ -9,8 +9,11 @@
 @ratings_width: 14%;
 @review_width: 100% - @ratings_width;
 
+@detailsColor: #444;
+
 h1 {
   font-size: @font-size-title;
+  line-height: 45.304952px;
 }
 h2 {
   font-size: @font-size-headline;
@@ -46,6 +49,7 @@ a {
 .sections, .sorts {
   display: flex;
   justify-content: center;
+  flex-flow: row wrap;
   margin: 1em;
 
   > li + li {
@@ -86,11 +90,34 @@ a {
   height: @venue_width;
   margin: 1em;
 
-  &:hover {
-    &.reviewed .thumbnail {
-      opacity: 0.5;
-      transition-property: transform, opacity;
-      transition-duration: 0.2s;
+  .details {
+    .name {
+      background-color: @venue_caption;
+      border-radius: 4px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      margin: 4px;
+      padding: 0 4px;
+    }
+
+    .map_link {
+      display: none;
+
+    }
+
+    .image_link {
+      display: none;
+
+      width: 2em;
+      height: 2em;
+    }
+
+    .review {
+      display: none;
+
+      margin-bottom: 1em;
+      width: @review_width;
     }
   }
 
@@ -98,30 +125,43 @@ a {
     display: block;
     max-width: 100%;
   }
-}
 
-.review {
-  display: none;
-  position: absolute;
-  top: 0;
-  padding: 2px 5px;
-  width: @review_width;
-}
+  &:hover {
+    box-shadow: 0 0 50px 5px @detailsColor;
 
-.name {
-  background-color: @venue_caption;
-  border-radius: 4px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 0 4px;
-  margin: 4px;
-}
-.map_link {
-  display: none;
-}
-.image_link {
-  display: none;
+    .name {
+      text-decoration: underline;
+    }
+
+    &.reviewed .thumbnail {
+      opacity: 0.5;
+      transition-property: transform, opacity;
+      transition-duration: 0.2s;
+    }
+  }
+
+  &.selected {
+    background-color: @detailsColor;
+    box-shadow: 0 0 50px 20px @detailsColor;
+    height: auto;
+
+    .details {
+      padding: 8px;
+
+      .name {
+        background-color: @detailsColor;
+        border-radius: 0;
+        margin: 0 0 1em;
+        padding: 0;
+        position: static;
+        text-decoration: underline;
+      }
+
+      .review, .map_link, .image_link {
+        display: block;
+      }
+    }
+  }
 }
 
 .ratings {
