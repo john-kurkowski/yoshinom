@@ -1,0 +1,34 @@
+<ul class="venues">
+  {{#each venue in arrangedContent}}
+    <li class="venue" {{bind-attr class="venue.review:reviewed venue.showDetails:selected"}}>
+      {{#link-to "venue" venue.name action="showVenue" actionParam=venue}}
+        <img {{bind-attr src=venue.image}} class="thumbnail"/>
+      {{/link-to}}
+
+      <div class="details">
+        <h3 class="name">{{venue.name}}</h3>
+
+        <div class="review">{{venue.review}}</div>
+
+        <ul class="links">
+          {{#if venue.mapLink}}
+            <li class="map_link">{{venue.mapLink}}</li>
+          {{/if}}
+
+          {{#if venue.imageLink}}
+            <li class="image_link"><a {{bind-attr href=venue.imageLink}}>Instagram</a></li>
+          {{/if}}
+        </ul>
+
+      </div>
+
+      <ul class="ratings">
+        <li class="rating food" title="Food"><span>{{venue.ratings.food}}</span></li>
+        <li class="rating service" title="Service"><span>{{venue.ratings.service}}</span></li>
+        <li class="rating atmosphere" title="Atmosphere"><span>{{venue.ratings.atmosphere}}</span></li>
+        <li class="rating uniqueness" title="Uniqueness"><span>{{venue.ratings.uniqueness}}</span></li>
+        <li class="rating bathroom" title="Bathroom"><span>{{venue.ratings.bathroom}}</span></li>
+      </ul>
+    </li>
+  {{/each}}
+</ul>
