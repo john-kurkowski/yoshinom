@@ -2,6 +2,8 @@
   font-family: 'Limelight', cursive;
 }
 
+@goldilocks-little: 38em;
+
 @font-size-title: 39px;
 @font-size-headline: 24px;
 @font-size-sub: 19px;
@@ -37,10 +39,6 @@ small {
   font-size: @font-size-secondary;
 }
 
-body {
-  padding: 1em;
-}
-
 a {
   color: white;
   text-decoration: none;
@@ -51,15 +49,43 @@ a {
 }
 
 header {
-  .title {
-    float: left;
-  }
+  text-align: center;
 
   .about {
     font-size: @font-size-secondary;
-    float: right;
     line-height: 17.304951px;
-    width: 33%;
+  }
+}
+
+@media screen and (max-width: @goldilocks-little) {
+  header {
+    padding: 1em;
+
+    h2 {
+      display: none;
+    }
+
+    .title {
+      margin-bottom: 1em;
+    }
+  }
+}
+@media screen and (min-width: @goldilocks-little) {
+  body {
+    padding: 1em;
+  }
+
+  header {
+    text-align: left;
+
+    .title {
+      float: left;
+    }
+
+    .about {
+      float: right;
+      width: 33%;
+    }
   }
 }
 
@@ -72,18 +98,14 @@ header {
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
-  -webkit-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
+  -webkit-justify-content: space-around;
+  -ms-justify-content: space-around;
+  justify-content: space-around;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
   .font-header;
   font-size: @font-size-sub;
   margin: 1em auto;
-
-  > li ~ li {
-    margin-left: 1em;
-  }
 
   a, a:visited {
     color: #ddd;
@@ -91,6 +113,17 @@ header {
     &:hover, &.active {
       color: white;
     }
+  }
+}
+
+@media screen and (max-width: @goldilocks-little) {
+  .sections, .sorts {
+    padding: 0 1em;
+  }
+}
+@media screen and (min-width: @goldilocks-little) {
+  .sections, .sorts {
+    width: 60%;
   }
 }
 
