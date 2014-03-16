@@ -1,14 +1,19 @@
 <ul class="venues">
   {{#each venue in arrangedContent}}
     <li class="venue" {{bind-attr class="venue.review:reviewed venue.showDetails:selected"}}>
-      {{#link-to "venue" venue action="toggleVenue" actionParam=venue}}
+      {{#link-to "venue" venue classNameBindings=":card" action="toggleVenue" actionParam=venue}}
         <img {{bind-attr src=venue.image}} class="thumbnail"/>
+        <h3 class="name">{{venue.name}}</h3>
       {{/link-to}}
 
       <div class="details">
-        <h3 class="name">{{venue.name}}</h3>
-
-        <div class="review">{{venue.review}}</div>
+        <div class="review">
+          {{#if venue.review}}
+            {{venue.review}}
+          {{else}}
+            No review yet.
+          {{/if}}
+        </div>
 
         <ul class="links">
           {{#if venue.mapLink}}

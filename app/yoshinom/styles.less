@@ -7,7 +7,6 @@
 @venue_width: 300px;
 @venue_caption: rgba(0, 0, 0, 0.5);
 @ratings_width: 14%;
-@review_width: 100% - @ratings_width;
 
 @detailsColor: #444;
 
@@ -22,6 +21,9 @@ h3 {
   font-size: @font-size-sub;
 }
 body {
+  background-color: black;
+  color: white;
+  font-family: 'Limelight', cursive;
   font-size: @font-size-primary;
   line-height: 28px;
 }
@@ -90,7 +92,16 @@ a {
   height: @venue_width;
   margin: 1em;
 
-  .details {
+  .card {
+    display: inline-block;
+    position: relative;
+    height: @venue_width;
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
     .name {
       background-color: @venue_caption;
       border-radius: 4px;
@@ -100,6 +111,10 @@ a {
       margin: 4px;
       padding: 0 4px;
     }
+  }
+
+  .details {
+    padding: 0 8px 8px;
 
     .map_link {
       display: none;
@@ -116,14 +131,9 @@ a {
     .review {
       display: none;
 
-      margin-bottom: 1em;
-      width: @review_width;
+      font-family: 'Open Sans';
+      text-align: justify;
     }
-  }
-
-  img {
-    display: block;
-    max-width: 100%;
   }
 
   &:hover {
@@ -145,18 +155,11 @@ a {
     box-shadow: 0 0 50px 20px @detailsColor;
     height: auto;
 
+    .name {
+      text-decoration: underline;
+    }
+
     .details {
-      padding: 8px;
-
-      .name {
-        background-color: @detailsColor;
-        border-radius: 0;
-        margin: 0 0 1em;
-        padding: 0;
-        position: static;
-        text-decoration: underline;
-      }
-
       .review, .map_link, .image_link {
         display: block;
       }
