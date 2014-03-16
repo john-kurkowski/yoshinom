@@ -23,11 +23,11 @@
       </div>
 
       <ul class="ratings">
-        <li class="rating food" title="Food"><span>{{venue.ratings.food}}</span></li>
-        <li class="rating service" title="Service"><span>{{venue.ratings.service}}</span></li>
-        <li class="rating atmosphere" title="Atmosphere"><span>{{venue.ratings.atmosphere}}</span></li>
-        <li class="rating uniqueness" title="Uniqueness"><span>{{venue.ratings.uniqueness}}</span></li>
-        <li class="rating bathroom" title="Bathroom"><span>{{venue.ratings.bathroom}}</span></li>
+        <li title="Food" {{bind-attr class=":rating venue.ratings.food::unknown"}}>{{venue.ratings.food}}</li>
+        <li title="Service" {{bind-attr class=":rating venue.ratings.service::unknown"}}>{{venue.ratings.service}}</li>
+        <li title="Atmosphere" {{bind-attr class=":rating venue.ratings.atmosphere::unknown"}}>{{venue.ratings.atmosphere}}</li>
+        <li title="Uniqueness" {{bind-attr class=":rating venue.ratings.uniqueness::unknown"}}>{{venue.ratings.uniqueness}}</li>
+        <li title="Bathroom" {{bind-attr class=":rating venue.ratings.bathroom::unknown"}}>{{venue.ratings.bathroom}}</li>
       </ul>
     </li>
   {{/each}}

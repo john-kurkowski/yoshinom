@@ -183,6 +183,15 @@ a {
   font-size: 32px;
   padding-top: 10px;
   height: @venue_width / 5 - 1;
+
+  &.unknown {
+    font-size: 0;
+
+    &:before {
+      font-size: 12px;
+      content: "N/A";
+    }
+  }
 }
 
 .sidebar {

@@ -17,7 +17,7 @@ venues:
       At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
 
   - name: Son of a Gun
-    ratings: [5, 4, 4, 5, -1]
+    ratings: [5, 4, 4, 5, 0]
     images:
       - https://dl.dropbox.com/s/aj2swaiko7ycbdr/Photo%20Feb%2010%2C%203%2033%2054%20PM.jpg
       - http://instagr.am/p/VQYQ7qC4_2/
@@ -27,13 +27,13 @@ venues:
   - name: Bonano's Chicken
     images:
       - https://dl.dropbox.com/s/5r7d55o9jj6k93q/Photo%20Feb%2010%2C%203%2035%2043%20PM.jpg
-    ratings: [5, 3, 2, 3, -1]
+    ratings: [5, 3, 2, 3, 0]
 
   - name: Yabu
     images:
       - https://dl.dropbox.com/s/kdhz6uruhfo80pa/Photo%20Feb%2010%2C%203%2039%2048%20PM.jpg
       - http://instagr.am/p/O3CAKhC419/
-    ratings: [5, 4, 3, 3, -1]
+    ratings: [5, 4, 3, 3, 0]
 
   - name: Cafe Brasil
     images:
@@ -43,7 +43,7 @@ venues:
   - name: Earl's Gourmet Grub
     images:
       - https://dl.dropbox.com/s/p4214ns9g3oy97n/Photo%20Feb%2010%2C%204%2033%2022%20PM.jpg
-    ratings: [4, 3, 4, 4, -1]
+    ratings: [4, 3, 4, 4, 0]
 
   - name: Tsujita
     images:
@@ -70,17 +70,17 @@ venues:
   - name: Hostaria del Piccolo
     images:
       - http://instagr.am/p/Vh8jfgi42D/
-    ratings: [5, 4, 4, 4, -1]
+    ratings: [5, 4, 4, 4, 0]
 
   - name: Mountain Cafe
     images:
       - http://instagr.am/p/UCjdj5i477/
-    ratings: [5, 3, 2, 3, -1]
+    ratings: [5, 3, 2, 3, 0]
 
   - name: Cafe Fiore
     images:
       - http://instagr.am/p/T7I91FC40_/
-    ratings: [4, 4, 3, 3, -1]
+    ratings: [4, 4, 3, 3, 0]
 
   - name: Santa Monica Seafood
     images:
@@ -95,7 +95,7 @@ venues:
   - name: Golden Road Brewery
     images:
       - http://instagr.am/p/SHrZbBi47b/
-    ratings: [5, 3, 3, 4, -1]
+    ratings: [5, 3, 3, 4, 0]
 
   - name: Freddy Small's
     images:
@@ -105,22 +105,22 @@ venues:
   - name: Seven Grand
     images:
       - http://instagr.am/p/SKPVrmi4wE/
-    ratings: [5, 3, 3, 3, -1]
+    ratings: [5, 3, 3, 3, 0]
 
   - name: Tripel
     images:
       - http://instagr.am/p/QN0BBPi46g/
-    ratings: [3, 4, 4, 5, -1]
+    ratings: [3, 4, 4, 5, 0]
 
   - name: Oldfield's
     images:
       - http://instagr.am/p/Pi54RRi45p/
-    ratings: [5, 4, 3, 4, -1]
+    ratings: [5, 4, 3, 4, 0]
 
   - name: Nongla
     images:
       - http://instagr.am/p/PDv3zkC45r/
-    ratings: [4, 3, 3, 3, -1]
+    ratings: [4, 3, 3, 3, 0]
 
   - name: Sugarfish
     images:
@@ -131,7 +131,7 @@ venues:
     tags: [Venice]
     images:
       - http://instagr.am/p/LZtEtni408/
-    ratings: [5, 5, 5, 3, -1]
+    ratings: [5, 5, 5, 3, 0]
 
   - name: Venice Ale House
     tags: [Venice]
@@ -158,4 +158,4 @@ venues:
     tags: [Venice]
     images:
       - http://instagr.am/p/KTYlKkC48q/
-    ratings: [4, 3, 4, 4, -1]
+    ratings: [4, 3, 4, 4, 0]
