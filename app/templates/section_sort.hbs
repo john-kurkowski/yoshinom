@@ -1,38 +1,38 @@
 <ul class="venues">
-  {{#each venue in arrangedContent}}
-    <li class="venue" {{bind-attr class="venue.review:reviewed venue.showDetails:selected"}}>
-      {{#link-to "venue" venue classNameBindings=":card" action="toggleVenue" actionParam=venue}}
-        <img {{bind-attr src=venue.image}} class="thumbnail"/>
-        <h3 class="name">{{venue.name}}</h3>
+  {{#each arrangedContent}}
+    <li class="venue" {{bind-attr class="review:reviewed showDetails:selected"}}>
+      {{#link-to "venue" this classNameBindings=":card" action="toggleVenue" actionParam=this}}
+        <img {{bind-attr src=image}} class="thumbnail"/>
+        <h3 class="name">{{name}}</h3>
       {{/link-to}}
 
       <div class="details">
         <div class="review">
-          {{#if venue.review}}
-            {{venue.review}}
+          {{#if review}}
+            {{review}}
           {{else}}
             No review yet.
           {{/if}}
         </div>
 
         <ul class="links">
-          {{#if venue.mapLink}}
-            <li class="map_link">{{venue.mapLink}}</li>
+          {{#if mapLink}}
+            <li class="map_link">{{mapLink}}</li>
           {{/if}}
 
-          {{#if venue.imageLink}}
-            <li class="image_link"><a {{bind-attr href=venue.imageLink}}>Instagram</a></li>
+          {{#if imageLink}}
+            <li class="image_link"><a {{bind-attr href=imageLink}}>Instagram</a></li>
           {{/if}}
         </ul>
 
       </div>
 
       <ul class="ratings">
-        <li title="Food" {{bind-attr class=":rating venue.ratings.food::unknown"}}>{{venue.ratings.food}}</li>
-        <li title="Service" {{bind-attr class=":rating venue.ratings.service::unknown"}}>{{venue.ratings.service}}</li>
-        <li title="Atmosphere" {{bind-attr class=":rating venue.ratings.atmosphere::unknown"}}>{{venue.ratings.atmosphere}}</li>
-        <li title="Uniqueness" {{bind-attr class=":rating venue.ratings.uniqueness::unknown"}}>{{venue.ratings.uniqueness}}</li>
-        <li title="Bathroom" {{bind-attr class=":rating venue.ratings.bathroom::unknown"}}>{{venue.ratings.bathroom}}</li>
+        <li title="Food" {{bind-attr class=":rating ratings.food::unknown"}}>{{ratings.food}}</li>
+        <li title="Service" {{bind-attr class=":rating ratings.service::unknown"}}>{{ratings.service}}</li>
+        <li title="Atmosphere" {{bind-attr class=":rating ratings.atmosphere::unknown"}}>{{ratings.atmosphere}}</li>
+        <li title="Uniqueness" {{bind-attr class=":rating ratings.uniqueness::unknown"}}>{{ratings.uniqueness}}</li>
+        <li title="Bathroom" {{bind-attr class=":rating ratings.bathroom::unknown"}}>{{ratings.bathroom}}</li>
       </ul>
     </li>
   {{/each}}
