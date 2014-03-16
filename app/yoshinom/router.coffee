@@ -2,7 +2,7 @@ Yoshinom.Router.map ->
   @resource 'sections', { path: '/' }, ->
     @resource 'section', { path: '/:section' }, ->
       @resource 'section.sort', { path: '/:sort' }, ->
-        @resource 'venue', { path: '/:venue' }
+        @resource 'venue', { path: '/:name' }
 
 Yoshinom.Router.reopen
   location: 'history'
@@ -34,6 +34,27 @@ Yoshinom.SectionSortRoute = Ember.Route.extend
       content: @modelFor('section').get('venues')
       sortProperties: sorts.map (sort) -> "ratings.#{sort}"
       sortAscending: false
+
+  actions:
+    toggleVenue: (venue) ->
+      if venue.get('showDetails')
+        @transitionTo 'venue', venue
+
+Yoshinom.VenueRoute = Ember.Route.extend
+  model: (params) ->
+    model = @modelFor('section').get('venues').findBy 'name', decodeURIComponent(params.name)
+    if not model
+      return @transitionTo 'fourOhFour' # TODO
+
+    Em.run.scheduleOnce 'afterRender', -> # why is this necessary?
+      model.set 'showDetails', true
+    model
+
+  actions:
+    toggleVenue: (venue) ->
+      if not venue.get('showDetails')
+        @transitionTo 'section.sort'
+      true
 
 parseVenuePromise = (venue) ->
   venue.ratings =
