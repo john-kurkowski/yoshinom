@@ -16,7 +16,7 @@ Yoshinom.SectionSortController = Ember.ArrayController.extend
     toggleVenue: (venue) ->
       venue.toggleProperty 'showDetails'
       @forEach (otherVenue) ->
-        if otherVenue isnt venue
+        if otherVenue.get('name') isnt venue.get('name')
           otherVenue.set 'showDetails', false
 
       true

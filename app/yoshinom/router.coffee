@@ -42,12 +42,21 @@ Yoshinom.SectionSortRoute = Ember.Route.extend
 
 Yoshinom.VenueRoute = Ember.Route.extend
   model: (params) ->
-    model = @modelFor('section').get('venues').findBy 'name', decodeURIComponent(params.name)
+    name = decodeURIComponent(params.name)
+    model = @modelFor('section').get('venues').findBy 'name', name
     if not model
       return @transitionTo 'fourOhFour' # TODO
 
     Em.run.scheduleOnce 'afterRender', -> # why is this necessary?
       model.set 'showDetails', true
+
+    Em.run.scheduleOnce 'afterRender', ->
+      venueElement = $(document.getElementById(name))
+      buffer = 32
+      $('html, body').animate
+        scrollTop: venueElement.offset().top - buffer
+      , 1000
+
     model
 
   actions:
