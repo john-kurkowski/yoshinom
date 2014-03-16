@@ -15,3 +15,6 @@ Ember.LinkView.reopen
 
     # no action to take, handle the link-to normally
     return @_super(event)
+
+Ember.Handlebars.registerBoundHelper 'get-or-else', (value, alt) ->
+  if value then value else alt
