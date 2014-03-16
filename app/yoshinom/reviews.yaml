@@ -7,7 +7,9 @@ venues:
     images:
       - https://dl.dropbox.com/s/j0ddfl290phniuw/Photo%20Feb%2010%2C%203%2011%2052%20PM.jpg
     review:
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      The French and Italian-inspired small plates won't blow your mind, but
+      Zinque's openness and windowed atmosphere are hard to deny. Catch the
+      cross breeze with a draft Delirium Tremens.
 
   - name: Providence
     ratings: [4, 4, 3, 5, 5]
@@ -17,12 +19,15 @@ venues:
       At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
 
   - name: Son of a Gun
-    ratings: [5, 4, 4, 5, 0]
+    ratings: [5, 4, 4, 5, 3]
     images:
       - https://dl.dropbox.com/s/aj2swaiko7ycbdr/Photo%20Feb%2010%2C%203%2033%2054%20PM.jpg
       - http://instagr.am/p/VQYQ7qC4_2/
     review:
-      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+      Pushing the tapas game forward. Inventive, fine combinations of food
+      flavors, such as subtle uni & burrata (pictured), buttery shrimp toast,
+      and a surprising fried chicken sandwich. Also a deference to craft
+      cocktails.
 
   - name: Bonano's Chicken
     images:
@@ -33,22 +38,48 @@ venues:
     images:
       - https://dl.dropbox.com/s/kdhz6uruhfo80pa/Photo%20Feb%2010%2C%203%2039%2048%20PM.jpg
       - http://instagr.am/p/O3CAKhC419/
-    ratings: [5, 4, 3, 3, 0]
+    ratings: [5, 4, 3, 3, 2]
+    review:
+      The most balanced sushi restaurant on the west side. Traditional style
+      sushi with many adventurous (to the American palate) daily specials, and
+      a comforting hot food menu to boot. If you can't decide between fine
+      sushi and fried chicken, they do them both. Yabu isn't cheap, but isn't
+      expensive either.
 
   - name: Cafe Brasil
     images:
       - https://dl.dropbox.com/s/s7h7auxrpv1pgor/Photo%20Feb%2010%2C%204%2039%2005%20PM.jpg
     ratings: [5, 4, 4, 3, 2]
+    review:
+      Some say it's high priced for what it is. For breakfast, eggs, plantains,
+      toast, passionfruit juice. For lunch, grilled meat, rice, beans, and
+      salsa. However the sauce is so succulent. Maybe if they sold their
+      sauces, I'd buy them and cook the rest at home. Then I'd be missing on
+      the breezy, plant-canopied patio.
 
   - name: Earl's Gourmet Grub
     images:
       - https://dl.dropbox.com/s/p4214ns9g3oy97n/Photo%20Feb%2010%2C%204%2033%2022%20PM.jpg
-    ratings: [4, 3, 4, 4, 0]
+    ratings: [4, 4, 4, 4, 0]
+    review:
+      The best breakfast sandwiches on the west side are Earl's popeye and
+      croque madame. Nothing else too intense here. Which is welcome in the
+      otherwise high-caloric gourmet sandwich industry. Rather, Earl's
+      ingredients are inventive but subtle. The staff is passionate to deliver
+      you a fine meal, and tell an absurd joke on their marquee.
 
   - name: Tsujita
     images:
       - https://dl.dropbox.com/s/c0aepxo6uw73mgm/Photo%20Feb%2010%2C%205%2005%2030%20PM.jpg
     ratings: [5, 5, 5, 4, 3]
+    review:
+      America's best ramen. It's so good that everyday it has the only line out
+      the door, despite 5 other ramen restaurants within 2 blocks. It's so good
+      that guests flip a table when they return for dinner, only to find a
+      completely different Japanese cuisine, sans the ramen. It's worth the
+      lunch trip alone. However the dinner is consistent and exquisite, an
+      excellent date excursion. Try the ox tongue steak and swallow-delaying
+      kakuni.
 
   - name: Malibu Seafood
     images:
@@ -106,6 +137,12 @@ venues:
     images:
       - http://instagr.am/p/SKPVrmi4wE/
     ratings: [5, 3, 3, 3, 0]
+    review:
+      Whiskey, whiskey, whiskey. Impress your friends by discussing their
+      incredible selection. Maybe go all out on an educational whiskey flight.
+      Their Makers Mark sours however are streamlined and consistent, a good
+      starting point and return point. The venue can get pretty crowded, but
+      BYOF is an option.
 
   - name: Tripel
     images:
@@ -158,4 +195,10 @@ venues:
     tags: [Venice]
     images:
       - http://instagr.am/p/KTYlKkC48q/
-    ratings: [4, 3, 4, 4, 0]
+    ratings: [4, 3, 4, 4, 2]
+    review:
+      Surprisingly advanced food at the gateway to the marijuana card-pushing
+      Venice beach. The green curry mussels are a requirement. With a good
+      draft beer selection, sunshine pouring in, and all the patrons smiling,
+      it keeps the beach's vibe. It's a Venice institution. You'll forgive the
+      wait for the bathroom.
