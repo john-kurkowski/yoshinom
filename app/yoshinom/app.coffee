@@ -1,3 +1,4 @@
-Yoshinom = Ember.Application.create()
+Yoshinom = Ember.Application.create
+  rootElement: '#app'
 
 module.exports = Yoshinom

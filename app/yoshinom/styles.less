@@ -1,3 +1,7 @@
+.font-header() {
+  font-family: 'Limelight', cursive;
+}
+
 @font-size-title: 39px;
 @font-size-headline: 24px;
 @font-size-sub: 19px;
@@ -11,10 +15,12 @@
 @detailsColor: #444;
 
 h1 {
+  .font-header;
   font-size: @font-size-title;
   line-height: 45.304952px;
 }
 h2 {
+  .font-header;
   font-size: @font-size-headline;
 }
 h3 {
@@ -23,7 +29,7 @@ h3 {
 body {
   background-color: black;
   color: white;
-  font-family: 'Limelight', cursive;
+  font-family: 'Open Sans', sans;
   font-size: @font-size-primary;
   line-height: 28px;
 }
@@ -33,10 +39,6 @@ small {
 
 body {
   padding: 1em;
-
-  header {
-    margin-bottom: 2em;
-  }
 }
 
 a {
@@ -46,6 +48,23 @@ a {
   &:hover, &.active {
     text-decoration: underline;
   }
+}
+
+header {
+  .title {
+    float: left;
+  }
+
+  .about {
+    font-size: @font-size-secondary;
+    float: right;
+    width: 33%;
+  }
+}
+
+#app {
+  clear: both;
+  padding: 2em 0;
 }
 
 .sections, .sorts {
@@ -73,10 +92,12 @@ a {
 }
 
 .sections {
+  .font-header;
   font-size: @font-size-sub;
 }
 
 .sorts {
+  .font-header;
   font-size: @font-size-sub;
 
   &:before {
@@ -113,6 +134,7 @@ a {
     }
 
     .name {
+      .font-header;
       background-color: @venue_caption;
       border-radius: 4px;
       position: absolute;
@@ -141,7 +163,6 @@ a {
     .review {
       display: none;
 
-      font-family: 'Open Sans';
       text-align: justify;
     }
   }
@@ -178,6 +199,7 @@ a {
 }
 
 .ratings {
+  .font-header;
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
