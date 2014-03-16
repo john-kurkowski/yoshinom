@@ -77,10 +77,12 @@ header {
   justify-content: center;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
-  margin: 1em;
+  .font-header;
+  font-size: @font-size-sub;
+  margin: 1em auto;
 
-  > li {
-    margin-right: 1em;
+  > li ~ li {
+    margin-left: 1em;
   }
 
   a, a:visited {
@@ -89,21 +91,6 @@ header {
     &:hover, &.active {
       color: white;
     }
-  }
-}
-
-.sections {
-  .font-header;
-  font-size: @font-size-sub;
-}
-
-.sorts {
-  .font-header;
-  font-size: @font-size-sub;
-
-  &:before {
-    content: "Sort:";
-    padding-right: 1em;
   }
 }
 
