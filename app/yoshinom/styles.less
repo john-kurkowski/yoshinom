@@ -49,13 +49,18 @@ a {
 }
 
 .sections, .sorts {
+  display: -webkit-flex;
+  display: -ms-flex;
   display: flex;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
   justify-content: center;
+  -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
   margin: 1em;
 
-  > li + li {
-    margin-left: 1em;
+  > li {
+    margin-right: 1em;
   }
 
   a, a:visited {
@@ -81,8 +86,13 @@ a {
 }
 
 .venues {
+  display: -webkit-flex;
+  display: -ms-flex;
   display: flex;
+  -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
+  -webkit-justify-content: space-around;
+  -ms-justify-content: space-around;
   justify-content: space-around;
 }
 
@@ -168,8 +178,14 @@ a {
 }
 
 .ratings {
+  display: -webkit-flex;
+  display: -ms-flex;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
   justify-content: space-between;
   height: @venue_width;
   position: absolute;
