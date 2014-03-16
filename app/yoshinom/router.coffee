@@ -14,7 +14,9 @@ Yoshinom.SectionsIndexRoute = Ember.Route.extend
 Yoshinom.SectionRoute = Ember.Route.extend
   model: (params) ->
     venueConfs = switch params.section
-      when 'westla' then require('yoshinom/reviews').venues
+      when 'westla'
+        require('yoshinom/reviews').venues.filter (venue) ->
+          venue.tags?.contains 'West-LA'
 
     if not venueConfs
       return @transitionTo 'fourOhFour' # TODO

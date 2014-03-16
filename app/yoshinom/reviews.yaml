@@ -3,7 +3,7 @@
 venues:
   - name: Zinque
     ratings: [3, 3, 4, 3, 3]
-    tags: [Venice]
+    tags: [Venice, West-LA]
     images:
       - https://dl.dropbox.com/s/j0ddfl290phniuw/Photo%20Feb%2010%2C%203%2011%2052%20PM.jpg
     review:
@@ -13,6 +13,7 @@ venues:
 
   - name: Providence
     ratings: [4, 4, 3, 5, 5]
+    tags: [Hollywood]
     images:
       - https://dl.dropbox.com/s/81o2j2fxyl1srni/Photo%20Feb%2010%2C%203%2025%2018%20PM.jpg
     review:
@@ -20,6 +21,7 @@ venues:
 
   - name: Son of a Gun
     ratings: [5, 4, 4, 5, 3]
+    tags: [Hollywood]
     images:
       - https://dl.dropbox.com/s/aj2swaiko7ycbdr/Photo%20Feb%2010%2C%203%2033%2054%20PM.jpg
       - http://instagr.am/p/VQYQ7qC4_2/
@@ -30,6 +32,7 @@ venues:
       cocktails.
 
   - name: Bonano's Chicken
+    tags: [San-Fernando]
     images:
       - https://dl.dropbox.com/s/5r7d55o9jj6k93q/Photo%20Feb%2010%2C%203%2035%2043%20PM.jpg
     ratings: [5, 3, 2, 3, 0]
@@ -39,6 +42,7 @@ venues:
       - https://dl.dropbox.com/s/kdhz6uruhfo80pa/Photo%20Feb%2010%2C%203%2039%2048%20PM.jpg
       - http://instagr.am/p/O3CAKhC419/
     ratings: [5, 4, 3, 3, 2]
+    tags: [West-LA]
     review:
       The most balanced sushi restaurant on the west side. Traditional style
       sushi with many adventurous (to the American palate) daily specials, and
@@ -50,6 +54,7 @@ venues:
     images:
       - https://dl.dropbox.com/s/s7h7auxrpv1pgor/Photo%20Feb%2010%2C%204%2039%2005%20PM.jpg
     ratings: [5, 4, 4, 3, 2]
+    tags: [West-LA]
     review:
       Some say it's high priced for what it is. For breakfast, eggs, plantains,
       toast, passionfruit juice. For lunch, grilled meat, rice, beans, and
@@ -61,6 +66,7 @@ venues:
     images:
       - https://dl.dropbox.com/s/p4214ns9g3oy97n/Photo%20Feb%2010%2C%204%2033%2022%20PM.jpg
     ratings: [4, 4, 4, 4, 0]
+    tags: [West-LA]
     review:
       The best breakfast sandwiches on the west side are Earl's popeye and
       croque madame. Nothing else too intense here. Which is welcome in the
@@ -72,6 +78,7 @@ venues:
     images:
       - https://dl.dropbox.com/s/c0aepxo6uw73mgm/Photo%20Feb%2010%2C%205%2005%2030%20PM.jpg
     ratings: [5, 5, 5, 4, 3]
+    tags: [West-LA]
     review:
       America's best ramen. It's so good that everyday it has the only line out
       the door, despite 5 other ramen restaurants within 2 blocks. It's so good
@@ -85,20 +92,23 @@ venues:
     images:
       - https://dl.dropbox.com/s/67xd7tu5ud4ubcw/Photo%20Feb%2010%2C%205%2014%2023%20PM.jpg
     ratings: [5, 3, 5, 3, 3]
+    tags: [West-LA]
 
   - name: Urth Cafe
     images:
       - https://dl.dropbox.com/s/5pjuyfjzckxkd1d/Photo%20Feb%2010%2C%205%2021%2006%20PM.jpg
     ratings: [4, 3, 4, 4, 3]
+    tags: [West-LA]
 
   - name: Tasting Kitchen
-    tags: [Venice]
+    tags: [Venice, West-LA]
     images:
       - http://instagr.am/p/VkJz_8C42W/
       - http://instagr.am/p/VkGwPIi4xK/
     ratings: [4, 5, 5, 4, 3]
 
   - name: Hostaria del Piccolo
+    tags: [West-LA]
     images:
       - http://instagr.am/p/Vh8jfgi42D/
     ratings: [5, 4, 4, 4, 0]
@@ -114,11 +124,13 @@ venues:
     ratings: [4, 4, 3, 3, 0]
 
   - name: Santa Monica Seafood
+    tags: [West-LA]
     images:
       - http://instagr.am/p/StJmBPi46E/
     ratings: [5, 4, 3, 3, 4]
 
   - name: Conservatory Grill
+    tags: [Beverly-Hills]
     images:
       - http://instagr.am/p/SoB6LNi409/
     ratings: [5, 4, 5, 4, 4]
@@ -129,11 +141,13 @@ venues:
     ratings: [5, 3, 3, 4, 0]
 
   - name: Freddy Small's
+    tags: [West-LA]
     images:
       - http://instagr.am/p/QfkZ_XC4_A/
     ratings: [5, 5, 4, 4, 3]
 
   - name: Seven Grand
+    tags: [DTLA]
     images:
       - http://instagr.am/p/SKPVrmi4wE/
     ratings: [5, 3, 3, 3, 0]
@@ -145,54 +159,61 @@ venues:
       BYOF is an option.
 
   - name: Tripel
+    tags: [West-LA]
     images:
       - http://instagr.am/p/QN0BBPi46g/
     ratings: [3, 4, 4, 5, 0]
 
   - name: Oldfield's
+    tags: [West-LA]
     images:
       - http://instagr.am/p/Pi54RRi45p/
     ratings: [5, 4, 3, 4, 0]
 
   - name: Nongla
+    tags: [West-LA]
     images:
       - http://instagr.am/p/PDv3zkC45r/
     ratings: [4, 3, 3, 3, 0]
 
   - name: Sugarfish
+    tags: [West-LA]
     images:
       - http://instagr.am/p/Lb9maTC4_L/
     ratings: [5, 3, 4, 5, 4]
 
   - name: Marla's
-    tags: [Venice]
+    tags: [Venice, West-LA]
     images:
       - http://instagr.am/p/LZtEtni408/
     ratings: [5, 5, 5, 3, 0]
 
   - name: Venice Ale House
-    tags: [Venice]
+    tags: [Venice, West-LA]
     images:
       - http://instagr.am/p/JTGQc5i49b/
     ratings: [4, 3, 4, 3, 3]
 
   - name: Food
+    tags: [West-LA]
     images:
       - http://instagr.am/p/ImzQ1Ui4-V/
     ratings: [3, 3, 4, 4, 4]
 
   - name: Wurstküche
+    tags: [West-LA, DTLA]
     images:
       - http://instagr.am/p/IoAZffC4we/
     ratings: [4, 3, 4, 5, 3]
 
   - name: Philippe's
+    tags: [DTLA]
     images:
       - http://instagr.am/p/I3IG08i4x6/
     ratings: [4, 3, 3, 5, 3]
 
   - name: Larry's
-    tags: [Venice]
+    tags: [Venice, West-LA]
     images:
       - http://instagr.am/p/KTYlKkC48q/
     ratings: [4, 3, 4, 4, 2]
