@@ -9,7 +9,7 @@ Yoshinom.Router.reopen
 
 Yoshinom.SectionsIndexRoute = Ember.Route.extend
   beforeModel: ->
-    @transitionTo 'section.sort', 'westla', 'food' # the only one we got
+    @replaceWith 'section.sort', 'westla', 'food' # the only one we got
 
 Yoshinom.SectionRoute = Ember.Route.extend
   model: (params) ->
