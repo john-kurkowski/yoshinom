@@ -2,6 +2,14 @@
   font-family: 'Limelight', cursive;
 }
 
+.hover-underline() {
+  text-decoration: none;
+
+  &:hover, &.active {
+    text-decoration: underline;
+  }
+}
+
 @goldilocks-little: 38em;
 
 @font-size-title: 39px;
@@ -20,6 +28,10 @@ h1 {
   .font-header;
   font-size: @font-size-title;
   line-height: 45.304952px;
+
+  a {
+    .hover-underline;
+  }
 }
 h2 {
   .font-header;
@@ -41,11 +53,6 @@ small {
 
 a {
   color: white;
-  text-decoration: none;
-
-  &:hover, &.active {
-    text-decoration: underline;
-  }
 }
 
 header {
@@ -109,9 +116,13 @@ header {
 
   a, a:visited {
     color: #ddd;
+    text-decoration: none;
+    text-decoration: underline dotted;
 
     &:hover, &.active {
       color: white;
+      text-decoration: underline;
+      text-decoration: underline solid;
     }
   }
 }
