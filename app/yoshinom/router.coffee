@@ -49,16 +49,7 @@ Yoshinom.VenueRoute = Ember.Route.extend
     if not model
       return @transitionTo 'fourOhFour' # TODO
 
-    Em.run.scheduleOnce 'afterRender', -> # why is this necessary?
-      model.set 'showDetails', true
-
-    Em.run.scheduleOnce 'afterRender', ->
-      venueElement = $(document.getElementById(name))
-      buffer = 32
-      $('html, body').animate
-        scrollTop: venueElement.offset().top - buffer
-      , 1000
-
+    model.set 'isDirectLink', true
     model
 
   actions:
