@@ -9,3 +9,6 @@ exports.config =
     templates:
       joinTo: 'assets/app.js'
       precompile: true
+
+  paths:
+    watched: ['app']
