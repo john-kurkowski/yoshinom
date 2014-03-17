@@ -28,6 +28,7 @@
     "less-brunch": ">= 1.0 < 1.8",
     "yaml-brunch": "~1.0.1",
     "ember-handlebars-brunch": "~1.2.0",
-    "connect": "~2.14.2"
+    "connect": "~2.14.2",
+    "connect-modrewrite": "^0.6.4-pre"
   }
 }
