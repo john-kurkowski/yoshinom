@@ -304,3 +304,12 @@ venues:
       draft beer selection, sunshine pouring in, and all the patrons smiling,
       it keeps the beach's vibe. It's a Venice institution. You'll forgive the
       wait for the bathroom.
+
+cocktails:
+  - name: Penicillin
+    ratings: [3, 3, 4, 3, 3]
+    tags: [Scotch, Whiskey, sour, lemon, mist]
+    images:
+      - http://instagr.am/p/jnCh6YtYcE/
+    review:
+      Delicious!

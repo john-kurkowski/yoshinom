@@ -13,10 +13,16 @@ Yoshinom.SectionsIndexRoute = Ember.Route.extend
 
 Yoshinom.SectionRoute = Ember.Route.extend
   model: (params) ->
-    venueConfs = switch params.section
+    [venueConfs, sorts] = switch params.section
       when 'westla'
-        require('yoshinom/reviews').venues.filter (venue) ->
+        confs = require('yoshinom/reviews').venues.filter (venue) ->
           venue.tags?.contains 'West-LA'
+        sorts = ['food', 'service', 'atmosphere', 'uniqueness', 'bathroom']
+        [confs, sorts]
+      when 'cocktails'
+        confs = require('yoshinom/reviews').cocktails
+        sorts = ['whiskey', 'rum']
+        [confs, sorts]
 
     if not venueConfs
       return @transitionTo 'fourOhFour' # TODO
@@ -25,16 +31,19 @@ Yoshinom.SectionRoute = Ember.Route.extend
     Ember.RSVP.all(venuePromises).then (venues) -> Ember.Object.create
       section: params.section
       venues: venues
+      sorts: sorts
 
 Yoshinom.SectionSortRoute = Ember.Route.extend
   setupController: (controller, model) ->
-    sorts = ['food', 'service', 'atmosphere', 'uniqueness', 'bathroom']
+    parentModel = @modelFor('section')
+
+    sorts = Em.copy parentModel.get('sorts')
     if sorts.contains model.sort
       sorts.unshift model.sort
 
     controller.setProperties
-      content: @modelFor('section').get('venues')
-      sortProperties: sorts.map (sort) -> "ratings.#{sort}"
+      content: parentModel.get('venues')
+      sortProperties: sorts.map (sort) -> "ratings.#{sort}" # TODO: this won't sort by tag
       sortAscending: false
 
   actions:
