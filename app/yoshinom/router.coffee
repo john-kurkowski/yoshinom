@@ -75,7 +75,7 @@ parseVenuePromise = (venue) ->
       dataType: 'jsonp',
       data:
         url: firstImage
-        maxwidth: 500
+        maxwidth: 800
       cache: true
 
 
