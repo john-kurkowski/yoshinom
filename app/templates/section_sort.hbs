@@ -4,6 +4,16 @@
       {{#link-to "venue" this classNameBindings=":card" action="toggleVenue" actionParam=this}}
         <img {{bind-attr src=image}} class="thumbnail"/>
         <h3 class="name">{{name}}</h3>
+
+        {{#if showRatings}}
+          <ul class="ratings">
+            <li title="Food" {{bind-attr class=":rating ratings.food::unknown"}}>{{get-or-else ratings.food "N/A"}}</li>
+            <li title="Service" {{bind-attr class=":rating ratings.service::unknown"}}>{{get-or-else ratings.service "N/A"}}</li>
+            <li title="Atmosphere" {{bind-attr class=":rating ratings.atmosphere::unknown"}}>{{get-or-else ratings.atmosphere "N/A"}}</li>
+            <li title="Uniqueness" {{bind-attr class=":rating ratings.uniqueness::unknown"}}>{{get-or-else ratings.uniqueness "N/A"}}</li>
+            <li title="Bathroom" {{bind-attr class=":rating ratings.bathroom::unknown"}}>{{get-or-else ratings.bathroom "N/A"}}</li>
+          </ul>
+        {{/if}}
       {{/link-to}}
 
       <div class="details">
@@ -26,16 +36,6 @@
         </ul>
 
       </div>
-
-      {{#if showRatings}}
-        <ul class="ratings">
-          <li title="Food" {{bind-attr class=":rating ratings.food::unknown"}}>{{get-or-else ratings.food "N/A"}}</li>
-          <li title="Service" {{bind-attr class=":rating ratings.service::unknown"}}>{{get-or-else ratings.service "N/A"}}</li>
-          <li title="Atmosphere" {{bind-attr class=":rating ratings.atmosphere::unknown"}}>{{get-or-else ratings.atmosphere "N/A"}}</li>
-          <li title="Uniqueness" {{bind-attr class=":rating ratings.uniqueness::unknown"}}>{{get-or-else ratings.uniqueness "N/A"}}</li>
-          <li title="Bathroom" {{bind-attr class=":rating ratings.bathroom::unknown"}}>{{get-or-else ratings.bathroom "N/A"}}</li>
-        </ul>
-      {{/if}}
     </li>
   {{/each}}
 </ul>
