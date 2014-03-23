@@ -13,25 +13,28 @@ Yoshinom.SectionsIndexRoute = Ember.Route.extend
 
 Yoshinom.SectionRoute = Ember.Route.extend
   model: (params) ->
-    [venueConfs, sorts] = switch params.section
+    confsPromise = switch params.section
       when 'westla'
-        confs = require('yoshinom/reviews').venues.filter (venue) ->
-          venue.tags?.contains 'West-LA'
-        sorts = ['food', 'service', 'atmosphere', 'uniqueness', 'bathroom']
-        [confs, sorts]
+        spreadsheetPromise(1).then (venues) ->
+          confs = venues.filter (venue) ->
+            venue.tags?.contains 'West-LA'
+          sorts = ['food', 'service', 'atmosphere', 'uniqueness', 'bathroom']
+          [confs, sorts]
       when 'cocktails'
-        confs = require('yoshinom/reviews').cocktails
-        sorts = ['whiskey', 'rum']
-        [confs, sorts]
+        spreadsheetPromise(2).then (cocktails) ->
+          sorts = ['whiskey', 'gin']
+          sorts = ['whiskey', 'rum']
+          [cocktails, sorts]
 
-    if not venueConfs
+    if not confsPromise
       return @transitionTo 'fourOhFour' # TODO
 
-    venuePromises = venueConfs.map parseVenuePromise
-    Ember.RSVP.all(venuePromises).then (venues) -> Ember.Object.create
-      section: params.section
-      venues: venues
-      sorts: sorts
+    confsPromise.then ([venueConfs, sorts]) =>
+      venuePromises = venueConfs.map parseVenuePromise
+      Ember.RSVP.all(venuePromises).then (venues) -> Ember.Object.create
+        section: params.section
+        venues: venues
+        sorts: sorts
 
 Yoshinom.SectionSortRoute = Ember.Route.extend
   setupController: (controller, model) ->
@@ -67,13 +70,36 @@ Yoshinom.VenueRoute = Ember.Route.extend
         @transitionTo 'section.sort'
       true
 
+parseSpreadsheetEntry = (entry) ->
+  gsxRegex = /^gsx\$/
+  keys = Em.keys(entry).filter (key) -> gsxRegex.test(key)
+  keys.reduce (acc, key) ->
+    normalizedKey = key.replace gsxRegex, ''
+    text = entry[key]['$t']
+    acc[normalizedKey] = switch normalizedKey
+      when 'images' then text.split /\s+/
+      when 'tags' then text.split /,\s+/
+      else text
+    acc
+  , {}
+
+spreadsheetPromise = (sheet) ->
+  $.ajax
+    url: "http://spreadsheets.google.com/feeds/list/0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE/#{sheet}/public/values"
+    dataType: 'jsonp'
+    data:
+      alt: 'json'
+    cache: true
+  .then (spreadsheet) ->
+    spreadsheet.feed.entry.map parseSpreadsheetEntry
+
 parseVenuePromise = (venue) ->
   venue.ratings =
-    food: venue.ratings[0]
-    service: venue.ratings[1]
-    atmosphere: venue.ratings[2]
-    uniqueness: venue.ratings[3]
-    bathroom: venue.ratings[4]
+    food: venue.food
+    service: venue.service
+    atmosphere: venue.atmosphere
+    uniqueness: venue.uniqueness
+    bathroom: venue.bathroom
 
   firstImage = venue.images[0]
   isInstagramShortlink = firstImage.indexOf('http://instagr.am') isnt -1
