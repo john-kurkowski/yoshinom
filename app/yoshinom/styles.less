@@ -183,8 +183,12 @@ header {
     max-width: 100%;
 
     img {
-      display: block;
       max-width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
     }
 
     .name {
@@ -197,11 +201,15 @@ header {
       margin: 4px;
       padding: 0 4px;
     }
+
+    &:after {
+      content: "";
+      display: block;
+      margin-top: 100%;
+    }
   }
 
   .details {
-    padding: 0 8px 8px;
-
     .map_link {
       display: none;
 
@@ -254,6 +262,8 @@ header {
     }
 
     .details {
+      padding: 0 8px 8px;
+
       .review, .map_link, .image_link {
         display: block;
       }
