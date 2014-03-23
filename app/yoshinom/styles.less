@@ -22,7 +22,7 @@
 @venue_caption: rgba(0, 0, 0, 0.5);
 @ratings_width: 14%;
 
-@detailsColor: #444;
+@details-color: #444;
 
 h1 {
   .font-header;
@@ -56,6 +56,7 @@ a {
 }
 
 header {
+  padding: 1em;
   text-align: center;
 
   .about {
@@ -78,10 +79,6 @@ header {
   }
 }
 @media screen and (min-width: @goldilocks-little) {
-  body {
-    padding: 1em;
-  }
-
   header {
     text-align: left;
 
@@ -93,11 +90,18 @@ header {
       float: right;
       width: 33%;
     }
+
+    &:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+    }
   }
 }
 
 #app {
-  clear: both;
   padding: 2em 0;
 }
 
@@ -213,7 +217,7 @@ header {
   }
 
   &:hover {
-    box-shadow: 0 0 4em 1em @detailsColor;
+    box-shadow: 0 0 4em 1em @details-color;
 
     .name {
       text-decoration: underline;
@@ -227,8 +231,8 @@ header {
   }
 
   &.selected {
-    background-color: @detailsColor;
-    box-shadow: 0 0 4em 2em @detailsColor;
+    background-color: @details-color;
+    box-shadow: 0 0 4em 2em @details-color;
     height: auto;
 
     .name {
