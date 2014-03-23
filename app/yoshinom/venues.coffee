@@ -1,7 +1,12 @@
 Yoshinom.VenuePresentationController = Ember.ObjectController.extend
   formattedReview: (->
-    "<p>#{@get('review').replace('\n', '</p><p>')}</p>".htmlSafe()
+    "<p>#{@get('review').replace(/\n/g, '</p><p>')}</p>".htmlSafe()
   ).property('review')
+
+  showRatings: (->
+    values = (value for own rating, value of @get('ratings'))
+    values.some (value) -> value
+  ).property('ratings')
 
 Yoshinom.VenueView = Ember.View.extend
   scrollToDirectLink: (->

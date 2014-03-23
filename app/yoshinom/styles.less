@@ -269,7 +269,16 @@ header {
   -ms-flex: 1;
   flex: 1;
   font-size: @font-size-headline;
-  padding-top: 0.5em;
+
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
 
   &.unknown {
     font-size: @font-size-secondary;
