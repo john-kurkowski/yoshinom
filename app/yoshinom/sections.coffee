@@ -1,4 +1,5 @@
 require 'templates/sections'
+require 'templates/sections_loading'
 require 'templates/section'
 require 'templates/section_sort'
 

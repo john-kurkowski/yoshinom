@@ -11,6 +11,10 @@ Yoshinom.SectionsIndexRoute = Ember.Route.extend
   beforeModel: ->
     @replaceWith 'section.sort', 'westla', 'food' # the only one we got
 
+Yoshinom.SectionsLoadingRoute = Ember.Route.extend
+  renderTemplate: ->
+    @render 'app/templates/sections_loading'
+
 Yoshinom.SectionRoute = Ember.Route.extend
   model: (params) ->
     confsPromise = switch params.section
