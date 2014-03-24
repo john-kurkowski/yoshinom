@@ -119,7 +119,7 @@ header {
 }
 
 .spinner {
-  margin: 0 auto;
+  margin: 1em auto;
 }
 
 .sections, .sorts {
@@ -187,6 +187,8 @@ header {
     max-width: 100%;
 
     img {
+      visibility: hidden;
+
       max-width: 100%;
       position: absolute;
       top: 0;
@@ -241,18 +243,22 @@ header {
     }
   }
 
+  &.loaded {
+    img {
+      visibility: visible;
+    }
+
+    .spinner {
+      display: none;
+    }
+  }
+
   &:hover {
     background-color: @details-color;
     box-shadow: 0 0 4em 1em @details-color;
 
     .name {
       text-decoration: underline;
-    }
-
-    &.reviewed .thumbnail {
-      opacity: 0.5;
-      transition-property: transform, opacity;
-      transition-duration: 0.2s;
     }
   }
 
