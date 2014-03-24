@@ -89,7 +89,7 @@ parseSpreadsheetEntry = (entry) ->
 
 spreadsheetPromise = (sheet) ->
   $.ajax
-    url: "http://spreadsheets.google.com/feeds/list/0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE/#{sheet}/public/values"
+    url: "https://spreadsheets.google.com/feeds/list/0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE/#{sheet}/public/values"
     dataType: 'jsonp'
     data:
       alt: 'json'
