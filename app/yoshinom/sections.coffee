@@ -12,6 +12,10 @@ Yoshinom.SectionSortView = Ember.View.extend
   templateName: 'app/templates/section_sort'
 
 Yoshinom.SectionSortController = Ember.ArrayController.extend
+  areImagesLoaded: (->
+    @every (item) -> item.get('isImageLoaded')
+  ).property('content.@each.isImageLoaded')
+
   actions:
     toggleVenue: (venue) ->
       venue.toggleProperty 'showDetails'

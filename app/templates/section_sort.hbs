@@ -1,5 +1,5 @@
 <ul class="venues">
-  {{#each arrangedContent itemController="venuePresentation"}}
+  {{#each arrangedContent itemController="venueItem" itemViewClass="Yoshinom.VenueItemView"}}
     <li class="venue" {{bind-attr id="name" class="review:reviewed showDetails:selected"}}>
       {{#link-to "venue" this classNameBindings=":card" action="toggleVenue" actionParam=this}}
         <img {{bind-attr src=image}} class="thumbnail"/>
