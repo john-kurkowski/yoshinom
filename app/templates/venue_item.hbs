@@ -35,3 +35,10 @@
   </ul>
 </div>
 
+{{#link-to "venue" this classNameBindings=":show-more" action="toggleVenue" actionParam=this}}
+  {{#if showDetails}}
+    - show less
+  {{else}}
+    + show more
+  {{/if}}
+{{/link-to}}
