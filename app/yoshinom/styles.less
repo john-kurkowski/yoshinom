@@ -198,7 +198,7 @@ header {
       right: 0;
     }
 
-    .name {
+    .title {
       .font-header;
       background-color: @venue_caption;
       border-radius: 4px;
@@ -207,6 +207,15 @@ header {
       left: 0;
       margin: 4px;
       padding: 0 4px;
+
+      .price {
+        font-size: @font-size-primary;
+
+        &:before {
+          content: "";
+          margin-left: 0.618034em;
+        }
+      }
     }
 
     &:after {

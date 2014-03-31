@@ -2,7 +2,10 @@
   <img {{bind-attr src=image}} class="thumbnail"/>
   {{partial "app/templates/sections_loading"}}
 
-  <h3 class="name">{{name}}</h3>
+  <h3 class="title">
+    <span class="name">{{name}}</span>
+    <span class="price">{{price}}</span>
+  </h3>
 
   {{#if showRatings}}
     <ul class="ratings">
