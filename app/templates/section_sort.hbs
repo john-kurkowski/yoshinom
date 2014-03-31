@@ -1,43 +1,5 @@
 <ul class="venues">
-  {{#each arrangedContent itemController="venueItem" itemViewClass="Yoshinom.VenueItemView"}}
-    <li {{bind-attr id="name" class=":venue isImageLoaded:loaded review:reviewed showDetails:selected"}}>
-      {{#link-to "venue" this classNameBindings=":card" action="toggleVenue" actionParam=this}}
-        <img {{bind-attr src=image}} class="thumbnail"/>
-        {{partial "app/templates/sections_loading"}}
-
-        <h3 class="name">{{name}}</h3>
-
-        {{#if showRatings}}
-          <ul class="ratings">
-            <li title="Food" {{bind-attr class=":rating ratings.food::unknown"}}>{{get-or-else ratings.food "N/A"}}</li>
-            <li title="Service" {{bind-attr class=":rating ratings.service::unknown"}}>{{get-or-else ratings.service "N/A"}}</li>
-            <li title="Atmosphere" {{bind-attr class=":rating ratings.atmosphere::unknown"}}>{{get-or-else ratings.atmosphere "N/A"}}</li>
-            <li title="Uniqueness" {{bind-attr class=":rating ratings.uniqueness::unknown"}}>{{get-or-else ratings.uniqueness "N/A"}}</li>
-            <li title="Bathroom" {{bind-attr class=":rating ratings.bathroom::unknown"}}>{{get-or-else ratings.bathroom "N/A"}}</li>
-          </ul>
-        {{/if}}
-      {{/link-to}}
-
-      <div class="details">
-        <div class="review">
-          {{#if review}}
-            {{formattedReview}}
-          {{else}}
-            No review yet.
-          {{/if}}
-        </div>
-
-        <ul class="links">
-          {{#if mapLink}}
-            <li class="map_link">{{mapLink}}</li>
-          {{/if}}
-
-          {{#if imageLink}}
-            <li class="image_link"><a {{bind-attr href=imageLink}}>Instagram</a></li>
-          {{/if}}
-        </ul>
-
-      </div>
-    </li>
+  {{#each arrangedContent itemController="venueItem"}}
+    {{view Yoshinom.VenueItemView tagName="li" classNameBindings=':venue isImageLoaded:loaded review:reviewed showDetails:selected'}}
   {{/each}}
 </ul>

@@ -1,3 +1,5 @@
+require 'templates/venue_item'
+
 Yoshinom.VenueItemController = Ember.ObjectController.extend
   formattedReview: (->
     "<p>#{@get('review').replace(/\n/g, '</p><p>')}</p>".htmlSafe()
@@ -10,6 +12,8 @@ Yoshinom.VenueItemController = Ember.ObjectController.extend
   ).property('isImageLoaded', 'ratings')
 
 Yoshinom.VenueItemView = Ember.View.extend
+  templateName: 'app/templates/venue_item'
+
   didInsertElement: ->
     @_super()
 
@@ -35,11 +39,11 @@ Yoshinom.VenueView = Ember.View.extend
     Em.run.scheduleOnce 'afterRender', -> # why is this necessary?
       venue.set 'showDetails', true
 
-    Em.run.scheduleOnce 'afterRender', @, '_scrollToId', venue.get('name')
+    $scrollTo = $(".venue .name:contains(#{venue.get('name')})").closest('.venue')
+    Em.run.scheduleOnce 'afterRender', @, '_scrollTo', $scrollTo
   ).observes('controller.{isDirectLink,areImagesLoaded}')
 
-  _scrollToId: (id) ->
-    $element = $(document.getElementById(id))
+  _scrollTo: ($element) ->
     buffer = 32
     $('html, body').animate
       scrollTop: $element.offset().top - buffer
