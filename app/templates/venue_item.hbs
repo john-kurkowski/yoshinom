@@ -4,7 +4,9 @@
 
   <h3 class="title">
     <span class="name">{{name}}</span>
-    <span class="price">{{price}}</span>
+    {{#if price}}
+      <span class="price">{{price}}</span>
+    {{/if}}
   </h3>
 
   {{#if showRatings}}
