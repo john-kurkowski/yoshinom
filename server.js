@@ -10,4 +10,4 @@ app = connect()
   ]))
   .use(connect.compress())
   .use(connect.static('public', { maxAge: staticMaxAge }))
-  .listen(process.env.PORT || 3000);
+  .listen(process.env.PORT || 3333);
