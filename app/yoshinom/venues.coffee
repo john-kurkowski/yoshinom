@@ -50,6 +50,6 @@ Yoshinom.VenueView = Ember.View.extend
     , 1000
 
 Yoshinom.VenueController = Ember.ObjectController.extend
-  needs: ['sectionSort']
+  needs: ['sectionFilterSort']
 
-  areImagesLoaded: Em.computed.alias 'controllers.sectionSort.areImagesLoaded'
+  areImagesLoaded: Em.computed.alias 'controllers.sectionFilterSort.areImagesLoaded'

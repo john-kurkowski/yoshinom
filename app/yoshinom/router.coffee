@@ -1,15 +1,16 @@
 Yoshinom.Router.map ->
   @resource 'sections', { path: '/' }, ->
     @resource 'section', { path: '/:section' }, ->
-      @resource 'section.sort', { path: '/:sort' }, ->
-        @resource 'venue', { path: '/:name' }
+      @resource 'section.filter', { path: '/:filter' }, ->
+        @resource 'section.filter.sort', { path: '/:sort' }, ->
+          @resource 'venue', { path: '/:name' }
 
 Yoshinom.Router.reopen
   location: 'history'
 
 Yoshinom.SectionsIndexRoute = Ember.Route.extend
   beforeModel: ->
-    @replaceWith 'section.sort', 'westla', 'food' # the only one we got
+    @replaceWith 'section.filter.sort', 'food', 'westla', 'food'
 
 Yoshinom.SectionsLoadingRoute = Ember.Route.extend
   renderTemplate: ->
@@ -17,39 +18,47 @@ Yoshinom.SectionsLoadingRoute = Ember.Route.extend
 
 Yoshinom.SectionRoute = Ember.Route.extend
   model: (params) ->
-    confsPromise = switch params.section
-      when 'westla'
-        spreadsheetPromise(1).then (venues) ->
-          confs = venues.filter (venue) ->
-            venue.tags?.contains 'West-LA'
-          sorts = ['food', 'service', 'atmosphere', 'uniqueness', 'bathroom']
-          [confs, sorts]
+    [confsPromise, sorts] = switch params.section
+      when 'food'
+        sorts = ['food', 'service', 'atmosphere', 'uniqueness', 'bathroom']
+        [spreadsheetPromise(1), sorts]
       when 'cocktails'
-        spreadsheetPromise(2).then (cocktails) ->
-          sorts = ['whiskey', 'gin']
-          sorts = ['whiskey', 'rum']
-          [cocktails, sorts]
+        sorts = ['whiskey', 'gin']
+        [spreadsheetPromise(2), sorts]
+      else
+        []
 
     if not confsPromise
       return @transitionTo 'fourOhFour' # TODO
 
-    confsPromise.then ([venueConfs, sorts]) =>
-      venuePromises = venueConfs.map parseVenuePromise
-      Ember.RSVP.all(venuePromises).then (venues) -> Ember.Object.create
+    confsPromise.then (confs) ->
+      Ember.RSVP.all(confs.map parseVenuePromise).then (confs) -> Ember.Object.create
         section: params.section
-        venues: venues
+        records: confs
         sorts: sorts
 
-Yoshinom.SectionSortRoute = Ember.Route.extend
-  setupController: (controller, model) ->
+Yoshinom.SectionFilterRoute = Ember.Route.extend
+  model: (params) ->
     parentModel = @modelFor('section')
+    Ember.Object.create
+      section: parentModel.get('section')
+      sorts: parentModel.get('sorts')
+      filter: params.filter
+      records: switch params.filter
+        when 'all' then parentModel.get('records')
+        when 'westla' then parentModel.get('records').filter (venue) -> # TODO: it doesn't make sense to filter cocktail recipes by 'West-LA'
+          venue.tags?.contains 'West-LA'
+
+Yoshinom.SectionFilterSortRoute = Ember.Route.extend
+  setupController: (controller, model) ->
+    parentModel = @modelFor('section.filter')
 
     sorts = Em.copy parentModel.get('sorts')
     if sorts.contains model.sort
       sorts.unshift model.sort
 
     controller.setProperties
-      content: parentModel.get('venues')
+      content: parentModel.get('records')
       sortProperties: sorts.map (sort) -> "ratings.#{sort}" # TODO: this won't sort by tag
       sortAscending: false
 
@@ -61,7 +70,7 @@ Yoshinom.SectionSortRoute = Ember.Route.extend
 Yoshinom.VenueRoute = Ember.Route.extend
   model: (params) ->
     name = decodeURIComponent(params.name)
-    model = @modelFor('section').get('venues').findBy 'name', name
+    model = @modelFor('section').get('records').findBy 'name', name
     if not model
       return @transitionTo 'fourOhFour' # TODO
 
@@ -71,7 +80,7 @@ Yoshinom.VenueRoute = Ember.Route.extend
   actions:
     toggleVenue: (venue) ->
       if not venue.get('showDetails')
-        @transitionTo 'section.sort'
+        @transitionTo 'section.filter.sort'
       true
 
 parseSpreadsheetEntry = (entry) ->

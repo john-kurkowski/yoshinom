@@ -6,13 +6,13 @@ require 'templates/section_sort'
 Yoshinom.SectionsView = Ember.View.extend
   templateName: 'app/templates/sections'
 
-Yoshinom.SectionView = Ember.View.extend
+Yoshinom.SectionFilterView = Ember.View.extend
   templateName: 'app/templates/section'
 
-Yoshinom.SectionSortView = Ember.View.extend
+Yoshinom.SectionFilterSortView = Ember.View.extend
   templateName: 'app/templates/section_sort'
 
-Yoshinom.SectionSortController = Ember.ArrayController.extend
+Yoshinom.SectionFilterSortController = Ember.ArrayController.extend
   areImagesLoaded: (->
     @every (item) -> item.get('isImageLoaded')
   ).property('content.@each.isImageLoaded')
