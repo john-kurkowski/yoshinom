@@ -12,3 +12,6 @@ exports.config =
 
   paths:
     watched: ['app']
+
+  server:
+    path: 'server.js'
