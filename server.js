@@ -1,7 +1,7 @@
 var connect = require('connect'),
     modRewrite = require('connect-modrewrite');
 
-var staticMaxAge = 1000 * 60 * 60 * 2,
+var staticMaxAge = 1000 * 60 * 60 * 24 * 30,
     app;
 
 app = connect()
