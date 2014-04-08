@@ -1,7 +1,7 @@
 var connect = require('connect'),
     modRewrite = require('connect-modrewrite');
 
-var staticMaxAge = 1000 * 60 * 60 * 24 * 30;
+var staticMaxAge = 1000 * 60 * 60 * 2;
 
 exports.startServer = function(port, path, afterStart) {
   var app = connect()
