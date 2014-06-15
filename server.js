@@ -1,7 +1,20 @@
 var connect = require('connect'),
-    modRewrite = require('connect-modrewrite');
+    modRewrite = require('connect-modrewrite'),
+    send = require('send');
 
-var staticMaxAge = 1000 * 60 * 60 * 2;
+var twoHours = 1000 * 60 * 60 * 2,
+    oneMonth = 1000 * 60 * 60 * 24 * 30;
+
+function myStatic(req, res) {
+  var htmlPathRegex = /^(\/?|.*\.html)$/;
+      isHtml = htmlPathRegex.test(req.url),
+      maxage = isHtml ? twoHours : oneMonth;
+
+  send(req, req.url)
+    .maxage(maxage)
+    .root('public')
+    .pipe(res);
+}
 
 exports.startServer = function(port, path, afterStart) {
   var app = connect()
@@ -9,7 +22,7 @@ exports.startServer = function(port, path, afterStart) {
       '!^/assets/ /index.html'
     ]))
     .use(connect.compress())
-    .use(connect.static('public', { maxAge: staticMaxAge }))
+    .use(myStatic)
     .listen(port);
 
   if (afterStart) {

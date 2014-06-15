@@ -27,8 +27,9 @@
     "coffee-script-brunch": ">= 1.0 < 2.0",
     "less-brunch": ">= 1.0 < 1.8",
     "ember-handlebars-brunch": "~1.2.0",
-    "digest-brunch": "^1.0.6",
-    "connect": "~2.14.2",
-    "connect-modrewrite": "^0.6.4-pre"
+    "digest-brunch": "^1.2.2",
+    "connect": "^2.19.6",
+    "connect-modrewrite": "^0.7.6",
+    "send": "^0.4.3"
   }
 }
