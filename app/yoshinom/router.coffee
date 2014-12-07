@@ -118,19 +118,8 @@ parseVenuePromise = (venue) ->
   isInstagramShortlink = firstImage.indexOf('http://instagr.am') isnt -1
   if isInstagramShortlink
     venue.imageLink = firstImage
-    promise = $.ajax
-      url: 'http://api.instagram.com/oembed'
-      dataType: 'jsonp',
-      data:
-        url: firstImage
-        maxwidth: 800
-      cache: true
-
-
-    promise.then (data) ->
-      venue.image = data.url
-      Ember.Object.create(venue)
-
+    venue.image = "#{firstImage}/media?size=l"
   else
     venue.image = firstImage
-    Ember.RSVP.resolve Ember.Object.create(venue)
+  
+  Ember.RSVP.resolve Ember.Object.create(venue)
