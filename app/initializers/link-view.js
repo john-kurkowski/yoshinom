@@ -21,8 +21,8 @@ export function initialize(/* container, application */) {
           event.stopPropagation();
         }
 
-        // trigger the action on the controller
-        this.get('controller').send(action, this.get('actionParam'));
+        // trigger the action whatever surrounds the LinkView
+        this.get('parentView').send(action, this.get('actionParam'));
         return false;
       } else {
         // no action to take, handle the link-to normally
