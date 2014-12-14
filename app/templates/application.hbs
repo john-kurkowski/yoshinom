@@ -1,3 +1,9 @@
-<h2 id='title'>Welcome to Ember.js</h2>
+<nav>
+  <ul class="sections">
+    <li class="label">Sections:</li>
+    <li class="section">{{#link-to "food" (query-params filter="westla" sort="food")}}West LA Food &amp; Drink{{/link-to}}</li>
+    <li class="section">{{#link-to "cocktails"}}Cocktails{{/link-to}}</li>
+  </ul>
+</nav>
 
 {{outlet}}
