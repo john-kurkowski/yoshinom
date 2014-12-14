@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
 
+  directLinkToName: '',
+
   q: '', // query / filter / tags
   s: '', // sort
 
