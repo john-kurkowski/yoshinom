@@ -6,6 +6,10 @@ export default Ember.Component.extend({
   itemRoute: "",
   areImagesLoaded: false,
 
+  assertVenue: function() {
+    Ember.assert(this.get('venue'), 'No venue passed to yoshinom-venue');
+  }.on('init'),
+
   formattedReview: function() {
     return ("<p>" + this.get('venue.review').replace(/\n/g, '</p><p>') + "</p>").htmlSafe();
   }.property('venue.review'),
