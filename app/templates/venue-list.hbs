@@ -1,0 +1,13 @@
+<ul class="venues">
+  {{#each venue in arrangedContent}}
+    {{yoshinom-venue venue=venue
+                     itemRoute=itemRoute
+                     areImagesLoaded=areImagesLoaded
+                     action="toggleVenue"
+                     tagName="li"
+                     classNameBindings=':venue
+                                        venue.isImageLoaded:loaded
+                                        venue.review:reviewed
+                                        venue.showDetails:selected'}}
+  {{/each}}
+</ul>

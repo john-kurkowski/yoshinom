@@ -1,0 +1,49 @@
+{{#link-to itemRoute venue classNameBindings=":card" action="toggleVenue"}}
+  <img {{bind-attr src=venue.image}} class="thumbnail"/>
+  {{yoshinom-loading}}
+
+  <h3 class="title">
+    <span class="name">{{venue.name}}</span>
+    {{#if price}}
+      <span class="price">{{venue.price}}</span>
+    {{/if}}
+  </h3>
+
+  {{#if showRatings}}
+    <ul class="ratings">
+      <li title="Food" {{bind-attr class=":rating venue.ratings.food::unknown"}}>{{get-or-else venue.ratings.food "N/A"}}</li>
+      <li title="Service" {{bind-attr class=":rating venue.ratings.service::unknown"}}>{{get-or-else venue.ratings.service "N/A"}}</li>
+      <li title="Atmosphere" {{bind-attr class=":rating venue.ratings.atmosphere::unknown"}}>{{get-or-else venue.ratings.atmosphere "N/A"}}</li>
+      <li title="Uniqueness" {{bind-attr class=":rating venue.ratings.uniqueness::unknown"}}>{{get-or-else venue.ratings.uniqueness "N/A"}}</li>
+      <li title="Bathroom" {{bind-attr class=":rating venue.ratings.bathroom::unknown"}}>{{get-or-else venue.ratings.bathroom "N/A"}}</li>
+    </ul>
+  {{/if}}
+{{/link-to}}
+
+<div class="details">
+  <div class="review">
+    {{#if venue.review}}
+      {{formattedReview}}
+    {{else}}
+      No review yet.
+    {{/if}}
+  </div>
+
+  <ul class="links">
+    {{#if venue.mapLink}}
+      <li class="map_link">{{venue.mapLink}}</li>
+    {{/if}}
+
+    {{#if venue.imageLink}}
+      <li class="image_link"><a {{bind-attr href=venue.imageLink}}>Instagram</a></li>
+    {{/if}}
+  </ul>
+</div>
+
+{{#link-to itemRoute venue classNameBindings=":show-more" action="toggleVenue"}}
+  {{#if venue.showDetails}}
+    - show less
+  {{else}}
+    + show more
+  {{/if}}
+{{/link-to}}
