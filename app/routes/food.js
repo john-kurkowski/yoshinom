@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import SectionRoute from 'yoshinom/routes/section';
 
-import SectionRouteMixin from 'yoshinom/mixins/section-route';
+export default SectionRoute.extend({
 
-export default Ember.Route.extend(SectionRouteMixin, {
+  sheetNumber: 1,
 
-  sheetNumber: 1
+  sorts: ['ratings.food', 'ratings.service', 'ratings.atmosphere', 'ratings.uniqueness', 'ratings.bathroom']
 
 });
