@@ -45,6 +45,14 @@ export default Ember.Component.extend({
   willDestroyElement: function() {
     this._super();
     this.$('img').off('load error');
+  },
+
+  actions: {
+
+    toggleVenue: function() {
+      this.sendAction('action', this.get('venue'));
+    }
+
   }
 
 });

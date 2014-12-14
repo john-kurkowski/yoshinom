@@ -1,4 +1,4 @@
-{{#link-to itemRoute venue classNameBindings=":card" action="toggleVenue" actionParam=this}}
+{{#link-to itemRoute venue classNameBindings=":card" action="toggleVenue"}}
   <img {{bind-attr src=venue.image}} class="thumbnail"/>
   {{partial "loading"}}
 
@@ -40,7 +40,7 @@
   </ul>
 </div>
 
-{{#link-to itemRoute venue classNameBindings=":show-more" action="toggleVenue" actionParam=this}}
+{{#link-to itemRoute venue classNameBindings=":show-more" action="toggleVenue"}}
   {{#if venue.showDetails}}
     - show less
   {{else}}

@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
 
-  filter: '',
-  sort: '',
+  q: '', // query / filter / tags
+  s: '', // sort
 
-  queryParams: ['filter', 'sort'],
+  queryParams: ['q', 's'],
 
   areImagesLoaded: function() {
     return this.every(function(item) { return item.get('isImageLoaded'); });

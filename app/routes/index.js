@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   beforeModel: function() {
-    this.replaceWith('food', { queryParams: { filter: 'West-LA' } });
+    this.replaceWith('food', { queryParams: { q: 'West-LA' } });
   }
 
 });

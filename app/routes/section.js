@@ -12,8 +12,8 @@ export default Ember.Route.extend({
   controllerName: 'venue-list',
 
   queryParams: {
-    filter: { refreshModel: true },
-    sort: { refreshModel: true }
+    q: { refreshModel: true },
+    s: { refreshModel: true }
   },
 
   model: function(params) {
@@ -35,9 +35,9 @@ export default Ember.Route.extend({
 
     filteredItems = this.container.lookup('service:spreadsheet').find(sheetNumber)
     .then(function(items) {
-      if (params.filter) {
+      if (params.q) {
         return items.filter(function(item) {
-          return (item.get('tags') || []).contains(params.filter);
+          return (item.get('tags') || []).contains(params.q);
         });
       } else {
         return items;
@@ -45,9 +45,9 @@ export default Ember.Route.extend({
     });
 
     selectedSorts = Ember.copy(sorts);
-    if (selectedSorts.contains(params.sort)) {
-      selectedSorts.remove(params.sort);
-      selectedSorts.unshift(params.sort);
+    if (selectedSorts.contains(params.s)) {
+      selectedSorts.removeObject(params.s);
+      selectedSorts.unshift(params.s);
     }
 
     return Ember.RSVP.hash({
@@ -67,6 +67,17 @@ export default Ember.Route.extend({
 
   renderTemplate: function() {
     this.render('venue-list');
+  },
+
+  actions: {
+
+    toggleVenue: function(venue) {
+      var showItem = venue.get('showDetails');
+      if (showItem) {
+        this.transitionTo(this.routeName + '.item', venue);
+      }
+    }
+
   }
 
 });
