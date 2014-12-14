@@ -55,20 +55,9 @@ function parseVenuePromise(venue) {
   isInstagramShortlink = firstImage.indexOf('http://instagr.am') >= 0;
   if (isInstagramShortlink) {
     venue.imageLink = firstImage;
-    return request('http://api.instagram.com/oembed', {
-      dataType: 'jsonp',
-      data: {
-        url: firstImage,
-        maxwidth: 800
-      },
-      cache: true
-    })
-    .then(function(data) {
-      venue.image = data.url;
-      return Ember.Object.create(venue);
-    });
+    venue.image = firstImage + "/media?size=l";
   } else {
     venue.image = firstImage;
-    return Ember.RSVP.resolve(Ember.Object.create(venue));
   }
+  return Ember.Object.create(venue);
 }
