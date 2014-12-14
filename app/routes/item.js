@@ -16,7 +16,7 @@ export default Ember.Route.extend({
     var parentModel = this.modelFor(this.get('parentRoute'));
     var model = parentModel.items.findBy('name', name);
     if (model) {
-      this.controllerFor('venue-list').set('directLinkToName', name);
+      this.controllerFor(this.get('parentRoute')).set('directLinkToName', name);
       return model;
     } else {
       return this.transitionTo('fourOhFour'); // TODO

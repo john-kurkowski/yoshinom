@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
-export default Ember.ArrayController.extend({
+export default Ember.Mixin.create({
+
+  assertIsArrayController: function() {
+    Ember.assert(this.constructor instanceof Ember.ArrayController, 'VenueArrayControllerMixin mixed into non-ArrayController ' + this.constructor);
+  }.on('init'),
 
   directLinkToName: '',
 
