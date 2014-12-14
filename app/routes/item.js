@@ -22,14 +22,25 @@ export default Ember.Route.extend({
     }
   },
 
+  setupController: function(controller, model) {
+    model.set('showDetails', true);
+    this._super.apply(this, arguments);
+  },
+
   actions: {
 
     toggleVenue: function(venue) {
       var hideVenue = !venue.get('showDetails');
       if (hideVenue) {
         this.transitionTo(this.get('parentRoute'));
+      } else {
+        return true;
       }
-      return true;
+    },
+
+    willTransition: function(/*transition*/) {
+      var model = this.modelFor(this.routeName);
+      model.set('showDetails', false);
     }
 
   }

@@ -15,7 +15,6 @@ export default Ember.ArrayController.extend({
 
     toggleVenue: function(venue) {
       venue.toggleProperty('showDetails');
-      this.rejectBy('name', venue.get('name')).setEach('showDetails', false);
       return true;
     }
 
