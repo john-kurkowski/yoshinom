@@ -52,7 +52,7 @@ function parseVenuePromise(venue) {
   };
 
   firstImage = venue.images[0];
-  isInstagramShortlink = firstImage.indexOf('http://instagr.am') >= 0;
+  isInstagramShortlink = /http:\/\/instagr\.?am(\.com)?/.test(firstImage);
   if (isInstagramShortlink) {
     venue.imageLink = firstImage;
     venue.image = firstImage + "/media?size=l";
