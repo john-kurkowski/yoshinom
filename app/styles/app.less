@@ -171,11 +171,14 @@ header {
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-  flex-flow: row wrap;
+  -webkit-flex-flow: column;
+  flex-flow: column;
   -webkit-justify-content: space-around;
   -ms-justify-content: space-around;
   justify-content: space-around;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
 }
 
 .venue {
@@ -193,7 +196,7 @@ header {
     img {
       visibility: hidden;
 
-      max-width: 100%;
+      width: 100%;
       position: absolute;
       top: 0;
       left: 0;
