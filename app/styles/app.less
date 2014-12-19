@@ -16,7 +16,7 @@
 .hover-underline(@selected-color: @white-color) {
   text-decoration: none;
 
-  &:hover, &:active {
+  &:hover, &:active, &.active {
     color: @selected-color;
     text-decoration: underline;
   }
@@ -148,7 +148,7 @@ header {
     text-decoration: none;
     text-decoration: underline dotted;
 
-    &:hover, &:active {
+    &:hover, &:active, &.active {
       color: @white-color;
       text-decoration: underline;
       text-decoration: underline solid;
