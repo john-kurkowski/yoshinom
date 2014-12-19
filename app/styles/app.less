@@ -1,8 +1,11 @@
 @import (inline) 'reset.css';
 @import (inline) 'load.css';
 
+@monospace-font-family: 'Special Elite', 'Courier New', monospace;
+
 .font-header() {
-  font-family: 'Poiret One', cursive;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 400;
 }
 
 @white-color: #fff;
@@ -42,6 +45,7 @@ h1 {
 }
 h2 {
   .font-header;
+  font-weight: 300;
   font-size: @font-size-headline;
 }
 h3 {
@@ -101,23 +105,18 @@ header {
 }
 @media screen and (min-width: @goldilocks-little) {
   header {
+    display: flex;
+    -webkit-justify-content: space-between;
+    -ms-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+
     text-align: left;
 
-    .title {
-      float: left;
-    }
-
     .about {
-      float: right;
       width: 33%;
-    }
-
-    &:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden;
     }
   }
 }
@@ -209,14 +208,14 @@ header {
     }
 
     .title {
-      .font-header;
+      font-family: @monospace-font-family;
       background-color: @venue-caption-color;
       border-radius: 4px;
       position: absolute;
       bottom: 0;
       left: 0;
       margin: 4px;
-      padding: 0 4px;
+      padding: 4px 6px 0;
 
       .price {
         font-size: @font-size-primary;
@@ -273,7 +272,7 @@ header {
     .hover-underline;
     color: @grey-color;
     display: block;
-    font-family: 'Courier New', monospace;
+    font-family: @monospace-font-family;
     text-align: center;
   }
 
@@ -355,6 +354,7 @@ header {
   justify-content: center;
 
   &.unknown, &:before {
+    font-weight: 300;
     font-size: @font-size-secondary;
   }
 
