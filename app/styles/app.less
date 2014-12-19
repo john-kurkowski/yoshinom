@@ -5,7 +5,12 @@
   font-family: 'Poiret One', cursive;
 }
 
-.hover-underline(@selected-color: #fff) {
+@white-color: #fff;
+@grey-color: #ccc;
+@dark-color: #000;
+@details-color: #444;
+
+.hover-underline(@selected-color: @white-color) {
   text-decoration: none;
 
   &:hover, &:active {
@@ -23,10 +28,8 @@
 @font-size-secondary: 12px;
 
 @venue_width: 40em;
-@venue_caption: rgba(0, 0, 0, 0.5);
+@venue-caption-color: rgba(0, 0, 0, 0.5);
 @ratings_width: 14%;
-
-@details-color: #444;
 
 h1 {
   .font-header;
@@ -45,8 +48,8 @@ h3 {
   font-size: @font-size-sub;
 }
 body {
-  background-color: #000;
-  color: #fff;
+  background-color: @dark-color;
+  color: @white-color;
   font-family: 'Open Sans', sans-serif;
   font-size: @font-size-primary;
   font-weight: 300;
@@ -57,7 +60,7 @@ small {
 }
 
 a {
-  color: #fff;
+  color: @white-color;
 }
 
 header {
@@ -141,12 +144,12 @@ header {
   margin: 1em auto;
 
   a, a:visited {
-    color: #ddd;
+    color: @white-color;
     text-decoration: none;
     text-decoration: underline dotted;
 
     &:hover, &:active {
-      color: #fff;
+      color: @white-color;
       text-decoration: underline;
       text-decoration: underline solid;
     }
@@ -207,7 +210,7 @@ header {
 
     .title {
       .font-header;
-      background-color: @venue_caption;
+      background-color: @venue-caption-color;
       border-radius: 4px;
       position: absolute;
       bottom: 0;
@@ -268,7 +271,7 @@ header {
 
   .show-more {
     .hover-underline;
-    color: #ccc;
+    color: @grey-color;
     display: block;
     font-family: 'Courier New', monospace;
     text-align: center;
@@ -286,7 +289,7 @@ header {
 
   &:hover {
     .name, .show-more {
-      color: #fff;
+      color: @white-color;
       text-decoration: underline;
     }
   }
@@ -302,7 +305,7 @@ header {
 
     .show-more {
       .hover-underline;
-      color: #fff;
+      color: @white-color;
     }
 
     .details {
@@ -335,7 +338,7 @@ header {
   list-style: none;
 }
 .rating {
-  background-color: @venue_caption;
+  background-color: @venue-caption-color;
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
