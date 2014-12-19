@@ -47,9 +47,10 @@ h3 {
 body {
   background-color: #000;
   color: #fff;
-  font-family: 'Open Sans', sans;
+  font-family: 'Open Sans', sans-serif;
   font-size: @font-size-primary;
-  line-height: 28px;
+  font-weight: 300;
+  line-height: 1.61em;
 }
 small {
   font-size: @font-size-secondary;
@@ -234,21 +235,24 @@ header {
   .details {
     padding: 0 8px 8px;
 
-    .map_link {
-      display: none;
-
+    > * + * {
+      margin-top: 1em;
     }
 
-    .image_link {
-      display: none;
+    .links {
+      .map_link {
+        display: none;
+      }
 
-      width: 2em;
-      height: 2em;
+      .image_link {
+        display: none;
+
+        width: 2em;
+        height: 2em;
+      }
     }
 
     .review {
-      text-align: justify;
-
       height: 4em;
       overflow: hidden;
 
