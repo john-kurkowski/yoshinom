@@ -107,11 +107,7 @@ header {
 @media screen and (min-width: @goldilocks-little) {
   header {
     display: flex;
-    -webkit-justify-content: space-between;
-    -ms-justify-content: space-between;
     justify-content: space-between;
-    -webkit-align-items: center;
-    -ms-align-items: center;
     align-items: center;
 
     text-align: left;
@@ -131,13 +127,8 @@ header {
 }
 
 .sections, .sorts {
-  display: -webkit-flex;
-  display: -ms-flex;
   display: flex;
-  -webkit-justify-content: space-around;
-  -ms-justify-content: space-around;
   justify-content: space-around;
-  -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
   .font-header;
   font-size: @font-size-sub;
@@ -172,16 +163,9 @@ header {
 }
 
 .venues {
-  display: -webkit-flex;
-  display: -ms-flex;
   display: flex;
-  -webkit-flex-flow: column;
   flex-flow: column;
-  -webkit-justify-content: space-around;
-  -ms-justify-content: space-around;
   justify-content: space-around;
-  -webkit-align-items: center;
-  -ms-align-items: center;
   align-items: center;
 }
 
@@ -319,14 +303,8 @@ header {
 
 .ratings {
   .font-header;
-  display: -webkit-flex;
-  display: -ms-flex;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-justify-content: space-between;
-  -ms-justify-content: space-between;
   justify-content: space-between;
   height: 100%;
   position: absolute;
@@ -339,19 +317,11 @@ header {
 }
 .rating {
   background-color: @venue-caption-color;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   font-size: @font-size-headline;
 
-  display: -webkit-flex;
-  display: -ms-flex;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-justify-content: center;
-  -ms-justify-content: center;
   justify-content: center;
 
   &.unknown, &:before {
@@ -377,42 +347,4 @@ header {
 }
 .rating + .rating {
   margin-top: 1px;
-}
-
-.isotope,
-.isotope .isotope-item {
-  /* change duration value to whatever you like */
-  -webkit-transition-duration: 0.8s;
-     -moz-transition-duration: 0.8s;
-      -ms-transition-duration: 0.8s;
-       -o-transition-duration: 0.8s;
-          transition-duration: 0.8s;
-}
-
-.isotope {
-  -webkit-transition-property: height, width;
-     -moz-transition-property: height, width;
-      -ms-transition-property: height, width;
-       -o-transition-property: height, width;
-          transition-property: height, width;
-}
-
-.isotope .isotope-item {
-  -webkit-transition-property: -webkit-transform, opacity;
-     -moz-transition-property:    -moz-transform, opacity;
-      -ms-transition-property:     -ms-transform, opacity;
-       -o-transition-property:         top, left, opacity;
-          transition-property:         transform, opacity;
-}
-
-/**** disabling Isotope CSS3 transitions ****/
-
-.isotope.no-transition,
-.isotope.no-transition .isotope-item,
-.isotope .isotope-item.no-transition {
-  -webkit-transition-duration: 0s;
-     -moz-transition-duration: 0s;
-      -ms-transition-duration: 0s;
-       -o-transition-duration: 0s;
-          transition-duration: 0s;
 }
