@@ -52,10 +52,12 @@ export default Ember.Route.extend({
 
     tags = spreadsheetPromise
     .then(function(items) {
-      return items.reduce(function(acc, item) {
+      var tags = items.reduce(function(acc, item) {
         acc.pushObjects(item.get('tags'));
         return acc;
       }, []).uniq();
+      tags.sort();
+      return tags;
     });
 
     return Ember.RSVP.hash({
