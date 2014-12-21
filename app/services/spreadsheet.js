@@ -30,7 +30,7 @@ function parseSpreadsheetEntry(entry) {
     var value = (function() {
       switch (normalizedKey) {
         case 'images' :  return text.split(/\s+/);
-        case 'tags'   :  return text.split(/,\s+/);
+        case 'tags'   :  return text.split(/\n/);
         default       :  return text;
       }
     })();
