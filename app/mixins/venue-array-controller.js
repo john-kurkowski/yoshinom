@@ -6,6 +6,10 @@ export default Ember.Mixin.create({
     Ember.assert(this.constructor instanceof Ember.ArrayController, 'VenueArrayControllerMixin mixed into non-ArrayController ' + this.constructor);
   }.on('init'),
 
+  tags: function() { return []; }.property(),
+
+  indexRoute: '',
+
   directLinkToName: '',
 
   q: '', // query / filter / tags

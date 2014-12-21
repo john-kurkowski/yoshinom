@@ -145,6 +145,10 @@ header {
       text-decoration: underline solid;
     }
   }
+
+  > * + * {
+    margin-left: 1em;
+  }
 }
 
 .sort {
@@ -160,6 +164,11 @@ header {
   .sections, .sorts {
     width: 60%;
   }
+}
+
+.tags {
+  font-size: @font-size-primary;
+  font-weight: 300;
 }
 
 .venues {

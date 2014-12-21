@@ -2,6 +2,9 @@ import Ember from 'ember';
 
 export default Ember.View.extend({
 
+  tagName: '',
+  isVirtual: true,
+
   scrollToDirectLink: function() {
     var name = this.get('controller.directLinkToName');
     var $scrollTo;

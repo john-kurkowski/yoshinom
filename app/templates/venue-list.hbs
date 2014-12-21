@@ -1,3 +1,11 @@
+<nav>
+  <ul class="sections tags">
+    {{#each tag in tags}}
+      <li class="section tag">{{#link-to indexRoute (query-params q=tag)}}{{tag}}{{/link-to}}</li>
+    {{/each}}
+  </ul>
+</nav>
+
 <ul class="venues">
   {{#each venue in arrangedContent}}
     {{yoshinom-venue venue=venue
