@@ -1,0 +1,193 @@
+@import '_color';
+@import '_typography';
+
+@venue_width: 40em;
+@venue-caption-color: rgba(0, 0, 0, 0.5);
+@ratings_width: 14%;
+
+.venues {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.venue {
+  position: relative;
+  width: @venue_width;
+  max-width: 100%;
+  margin: 1.5em 0;
+
+  .card {
+    display: inline-block;
+    position: relative;
+    width: @venue_width;
+    max-width: 100%;
+
+    img {
+      visibility: hidden;
+
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    .title {
+      font-family: @monospace-font-family;
+      background-color: @venue-caption-color;
+      border-radius: 4px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      margin: 4px;
+      padding: 4px 6px 0;
+
+      .price {
+        font-size: @font-size-primary;
+
+        &:before {
+          content: "";
+          margin-left: 0.618034em;
+        }
+      }
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      margin-top: 100%;
+    }
+  }
+
+  .details {
+    padding: 0 8px 8px;
+
+    > * + * {
+      margin-top: 1em;
+    }
+
+    .links {
+      .map_link {
+        display: none;
+      }
+
+      .image_link {
+        display: none;
+
+        width: 2em;
+        height: 2em;
+      }
+    }
+
+    .review {
+      height: 4em;
+      overflow: hidden;
+
+      p + p {
+        margin-top: 1em;
+      }
+
+      i { // recipe instructions
+        font-style: italic;
+      }
+    }
+  }
+
+  .show-more {
+    .hover-underline;
+    color: @grey-color;
+    display: block;
+    font-family: @monospace-font-family;
+    text-align: center;
+  }
+
+  &.loaded {
+    img {
+      visibility: visible;
+    }
+
+    .spinner {
+      display: none;
+    }
+  }
+
+  &:hover {
+    .name, .show-more {
+      color: @white-color;
+      text-decoration: underline;
+    }
+  }
+
+  &.selected {
+    background-color: @details-color;
+    box-shadow: 0 0 3em 2em @details-color;
+    height: auto;
+
+    .name {
+      text-decoration: underline;
+    }
+
+    .show-more {
+      .hover-underline;
+      color: @white-color;
+    }
+
+    .details {
+      .review, .map_link, .image_link {
+        display: block;
+        height: auto;
+      }
+    }
+  }
+}
+
+.ratings {
+  .font-header;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1px;
+  text-align: center;
+  width: @ratings_width;
+  list-style: none;
+}
+.rating {
+  background-color: @venue-caption-color;
+  flex: 1;
+  font-size: @font-size-headline;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &.unknown, &:before {
+    font-weight: 300;
+    font-size: @font-size-secondary;
+  }
+
+  &[title=Food]:before {
+    content: "Food";
+  }
+  &[title=Service]:before {
+    content: "Service";
+  }
+  &[title=Atmosphere]:before {
+    content: "Atmos";
+  }
+  &[title=Uniqueness]:before {
+    content: "Uniq";
+  }
+  &[title=Bathroom]:before {
+    content: "Bthrm";
+  }
+}
+.rating + .rating {
+  margin-top: 1px;
+}

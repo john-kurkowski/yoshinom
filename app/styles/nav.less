@@ -1,0 +1,47 @@
+@import '_color';
+@import '_typography';
+
+.sections, .sorts {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+  .font-header;
+  font-size: @font-size-sub;
+  margin: 1em auto;
+
+  a, a:visited {
+    color: @white-color;
+    text-decoration: none;
+    text-decoration: underline dotted;
+
+    &:hover, &:active, &.active {
+      color: @white-color;
+      text-decoration: underline;
+      text-decoration: underline solid;
+    }
+  }
+
+  > * + * {
+    margin-left: 1em;
+  }
+}
+
+.sort {
+  text-transform: capitalize;
+}
+
+@media screen and (max-width: @goldilocks-little) {
+  .sections, .sorts {
+    padding: 0 1em;
+  }
+}
+@media screen and (min-width: @goldilocks-little) {
+  .sections, .sorts {
+    width: 60%;
+  }
+}
+
+.tags {
+  font-size: @font-size-primary;
+  font-weight: 300;
+}
