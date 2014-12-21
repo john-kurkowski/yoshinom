@@ -4,7 +4,6 @@ export default Ember.Component.extend({
 
   venue: null,
   itemRoute: "",
-  areImagesLoaded: false,
 
   assertVenue: function() {
     Ember.assert(this.get('venue'), 'No venue passed to yoshinom-venue');
