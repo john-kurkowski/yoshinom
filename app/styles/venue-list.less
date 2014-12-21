@@ -167,25 +167,9 @@
   flex-direction: column;
   justify-content: center;
 
-  &.unknown, &:before {
+  &.unknown, label {
     font-weight: 300;
     font-size: @font-size-secondary;
-  }
-
-  &[title=Food]:before {
-    content: "Food";
-  }
-  &[title=Service]:before {
-    content: "Service";
-  }
-  &[title=Atmosphere]:before {
-    content: "Atmos";
-  }
-  &[title=Uniqueness]:before {
-    content: "Uniq";
-  }
-  &[title=Bathroom]:before {
-    content: "Bthrm";
   }
 }
 .rating + .rating {
