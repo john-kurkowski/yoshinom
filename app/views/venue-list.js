@@ -7,17 +7,37 @@ export default Ember.View.extend({
 
   scrollToDirectLink: function() {
     var name = this.get('controller.directLinkToName');
+    var areImagesBeforeThisOneLoaded = this.get('areImagesBeforeThisOneLoaded');
     var $scrollTo;
 
-    if (!(name && this.get('controller.areImagesLoaded'))) {
+    if (!name || !areImagesBeforeThisOneLoaded) {
       return;
     }
 
     this.set('controller.directLinkToName', '');
 
-    $scrollTo = Ember.$(".venue .name:contains(" + name + ")").closest('.venue');
+    $scrollTo = this._venueWithName(name);
     Ember.run.scheduleOnce('afterRender', this, '_scrollTo', $scrollTo);
-  }.observes('controller.{directLinkToName,areImagesLoaded}'),
+  }.observes('controller.directLinkToName', 'areImagesBeforeThisOneLoaded'),
+
+  areImagesBeforeThisOneLoaded: function() {
+    var name = this.get('controller.directLinkToName');
+    var $scrollTo;
+    var i;
+
+    if (!name) {
+      return false;
+    }
+
+    $scrollTo = this._venueWithName(name);
+    i = Ember.$('.venue').index($scrollTo);
+    return this.get('controller.content').slice(0, i)
+    .every(function(item) { return item.get('isImageLoaded'); });
+  }.property('controller.directLinkToName', 'controller.content.@each.isImageLoaded'),
+
+  _venueWithName: function(name) {
+    return Ember.$('.venue .name:contains(' + name + ')').closest('.venue');
+  },
 
   _scrollTo: function($element) {
     var buffer = 32;
