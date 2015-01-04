@@ -5,6 +5,8 @@ export default Ember.Component.extend({
   venue: null,
   itemRoute: "",
 
+  _initialHiddenHeight: "",
+
   assertVenue: function() {
     Ember.assert(this.get('venue'), 'No venue passed to yoshinom-venue');
   }.on('init'),
@@ -56,6 +58,24 @@ export default Ember.Component.extend({
     this._super();
     this.$('img').off('load error');
   },
+
+  visuallyToggleDetails: function() {
+    var expandTarget = this.$('.details');
+    var newHeight;
+
+    if (!this.get('_initialHiddenHeight')) {
+      this.set('_initialHiddenHeight', expandTarget.height());
+    }
+
+    if (this.get('venue.showDetails')) {
+      newHeight = Array.prototype.reduce.call(expandTarget[0].childNodes, function(p, c) {
+        return p + (c.offsetHeight || 0);
+      }, 0);
+    } else {
+      newHeight = this.get('_initialHiddenHeight');
+    }
+    expandTarget.height(newHeight);
+  }.observes('venue.showDetails').on('didInsertElement'),
 
   actions: {
 

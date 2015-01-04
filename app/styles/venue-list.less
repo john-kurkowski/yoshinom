@@ -68,27 +68,22 @@
   .details {
     padding: 0 8px 8px;
 
+    height: 4em;
+    overflow: hidden;
+    transition: height .6s;
+
     > * + * {
       margin-top: 1em;
     }
 
     .links {
-      .map_link {
-        display: none;
-      }
-
       .image_link {
-        display: none;
-
         width: 2em;
         height: 2em;
       }
     }
 
     .review {
-      height: 4em;
-      overflow: hidden;
-
       p + p {
         margin-top: 1em;
       }
@@ -105,6 +100,10 @@
     display: block;
     font-family: @monospace-font-family;
     text-align: center;
+  }
+
+  .details, .show-more {
+    margin-top: 1em;
   }
 
   &.loaded {
@@ -127,7 +126,6 @@
   &.selected {
     background-color: @details-color;
     box-shadow: 0 0 3em 2em @details-color;
-    height: auto;
 
     .name {
       text-decoration: underline;
@@ -136,13 +134,6 @@
     .show-more {
       .hover-underline;
       color: @white-color;
-    }
-
-    .details {
-      .review, .map_link, .image_link {
-        display: block;
-        height: auto;
-      }
     }
   }
 }
