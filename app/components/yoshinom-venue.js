@@ -9,6 +9,13 @@ export default Ember.Component.extend({
     Ember.assert(this.get('venue'), 'No venue passed to yoshinom-venue');
   }.on('init'),
 
+  classNameBindings: [
+    ':venue',
+    'venue.isImageLoaded:loaded',
+    'venue.review:reviewed',
+    'venue.showDetails:selected'
+  ],
+
   formattedReview: function() {
     return ("<p>" + this.get('venue.review').replace(/\n/g, '</p><p>') + "</p>").htmlSafe();
   }.property('venue.review'),
@@ -53,7 +60,9 @@ export default Ember.Component.extend({
   actions: {
 
     toggleVenue: function() {
-      this.sendAction('action', this.get('venue'));
+      var venue = this.get('venue');
+      venue.toggleProperty('showDetails');
+      this.sendAction('action', venue);
     }
 
   }

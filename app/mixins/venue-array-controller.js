@@ -19,15 +19,6 @@ export default Ember.Mixin.create({
 
   areImagesLoaded: function() {
     return this.every(function(item) { return item.get('isImageLoaded'); });
-  }.property('content.@each.isImageLoaded'),
-
-  actions: {
-
-    toggleVenue: function(venue) {
-      venue.toggleProperty('showDetails');
-      return true;
-    }
-
-  }
+  }.property('content.@each.isImageLoaded')
 
 });
