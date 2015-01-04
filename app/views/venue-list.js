@@ -31,8 +31,12 @@ export default Ember.View.extend({
 
     $scrollTo = this._venueWithName(name);
     i = Ember.$('.venue').index($scrollTo);
+    if (i < 0) {
+      return false;
+    }
+
     return this.get('controller.content').slice(0, i)
-    .every(function(item) { return item.get('isImageLoaded'); });
+    .everyBy('isImageLoaded');
   }.property('controller.directLinkToName', 'controller.content.@each.isImageLoaded'),
 
   _venueWithName: function(name) {
