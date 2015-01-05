@@ -38,20 +38,16 @@ export default Ember.Component.extend({
   }.property('venue.isImageLoaded', 'venue.ratings'),
 
   didInsertElement: function() {
-    var setImageLoaded = function() {
-      this.set('venue.isImageLoaded', true);
-    }.bind(this);
+    this._super();
 
-    var handleCachedImages = function() {
+    this.$('img').one('load error', function setImageLoaded() {
+      this.set('venue.isImageLoaded', true);
+    }.bind(this))
+    .each(function handleCachedImages() {
       if (this.complete) {
         Ember.$(this).load();
       }
-    };
-
-    this._super();
-
-    this.$('img').one('load error', setImageLoaded)
-    .each(handleCachedImages);
+    });
   },
 
   willDestroyElement: function() {
