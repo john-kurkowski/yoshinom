@@ -18,7 +18,7 @@ export default Ember.Mixin.create({
   queryParams: ['q', 's'],
 
   areImagesLoaded: function() {
-    return this.every(function(item) { return item.get('isImageLoaded'); });
-  }.property('content.@each.isImageLoaded')
+    return this.get('content.length') && this.every(function(item) { return item.get('isImageLoaded'); });
+  }.property('content.length', 'content.@each.isImageLoaded')
 
 });
