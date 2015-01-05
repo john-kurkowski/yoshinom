@@ -27,7 +27,6 @@
     "body-parser": "^1.2.0",
     "broccoli-asset-rev": "0.3.1",
     "broccoli-ember-hbs-template-compiler": "^1.6.1",
-    "broccoli-static-compiler": "^0.2.1",
     "ember-cli": "0.1.4",
     "ember-cli-autoprefixer": "^0.2.0",
     "ember-cli-dependency-checker": "0.0.6",
@@ -38,7 +37,6 @@
     "ember-cli-qunit": "0.1.0",
     "ember-data": "1.0.0-beta.10",
     "ember-export-application-global": "^1.0.0",
-    "es5-shim": "^4.0.5",
     "express": "^4.8.5",
     "glob": "^4.0.5"
   }

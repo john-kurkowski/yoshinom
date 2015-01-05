@@ -1,7 +1,6 @@
 /* global require, module */
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var pickFiles = require('broccoli-static-compiler');
 
 var app = new EmberApp();
 
@@ -18,10 +17,4 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-es5Shim = pickFiles('node_modules/es5-shim', {
-  srcDir: '/',
-  files: ['es5-shim.js'],
-  destDir: '/assets'
-});
-
-module.exports = app.toTree([es5Shim]);
+module.exports = app.toTree();
