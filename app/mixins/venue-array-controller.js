@@ -8,6 +8,9 @@ export default Ember.Mixin.create({
 
   tags: function() { return []; }.property(),
 
+  tagCounts: Ember.computed.mapBy('tags', 'count'),
+  tagsMaxCount: Ember.computed.max('tagCounts'),
+
   indexRoute: '',
 
   directLinkToName: '',

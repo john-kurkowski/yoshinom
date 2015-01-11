@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import _ from 'lodash';
 
 /**
  * Base route for a section of the site, rendering a list of items, e.g.
@@ -52,12 +53,15 @@ export default Ember.Route.extend({
 
     tags = spreadsheetPromise
     .then(function(items) {
-      var tags = items.reduce(function(acc, item) {
-        acc.pushObjects(item.get('tags'));
-        return acc;
-      }, []).uniq();
-      tags.sort();
-      return tags;
+      return _(items)
+      .map('tags')
+      .flatten()
+      .groupBy()
+      .map(function(group, tagName) {
+        return { name: tagName, count: group.length };
+      })
+      .sortBy('name')
+      .value();
     });
 
     return Ember.RSVP.hash({

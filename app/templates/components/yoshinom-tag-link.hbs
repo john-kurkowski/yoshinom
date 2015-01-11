@@ -1,0 +1,4 @@
+{{#link-to indexRoute (query-params q=tag.name)}}
+  <span class="name">{{tag.name}}</span>
+  <span class="count" {{bind-attr title=countTitle style=countStyle}}>{{tag.count}}</span>
+{{/link-to}}

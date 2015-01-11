@@ -4,6 +4,7 @@
 .sections, .sorts {
   display: flex;
   justify-content: space-around;
+  align-items: baseline;
   flex-flow: row wrap;
   .font-header;
   font-size: @font-size-sub;
@@ -44,4 +45,22 @@
 .tags {
   font-size: @font-size-primary;
   font-weight: 300;
+
+  .tag {
+    a {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+
+      height: 4em;
+
+      .count {
+        font-size: 0;
+
+        display: block;
+        background-color: @chart-color;
+        width: 4px;
+      }
+    }
+  }
 }

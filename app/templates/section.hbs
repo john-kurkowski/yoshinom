@@ -1,7 +1,10 @@
 <nav>
   <ul class="sections tags">
     {{#each tag in tags}}
-      <li class="section tag">{{#link-to indexRoute (query-params q=tag)}}{{tag}}{{/link-to}}</li>
+      <li class="section tag">
+        {{yoshinom-tag-link tag=tag
+                            indexRoute=indexRoute
+                            maxCount=tagsMaxCount}}</li>
     {{/each}}
   </ul>
 </nav>
