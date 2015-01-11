@@ -53,6 +53,8 @@ export default Ember.View.extend({
     Ember.$('html, body').animate({
       scrollTop: newTop
     }, 1000);
+
+    $element.find('.card').focus();
   }
 
 });
