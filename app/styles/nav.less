@@ -11,19 +11,11 @@
   margin: 1em auto;
 
   a, a:visited {
-    color: @white-color;
-    text-decoration: none;
-    text-decoration: underline dotted;
-
-    &:hover, &:active, &.active {
-      color: @white-color;
-      text-decoration: underline;
-      text-decoration: underline solid;
-    }
+    .hover-underline;
   }
 
   > * + * {
-    margin-left: 1em;
+    margin-left: 1.62em;
   }
 }
 
@@ -38,7 +30,7 @@
 }
 @media screen and (min-width: @goldilocks-little) {
   .sections, .sorts {
-    width: 60%;
+    width: 50%;
   }
 }
 
@@ -48,18 +40,23 @@
 
   .tag {
     a {
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: center;
+      text-decoration: none;
 
-      height: 4em;
+      .name {
+        .hover-underline;
+      }
 
       .count {
-        font-size: 0;
+        color: @chart-color;
+        font-size: @font-size-secondary;
+        padding-left: 0.38em;
+        vertical-align: bottom;
+      }
 
-        display: block;
-        background-color: @chart-color;
-        width: 4px;
+      &:hover, &:active, &.active {
+        .name {
+          text-decoration: underline;
+        }
       }
     }
   }
