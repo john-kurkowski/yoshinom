@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import request from 'ic-ajax';
 
+import YoshinomItem from 'yoshinom/models/yoshinom-item';
+
 var sheets = {};
 
 export default Ember.Object.extend({
@@ -65,5 +67,5 @@ function parseVenuePromise(venue) {
   } else {
     venue.image = firstImage;
   }
-  return Ember.Object.create(venue);
+  return YoshinomItem.create(venue);
 }
