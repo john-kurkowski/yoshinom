@@ -79,7 +79,10 @@ export default Ember.Route.extend({
   },
 
   renderTemplate: function() {
-    this.render('venue-list');
+    this.render('section');
+    this.render('venue-list', {
+      into: 'section',
+    });
   },
 
   actions: {
