@@ -1,14 +1,18 @@
 @import '_color';
 @import '_typography';
+@import 'venue-list';
 
 .sections {
   display: flex;
   justify-content: space-around;
   align-items: baseline;
   flex-flow: row wrap;
+
   .font-header;
   font-size: @font-size-sub;
   margin: 1em auto;
+  padding: 0 1em;
+  max-width: @venue_width;
 
   a, a:visited {
     .hover-underline;
@@ -16,17 +20,6 @@
 
   > * {
     margin: 0 1em;
-  }
-}
-
-@media screen and (max-width: @goldilocks-little) {
-  .sections {
-    padding: 0 1em;
-  }
-}
-@media screen and (min-width: @goldilocks-little) {
-  .sections {
-    width: 50%;
   }
 }
 
