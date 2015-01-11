@@ -83,10 +83,10 @@ export default Ember.Route.extend({
   },
 
   renderTemplate: function() {
-    this.render('section');
-    this.render('venue-list', {
-      into: 'section',
+    this.render('section-subnav', {
+      outlet: 'subnav'
     });
+    this.render('venue-list');
   },
 
   actions: {

@@ -1,0 +1,8 @@
+<ul class="sections tags">
+  {{#each tag in tags}}
+    <li class="section tag">
+      {{yoshinom-tag-link tag=tag
+                          indexRoute=indexRoute
+                          maxCount=tagsMaxCount}}</li>
+  {{/each}}
+</ul>
