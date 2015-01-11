@@ -18,6 +18,10 @@ export default Ember.Component.extend({
     'venue.showDetails:selected'
   ],
 
+  imageAlt: function() {
+    return 'Photo of food & drink at ' + this.get('venue.name');
+  }.property('venue.name'),
+
   formattedReview: function() {
     return ("<p>" + this.get('venue.review').replace(/\n/g, '</p><p>') + "</p>").htmlSafe();
   }.property('venue.review'),
