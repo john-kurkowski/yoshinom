@@ -18,7 +18,11 @@ export default Ember.View.extend({
 
     $scrollTo = this._venueWithName(name);
     Ember.run.scheduleOnce('afterRender', this, '_scrollTo', $scrollTo);
-  }.observes('controller.directLinkToName', 'areImagesBeforeThisOneLoaded'),
+  }.observes(
+    'controller.directLinkToName',
+    'areImagesBeforeThisOneLoaded'
+  )
+  .on('didInsertElement'),
 
   areImagesBeforeThisOneLoaded: function() {
     var name = this.get('controller.directLinkToName');
