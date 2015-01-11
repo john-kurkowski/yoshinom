@@ -1,16 +1,22 @@
 import Ember from 'ember';
 import request from 'ic-ajax';
 
+var sheets = {};
+
 export default Ember.Object.extend({
 
   find: function(sheetNumber) {
-    var url = 'https://spreadsheets.google.com/feeds/list/0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE/' + sheetNumber + '/public/values';
-    return request(url, {
-      dataType: 'jsonp',
+    var url;
+
+    if (sheets[sheetNumber]) {
+      return sheets[sheetNumber];
+    }
+
+    url = 'https://spreadsheets.google.com/feeds/list/0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE/' + sheetNumber + '/public/values';
+    return sheets[sheetNumber] = request(url, {
       data: {
         alt: 'json'
-      },
-      cache: true
+      }
     })
     .then(function(spreadsheet) {
       return spreadsheet.feed.entry
