@@ -1,16 +1,24 @@
 import Ember from 'ember';
 
 /**
- * Reopen LinkView instances to allow an action.
+ * Reopen LinkView instances to
  *
- * Specify any params with the `actionParam` attribute.
+ * * Allow an action. Specify any params with the `actionParam` attribute.
+ * * Improve current-state accessibility via the aria-selected attribute. There
+ *   is some debate around this, but it does the trick.
  *
  * From http://stackoverflow.com/a/20383651/62269
  */
 export function initialize(/* container, application */) {
   Ember.LinkView.reopen({
 
+    attributeBindings: ['ariaSelected:aria-selected'],
+
     action: null,
+
+    ariaSelected: function() {
+      return this.get('active') ? 'true' : 'false';
+    }.property('active'),
 
     _invoke: function(event) {
       var action = this.get('action');
