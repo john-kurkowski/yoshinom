@@ -45,6 +45,13 @@ header {
 
     text-align: left;
 
+    .title {
+      // Firefox is currently the only browser treating pseudoelements as flex
+      // items (https://bugzilla.mozilla.org/show_bug.cgi?id=867454). Dominate
+      // header:before's flex width, hiding it in Firefox.
+      flex-grow: 1;
+    }
+
     .about {
       width: 33%;
     }
