@@ -1,7 +1,7 @@
 @import '_color';
 @import '_typography';
 
-.sections, .sorts {
+.sections {
   display: flex;
   justify-content: space-around;
   align-items: baseline;
@@ -19,17 +19,13 @@
   }
 }
 
-.sort {
-  text-transform: capitalize;
-}
-
 @media screen and (max-width: @goldilocks-little) {
-  .sections, .sorts {
+  .sections {
     padding: 0 1em;
   }
 }
 @media screen and (min-width: @goldilocks-little) {
-  .sections, .sorts {
+  .sections {
     width: 50%;
   }
 }
