@@ -1,0 +1,8 @@
+<ul class="cards">
+  {{#each item in arrangedContent}}
+    {{yoshinom-card  item=item
+                     itemRoute=itemRoute
+                     action="toggleItem"
+                     tagName="li"}}
+  {{/each}}
+</ul>

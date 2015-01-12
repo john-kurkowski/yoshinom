@@ -23,7 +23,7 @@ export default Ember.Object.extend({
     .then(function(spreadsheet) {
       return spreadsheet.feed.entry
       .map(parseSpreadsheetEntry)
-      .map(parseVenuePromise);
+      .map(parseYoshinomItemPromise);
     });
   }
 
@@ -47,25 +47,25 @@ function parseSpreadsheetEntry(entry) {
   }, {});
 }
 
-function parseVenuePromise(venue) {
+function parseYoshinomItemPromise(item) {
   var firstImage;
   var isInstagramShortlink;
 
-  venue.ratings = {
-    food: venue.food,
-    service: venue.service,
-    atmosphere: venue.atmosphere,
-    uniqueness: venue.uniqueness,
-    bathroom: venue.bathroom
+  item.ratings = {
+    food: item.food,
+    service: item.service,
+    atmosphere: item.atmosphere,
+    uniqueness: item.uniqueness,
+    bathroom: item.bathroom
   };
 
-  firstImage = venue.images[0];
+  firstImage = item.images[0];
   isInstagramShortlink = /http:\/\/instagr\.?am(\.com)?/.test(firstImage);
   if (isInstagramShortlink) {
-    venue.imageLink = firstImage;
-    venue.image = firstImage + "/media?size=l";
+    item.imageLink = firstImage;
+    item.image = firstImage + "/media?size=l";
   } else {
-    venue.image = firstImage;
+    item.image = firstImage;
   }
-  return YoshinomItem.create(venue);
+  return YoshinomItem.create(item);
 }

@@ -86,15 +86,15 @@ export default Ember.Route.extend({
     this.render('section-subnav', {
       outlet: 'subnav'
     });
-    this.render('venue-list');
+    this.render('card-list');
   },
 
   actions: {
 
-    toggleVenue: function(venue) {
-      var showItem = venue.get('showDetails');
+    toggleItem: function(item) {
+      var showItem = item.get('showDetails');
       if (showItem) {
-        this.transitionTo(this.routeName + '.item', venue);
+        this.transitionTo(this.routeName + '.item', item);
       }
     }
 

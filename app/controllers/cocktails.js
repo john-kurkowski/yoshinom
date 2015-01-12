@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-import VenueArrayControllerMixin from 'yoshinom/mixins/venue-array-controller';
+import YoshinomItemArrayControllerMixin from 'yoshinom/mixins/yoshinom-item-array-controller';
 
-export default Ember.ArrayController.extend(VenueArrayControllerMixin, {
+export default Ember.ArrayController.extend(YoshinomItemArrayControllerMixin, {
 });

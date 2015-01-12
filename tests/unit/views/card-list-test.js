@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('view:venue-list', 'VenueListView');
+moduleFor('view:card-list', 'CardListView');
 
 // Replace this with your real tests.
 test('it exists', function() {

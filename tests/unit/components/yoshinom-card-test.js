@@ -4,7 +4,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('yoshinom-venue', 'YoshinomVenueComponent', {
+moduleForComponent('yoshinom-card', 'YoshinomCardComponent', {
   // specify the other units that are required for this test
   needs: ['component:yoshinom-loading']
 });
@@ -14,7 +14,7 @@ test('it renders', function() {
 
   // creates the component instance
   var component = this.subject({
-    venue: Ember.Object.create({
+    item: Ember.Object.create({
       ratings: {}
     })
   });

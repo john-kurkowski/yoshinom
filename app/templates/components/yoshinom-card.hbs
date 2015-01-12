@@ -1,0 +1,49 @@
+{{#link-to itemRoute item classNameBindings=":preview" action="toggleItem"}}
+  <img {{bind-attr src=item.image alt=imageAlt}} class="thumbnail"/>
+  {{yoshinom-loading}}
+
+  <h3 class="title">
+    <span class="name">{{item.name}}</span>
+    {{#if price}}
+      <span class="price">{{item.price}}</span>
+    {{/if}}
+  </h3>
+
+  {{#if showRatings}}
+    <ul class="ratings">
+      <li title="Food" {{bind-attr class=":rating item.ratings.food::unknown"}}><label>Food</label><span class="value">{{get-or-else item.ratings.food "N/A"}}</span></li>
+      <li title="Service" {{bind-attr class=":rating item.ratings.service::unknown"}}><label>Srvce</label><span class="value">{{get-or-else item.ratings.service "N/A"}}</span></li>
+      <li title="Atmosphere" {{bind-attr class=":rating item.ratings.atmosphere::unknown"}}><label>Atmos</label><span class="value">{{get-or-else item.ratings.atmosphere "N/A"}}</span></li>
+      <li title="Uniqueness" {{bind-attr class=":rating item.ratings.uniqueness::unknown"}}><label>Uniq</label><span class="value">{{get-or-else item.ratings.uniqueness "N/A"}}</span></li>
+      <li title="Bathroom" {{bind-attr class=":rating item.ratings.bathroom::unknown"}}><label>Bthrm</label><span class="value">{{get-or-else item.ratings.bathroom "N/A"}}</span></li>
+    </ul>
+  {{/if}}
+{{/link-to}}
+
+<div class="details">
+  <div class="review">
+    {{#if item.review}}
+      {{formattedReview}}
+    {{else}}
+      No review yet.
+    {{/if}}
+  </div>
+
+  <ul class="links">
+    {{#if item.mapLink}}
+      <li class="map_link">{{item.mapLink}}</li>
+    {{/if}}
+
+    {{#if item.imageLink}}
+      <li class="image_link"><a {{bind-attr href=item.imageLink}}>Instagram</a></li>
+    {{/if}}
+  </ul>
+</div>
+
+{{#link-to itemRoute item classNameBindings=":show-more" action="toggleItem"}}
+  {{#if item.showDetails}}
+    - show less
+  {{else}}
+    + show more
+  {{/if}}
+{{/link-to}}

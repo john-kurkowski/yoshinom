@@ -16,7 +16,7 @@ export default Ember.View.extend({
 
     this.set('controller.directLinkToName', '');
 
-    $scrollTo = this._venueWithName(name);
+    $scrollTo = this._cardWithName(name);
     Ember.run.scheduleOnce('afterRender', this, '_scrollTo', $scrollTo);
   }.observes(
     'controller.directLinkToName',
@@ -33,8 +33,8 @@ export default Ember.View.extend({
       return false;
     }
 
-    $scrollTo = this._venueWithName(name);
-    i = Ember.$('.venue').index($scrollTo);
+    $scrollTo = this._cardWithName(name);
+    i = Ember.$('.card').index($scrollTo);
     if (i < 0) {
       return false;
     }
@@ -43,8 +43,8 @@ export default Ember.View.extend({
     .everyBy('isImageLoaded');
   }.property('controller.directLinkToName', 'controller.content.@each.isImageLoaded'),
 
-  _venueWithName: function(name) {
-    return Ember.$('.venue .name:contains(' + name + ')').closest('.venue');
+  _cardWithName: function(name) {
+    return Ember.$('.card .name:contains(' + name + ')').closest('.card');
   },
 
   _scrollTo: function($element) {

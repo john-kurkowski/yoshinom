@@ -30,9 +30,9 @@ export default Ember.Route.extend({
 
   actions: {
 
-    toggleVenue: function(venue) {
-      var hideVenue = !venue.get('showDetails');
-      if (hideVenue) {
+    toggleItem: function(item) {
+      var hideItem = !item.get('showDetails');
+      if (hideItem) {
         this.transitionTo(this.get('parentRoute'));
       } else {
         return true;
