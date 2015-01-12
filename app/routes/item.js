@@ -23,6 +23,10 @@ export default Ember.Route.extend({
     }
   },
 
+  titleToken: function(model) {
+    return model.get('name');
+  },
+
   setupController: function(controller, model) {
     model.set('showDetails', true);
     this._super.apply(this, arguments);
