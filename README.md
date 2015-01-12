@@ -1,7 +1,9 @@
 # Yoshinom
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A linkable photostream of the best of
+[@Yoshinom](http://instagram.com/yoshinom), with ratings of the restaurants and
+recipes. May cause salivation. Please do not lick your screen.
+[http://www.yoshinom.com](http://www.yoshinom.com)
 
 ## Prerequisites
 
@@ -41,7 +43,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+* `git push heroku master`
 
 ## Further Reading / Useful Links
 
