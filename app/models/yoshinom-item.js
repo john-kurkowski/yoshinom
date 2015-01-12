@@ -14,6 +14,8 @@ export default Ember.Object.extend({
   image: '',
   imageLink: '',
   ratings: {},
-  review: ''
+  review: '',
+
+  imageAlt: Ember.computed.reads('name')
 
 });

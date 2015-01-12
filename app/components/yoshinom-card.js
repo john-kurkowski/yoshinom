@@ -21,10 +21,6 @@ export default Ember.Component.extend({
     'item.showDetails:selected'
   ],
 
-  imageAlt: function() {
-    return 'Photo of food & drink at ' + this.get('item.name');
-  }.property('item.name'),
-
   formattedReview: function() {
     return ("<p>" + this.get('item.review').replace(/\n/g, '</p><p>') + "</p>").htmlSafe();
   }.property('item.review'),
