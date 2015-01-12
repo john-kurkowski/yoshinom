@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import request from 'ic-ajax';
+import _ from 'lodash';
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
@@ -8,6 +9,7 @@ var sheets = {};
 export default Ember.Object.extend({
 
   find: function(sheetNumber) {
+    var self = this;
     var url;
 
     if (sheets[sheetNumber]) {
@@ -21,9 +23,14 @@ export default Ember.Object.extend({
       }
     })
     .then(function(spreadsheet) {
-      return spreadsheet.feed.entry
+      var title = spreadsheet.feed.title.$t;
+      var model = self.container.lookup('model:' + title.dasherize() + '-item');
+      var itemClass = (model && model.constructor) || YoshinomItem;
+
+      var rawItems = spreadsheet.feed.entry;
+      return rawItems
       .map(parseSpreadsheetEntry)
-      .map(parseYoshinomItemPromise);
+      .map(_.curry(parseYoshinomItemPromise)(itemClass));
     });
   }
 
@@ -47,7 +54,7 @@ function parseSpreadsheetEntry(entry) {
   }, {});
 }
 
-function parseYoshinomItemPromise(item) {
+function parseYoshinomItemPromise(itemClass, item) {
   var firstImage;
   var isInstagramShortlink;
 
@@ -67,5 +74,5 @@ function parseYoshinomItemPromise(item) {
   } else {
     item.image = firstImage;
   }
-  return YoshinomItem.create(item);
+  return itemClass.create(item);
 }
