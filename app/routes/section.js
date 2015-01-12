@@ -7,7 +7,7 @@ import _ from 'lodash';
  */
 export default Ember.Route.extend({
 
-  sheetNumber: -1,
+  titleToken: '',
   sorts: [],
 
   queryParams: {
@@ -16,7 +16,7 @@ export default Ember.Route.extend({
   },
 
   model: function(params) {
-    var sheetNumber = this.get('sheetNumber');
+    var sheetTitle = this.get('titleToken');
     var sorts = this.get('sorts');
     var selectedSort = params.s || this.controllerFor(this.routeName).get('s');
     var errors = [];
@@ -25,14 +25,14 @@ export default Ember.Route.extend({
     var selectedSorts;
     var tags;
 
-    if (sheetNumber < 0 || (!sheetNumber && sheetNumber !== 0)) {
-      errors.push('Routes extending SectionRoute must specify a sheetNumber, not ' + sheetNumber + '.');
+    if (!sheetTitle) {
+      errors.push('Routes extending SectionRoute must specify a titleToken.');
     }
     if (errors.length) {
       throw new Ember.Error(errors.join('\n'));
     }
 
-    spreadsheetPromise = this.container.lookup('service:spreadsheet').find(sheetNumber);
+    spreadsheetPromise = this.container.lookup('service:spreadsheet').find(sheetTitle);
 
     filteredItems = spreadsheetPromise
     .then(function(items) {

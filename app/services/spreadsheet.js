@@ -4,39 +4,61 @@ import _ from 'lodash';
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
-var sheets = {};
+var sheets = [];
+var sheetsByTitle = {};
 
 export default Ember.Object.extend({
 
-  find: function(sheetNumber) {
+  find: function(sheetTitle) {
     var self = this;
-    var url;
 
-    if (sheets[sheetNumber]) {
-      return sheets[sheetNumber];
+    if (sheetsByTitle[sheetTitle]) {
+      return sheetsByTitle[sheetTitle];
     }
 
-    url = 'https://spreadsheets.google.com/feeds/list/0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE/' + sheetNumber + '/public/values';
-    return sheets[sheetNumber] = request(url, {
-      data: {
-        alt: 'json'
-      }
+    return sheetsByTitle[sheetTitle] = allSheets()
+    .then(function(sheets) {
+      return rowsForSheet(sheets.findBy('title.$t', sheetTitle));
     })
-    .then(function(spreadsheet) {
-      var title = spreadsheet.feed.title.$t;
-      var model = self.container.lookup('model:' + title.dasherize() + '-item');
+    .then(function(rows) {
+      var model = self.container.lookup('model:' + sheetTitle.dasherize() + '-item');
       var itemClass = (model && model.constructor) || YoshinomItem;
 
-      var rawItems = spreadsheet.feed.entry;
-      return rawItems
-      .map(parseSpreadsheetEntry)
+      return rows
+      .map(parseRow)
       .map(_.curry(parseYoshinomItemPromise)(itemClass));
     });
   }
 
 });
 
-function parseSpreadsheetEntry(entry) {
+function allSheets() {
+  var url;
+  if (sheets.length) {
+    return Ember.RSVP.resolve(sheets);
+  } else {
+    url = 'https://spreadsheets.google.com/feeds/worksheets/0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE/public/values';
+    return request(url, { data: { alt: 'json' } })
+    .then(function(sheetsResponse) {
+      sheets = sheetsResponse.feed.entry;
+      return sheets;
+    });
+  }
+}
+
+function rowsForSheet(sheetEntry) {
+  var url = sheetEntry.link.find(function(link) {
+    return /#listfeed$/.test(link.rel);
+  }).href;
+
+  return request(url, { data: { alt: 'json' } })
+  .then(function(sheet) {
+    var rows = sheet.feed.entry;
+    return rows;
+  });
+}
+
+function parseRow(entry) {
   var gsxRegex = /^gsx\$/;
   var keys = Ember.keys(entry).filter(function(key) { return gsxRegex.test(key); });
   return keys.reduce(function(acc, key) {
