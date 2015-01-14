@@ -78,14 +78,6 @@ function parseYoshinomItemPromise(itemClass, item) {
   var firstImage;
   var isInstagramShortlink;
 
-  item.ratings = {
-    food: item.food,
-    service: item.service,
-    atmosphere: item.atmosphere,
-    uniqueness: item.uniqueness,
-    bathroom: item.bathroom
-  };
-
   firstImage = item.images[0];
   isInstagramShortlink = /http:\/\/instagr\.?am(\.com)?/.test(firstImage);
   if (isInstagramShortlink) {
@@ -94,5 +86,10 @@ function parseYoshinomItemPromise(itemClass, item) {
   } else {
     item.image = firstImage;
   }
-  return itemClass.create(item);
+
+  if (itemClass.fromSpreadsheetRow) {
+    return itemClass.fromSpreadsheetRow(item);
+  } else {
+    return itemClass.create(item);
+  }
 }
