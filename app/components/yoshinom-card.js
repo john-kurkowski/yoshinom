@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import _ from 'lodash';
 
 /**
  * Card-like display of a YoshinomItem.
@@ -30,9 +31,8 @@ export default Ember.Component.extend({
       return false;
     }
 
-    const obj = this.get('item.ratings');
-    const values = Object.keys(obj).map(function(key) { return obj[key]; });
-    const hasSomeRating = values.some(function(value) { return value; });
+    const hasSomeRating = _.values(this.get('item.ratings'))
+    .some(function identity(value) { return value; });
     return hasSomeRating;
   }.property('item.isImageLoaded', 'item.ratings'),
 
