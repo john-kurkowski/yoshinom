@@ -10,8 +10,6 @@ var sheetsByTitle = {};
 export default Ember.Object.extend({
 
   find: function(sheetTitle) {
-    var self = this;
-
     if (sheetsByTitle[sheetTitle]) {
       return sheetsByTitle[sheetTitle];
     }
@@ -20,8 +18,8 @@ export default Ember.Object.extend({
     .then(function(sheets) {
       return rowsForSheet(sheets.findBy('title.$t', sheetTitle));
     })
-    .then(function(rows) {
-      var model = self.container.lookup('model:' + sheetTitle.dasherize() + '-item');
+    .then(rows => {
+      var model = this.container.lookup('model:' + sheetTitle.dasherize() + '-item');
       var itemClass = (model && model.constructor) || YoshinomItem;
 
       return rows
