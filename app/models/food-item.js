@@ -4,6 +4,8 @@ import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
 let FoodItemModel = YoshinomItem.extend({
 
+  ratings: {},
+
   imageAlt: function() {
     return 'Photo of food & drink at ' + this.get('name');
   }.property('name')
