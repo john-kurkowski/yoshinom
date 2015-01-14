@@ -6,9 +6,8 @@ export default Ember.View.extend({
   isVirtual: true,
 
   scrollToDirectLink: function() {
-    var name = this.get('controller.directLinkToName');
-    var areImagesBeforeThisOneLoaded = this.get('areImagesBeforeThisOneLoaded');
-    var $scrollTo;
+    const name = this.get('controller.directLinkToName');
+    const areImagesBeforeThisOneLoaded = this.get('areImagesBeforeThisOneLoaded');
 
     if (!name || !areImagesBeforeThisOneLoaded) {
       return;
@@ -16,7 +15,7 @@ export default Ember.View.extend({
 
     this.set('controller.directLinkToName', '');
 
-    $scrollTo = this._cardWithName(name);
+    const $scrollTo = this._cardWithName(name);
     Ember.run.scheduleOnce('afterRender', this, '_scrollTo', $scrollTo);
   }.observes(
     'controller.directLinkToName',
@@ -25,16 +24,14 @@ export default Ember.View.extend({
   .on('didInsertElement'),
 
   areImagesBeforeThisOneLoaded: function() {
-    var name = this.get('controller.directLinkToName');
-    var $scrollTo;
-    var i;
+    const name = this.get('controller.directLinkToName');
 
     if (!name) {
       return false;
     }
 
-    $scrollTo = this._cardWithName(name);
-    i = Ember.$('.card').index($scrollTo);
+    const $scrollTo = this._cardWithName(name);
+    const i = Ember.$('.card').index($scrollTo);
     if (i < 0) {
       return false;
     }
@@ -48,8 +45,8 @@ export default Ember.View.extend({
   },
 
   _scrollTo: function($element) {
-    var buffer = 32;
-    var newTop = $element.offset().top - buffer;
+    const buffer = 32;
+    const newTop = $element.offset().top - buffer;
     Ember.$('html, body').animate({
       scrollTop: newTop
     }, 1000);

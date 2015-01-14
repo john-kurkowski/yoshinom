@@ -7,14 +7,14 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   parentRoute: function() {
-    var allButLastDot = /(.*)\./.exec(this.get('routeName'));
-    return allButLastDot[1];
+    const [, allButLastDot] = /(.*)\./.exec(this.get('routeName'));
+    return allButLastDot;
   }.property('routeName'),
 
   model: function(params) {
-    var name = decodeURIComponent(params.name);
-    var parentModel = this.modelFor(this.get('parentRoute'));
-    var model = parentModel.items.findBy('name', name);
+    const name = decodeURIComponent(params.name);
+    const parentModel = this.modelFor(this.get('parentRoute'));
+    const model = parentModel.items.findBy('name', name);
     if (model) {
       this.controllerFor(this.get('parentRoute')).set('directLinkToName', name);
       return model;
@@ -35,7 +35,7 @@ export default Ember.Route.extend({
   actions: {
 
     toggleItem: function(item) {
-      var hideItem = !item.get('showDetails');
+      const hideItem = !item.get('showDetails');
       if (hideItem) {
         this.transitionTo(this.get('parentRoute'));
       } else {
@@ -44,7 +44,7 @@ export default Ember.Route.extend({
     },
 
     willTransition: function(/*transition*/) {
-      var model = this.modelFor(this.routeName);
+      const model = this.modelFor(this.routeName);
       model.set('showDetails', false);
     }
 

@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   }.property('tag.count'),
 
   countStyle: function() {
-    var percent = this.get('tag.count') / this.get('maxCount') * 100;
+    const percent = this.get('tag.count') / this.get('maxCount') * 100;
     return "height: " + percent + "%;";
   }.property('tag.count', 'maxCount')
 

@@ -21,7 +21,7 @@ export function initialize(/* container, application */) {
     }.property('active'),
 
     _invoke: function(event) {
-      var action = this.get('action');
+      const action = this.get('action');
       if (action) {
         // There was an action specified (in handlebars) so take custom action
         event.preventDefault(); // prevent the browser from following the link as normal

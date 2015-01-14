@@ -16,14 +16,10 @@ export default Ember.Route.extend({
   },
 
   model: function(params) {
-    var sheetTitle = this.get('titleToken');
-    var sorts = this.get('sorts');
-    var selectedSort = params.s || this.controllerFor(this.routeName).get('s');
-    var errors = [];
-    var spreadsheetPromise;
-    var filteredItems;
-    var selectedSorts;
-    var tags;
+    const sheetTitle = this.get('titleToken');
+    const sorts = this.get('sorts');
+    const selectedSort = params.s || this.controllerFor(this.routeName).get('s');
+    const errors = [];
 
     if (!sheetTitle) {
       errors.push('Routes extending SectionRoute must specify a titleToken.');
@@ -32,9 +28,9 @@ export default Ember.Route.extend({
       throw new Ember.Error(errors.join('\n'));
     }
 
-    spreadsheetPromise = this.container.lookup('service:spreadsheet').find(sheetTitle);
+    const spreadsheetPromise = this.container.lookup('service:spreadsheet').find(sheetTitle);
 
-    filteredItems = spreadsheetPromise
+    const filteredItems = spreadsheetPromise
     .then(function(items) {
       if (params.q) {
         return items.filter(function(item) {
@@ -45,13 +41,13 @@ export default Ember.Route.extend({
       }
     });
 
-    selectedSorts = Ember.copy(sorts);
+    const selectedSorts = Ember.copy(sorts);
     if (selectedSorts.contains(selectedSort)) {
       selectedSorts.removeObject(selectedSort);
       selectedSorts.unshift(selectedSort);
     }
 
-    tags = spreadsheetPromise
+    const tags = spreadsheetPromise
     .then(function(items) {
       return _(items)
       .map('tags')
@@ -92,7 +88,7 @@ export default Ember.Route.extend({
   actions: {
 
     toggleItem: function(item) {
-      var showItem = item.get('showDetails');
+      const showItem = item.get('showDetails');
       if (showItem) {
         this.transitionTo(this.routeName + '.item', item);
       }

@@ -26,22 +26,18 @@ export default Ember.Component.extend({
   }.property('item.review'),
 
   showRatings: function() {
-    var obj;
-    var values;
-    var hasSomeRating;
-
     if (!this.get('item.isImageLoaded')) {
       return false;
     }
 
-    obj = this.get('item.ratings');
-    values = Object.keys(obj).map(function(key) { return obj[key]; });
-    hasSomeRating = values.some(function(value) { return value; });
+    const obj = this.get('item.ratings');
+    const values = Object.keys(obj).map(function(key) { return obj[key]; });
+    const hasSomeRating = values.some(function(value) { return value; });
     return hasSomeRating;
   }.property('item.isImageLoaded', 'item.ratings'),
 
   didInsertElement: function() {
-    var self = this;
+    const self = this;
 
     this._super();
 
@@ -61,13 +57,13 @@ export default Ember.Component.extend({
   },
 
   visuallyToggleDetails: function() {
-    var expandTarget = this.$('.details');
-    var newHeight;
+    const expandTarget = this.$('.details');
 
     if (!this.get('_initialHiddenHeight')) {
       this.set('_initialHiddenHeight', expandTarget.height());
     }
 
+    let newHeight;
     if (this.get('item.showDetails')) {
       newHeight = Array.prototype.reduce.call(expandTarget[0].childNodes, function(p, c) {
         return p + (c.offsetHeight || 0);
@@ -81,7 +77,7 @@ export default Ember.Component.extend({
   actions: {
 
     toggleItem: function() {
-      var item = this.get('item');
+      const item = this.get('item');
       item.toggleProperty('showDetails');
       this.sendAction('action', item);
     }
