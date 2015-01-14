@@ -23,7 +23,7 @@ export default Ember.Component.extend({
   ],
 
   formattedReview: function() {
-    return ("<p>" + this.get('item.review').replace(/\n/g, '</p><p>') + "</p>").htmlSafe();
+    return `<p>${this.get('item.review').replace(/\n/g, '</p><p>')}</p>`.htmlSafe();
   }.property('item.review'),
 
   showRatings: function() {

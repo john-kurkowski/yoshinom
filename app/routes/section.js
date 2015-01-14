@@ -70,7 +70,7 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     controller.setProperties({
       indexRoute: this.routeName,
-      itemRoute: this.routeName + ".item",
+      itemRoute: `${this.routeName}.item`,
       model: model.items,
       sortProperties: model.sorts,
       sortAscending: false,
@@ -90,7 +90,7 @@ export default Ember.Route.extend({
     toggleItem: function(item) {
       const showItem = item.get('showDetails');
       if (showItem) {
-        this.transitionTo(this.routeName + '.item', item);
+        this.transitionTo(`${this.routeName}.item`, item);
       }
     }
 

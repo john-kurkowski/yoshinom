@@ -10,12 +10,12 @@ export default Ember.Component.extend({
   isVirtual: true,
 
   countTitle: function() {
-    return this.get('tag.count') + ' hits';
+    return `${this.get('tag.count')} hits`;
   }.property('tag.count'),
 
   countStyle: function() {
     const percent = this.get('tag.count') / this.get('maxCount') * 100;
-    return "height: " + percent + "%;";
+    return `height: ${percent}%;`;
   }.property('tag.count', 'maxCount')
 
 });

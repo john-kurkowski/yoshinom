@@ -7,7 +7,7 @@ let FoodItemModel = YoshinomItem.extend({
   ratings: {},
 
   imageAlt: function() {
-    return 'Photo of food & drink at ' + this.get('name');
+    return `Photo of food & drink at ${this.get('name')}`;
   }.property('name')
 
 });
