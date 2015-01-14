@@ -32,14 +32,12 @@ export default Ember.Component.extend({
     }
 
     const hasSomeRating = _.values(this.get('item.ratings'))
-    .some(function identity(value) { return value; });
+    .some(_.identity);
     return hasSomeRating;
   }.property('item.isImageLoaded', 'item.ratings'),
 
-  didInsertElement: function() {
+  setupImageEvents: function() {
     const self = this;
-
-    this._super();
 
     this.$('img').one('load error', function setImageLoaded() {
       self.set('item.isImageLoaded', true);
@@ -49,12 +47,11 @@ export default Ember.Component.extend({
         Ember.$(this).load();
       }
     });
-  },
+  }.on('didInsertElement'),
 
-  willDestroyElement: function() {
-    this._super();
+  teardownImageEvents: function() {
     this.$('img').off('load error');
-  },
+  }.on('willDestroyElement'),
 
   visuallyToggleDetails: function() {
     const expandTarget = this.$('.details');

@@ -56,11 +56,14 @@ function rowsForSheet(sheetEntry) {
 }
 
 function parseRow(entry) {
-  const gsxRegex = /^gsx\$/;
-  const keys = Ember.keys(entry).filter(function(key) { return gsxRegex.test(key); });
-  return keys.reduce(function(acc, key) {
-    const normalizedKey = key.replace(gsxRegex, '');
-    const text = entry[key]['$t'];
+  const gsxRegex = /^gsx\$(.+)/;
+  return _.reduce(entry, function(acc, cell, key) {
+    const [, normalizedKey] = gsxRegex.exec(key) || [];
+    if (!normalizedKey) {
+      return acc;
+    }
+
+    const text = cell.$t;
     const value = (function() {
       switch (normalizedKey) {
         case 'images' :  return text.split(/\s+/);
