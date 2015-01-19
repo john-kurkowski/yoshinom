@@ -81,7 +81,7 @@ function parseYoshinomItemPromise(itemClass, item) {
   const isInstagramShortlink = /http:\/\/instagr\.?am(\.com)?/.test(firstImage);
   if (isInstagramShortlink) {
     item.imageLink = firstImage;
-    item.image = firstImage + "/media?size=l";
+    item.image = `${firstImage.replace(/\/$/, '')}/media?size=l`;
   } else {
     item.image = firstImage;
   }
