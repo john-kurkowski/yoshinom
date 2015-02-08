@@ -41,7 +41,7 @@ export default Ember.View.extend({
   }.property('controller.directLinkToName', 'controller.content.@each.isImageLoaded'),
 
   _cardWithName: function(name) {
-    return Ember.$('.card .name:contains(' + name + ')').closest('.card');
+    return Ember.$(`.card .name:contains(${name})`).closest('.card');
   },
 
   _scrollTo: function($element) {

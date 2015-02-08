@@ -19,7 +19,7 @@ export default Ember.Object.extend({
       return rowsForSheet(sheets.findBy('title.$t', sheetTitle));
     })
     .then(rows => {
-      const model = this.container.lookup('model:' + sheetTitle.dasherize() + '-item');
+      const model = this.container.lookup(`model:${sheetTitle.dasherize()}-item`);
       const itemClass = (model && model.constructor) || YoshinomItem;
 
       return rows
