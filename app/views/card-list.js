@@ -49,7 +49,10 @@ export default Ember.View.extend({
     const newTop = $element.offset().top - buffer;
     Ember.$('html, body').animate({
       scrollTop: newTop
-    }, 1000);
+    }, {
+      duration: 1200,
+      easing: 'easeInOutQuint',
+    });
 
     $element.find('.card').focus();
   }
