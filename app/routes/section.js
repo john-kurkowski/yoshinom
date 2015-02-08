@@ -7,6 +7,8 @@ import _ from 'lodash';
  */
 export default Ember.Route.extend({
 
+  spreadsheet: Ember.inject.service(),
+
   titleToken: '',
   sorts: [],
 
@@ -28,7 +30,7 @@ export default Ember.Route.extend({
       throw new Ember.Error(errors.join('\n'));
     }
 
-    const spreadsheetPromise = this.container.lookup('service:spreadsheet').find(sheetTitle);
+    const spreadsheetPromise = this.get('spreadsheet').find(sheetTitle);
 
     const filteredItems = spreadsheetPromise
     .then(function(items) {
