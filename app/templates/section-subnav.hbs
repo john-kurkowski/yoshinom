@@ -1,5 +1,5 @@
 <ul class="sections tags">
-  {{#each tag in tags}}
+  {{#each tags as |tag|}}
     <li class="section tag">
       {{yoshinom-tag-link tag=tag
                           indexRoute=indexRoute

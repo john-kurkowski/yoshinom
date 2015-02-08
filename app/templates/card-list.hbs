@@ -1,5 +1,5 @@
 <ul class="cards">
-  {{#each item in arrangedContent}}
+  {{#each arrangedContent as |item|}}
     {{yoshinom-card  item=item
                      itemRoute=itemRoute
                      action="toggleItem"
