@@ -4,6 +4,8 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp();
 
+var isProduction = EmberApp.env() === 'production';
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //
@@ -18,5 +20,9 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 
 app.import('bower_components/jquery.easing/js/jquery.easing.js');
+
+ if (!isProduction) {
+   app.import(app.bowerDirectory + '/sinon/index.js', { type: 'test' });
+ }
 
 module.exports = app.toTree();

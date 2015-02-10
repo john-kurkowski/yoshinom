@@ -3,13 +3,30 @@ import startApp from '../helpers/start-app';
 
 import _ from 'lodash';
 
-var application;
+const spreadsheetRowsStub = [
+  {
+    name: 'Earl\'s',
+    images: ['/earls-gourmet-grub.jpg'],
+    review: 'Da BOMB!',
+  }
+];
+
+let application;
+let sandbox;
 
 module('Acceptance: <meta> Description', {
   setup: function() {
     application = startApp();
+
+    sandbox = sinon.sandbox.create();
+    const spreadsheetService = application.__container__.lookup('service:spreadsheet');
+    sinon.stub(spreadsheetService, 'find', function() {
+      return new Ember.RSVP.resolve(spreadsheetRowsStub);
+    });
   },
   teardown: function() {
+    sandbox.restore();
+
     Ember.run(application, 'destroy');
   }
 });

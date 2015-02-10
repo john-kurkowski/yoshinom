@@ -98,8 +98,11 @@ export default Ember.Route.extend({
   },
 
   _updateMetaDescription: function() {
-    const q = this.controllerFor(this.routeName).get('q');
-    this.send('updateMetaDescription', this.descriptionForQuery(q));
+    const controller = this.controllerFor(this.routeName);
+    const q = controller.get('q');
+    const description = this.descriptionForQuery(q);
+    const sectionImages = controller.get('model').mapBy('images.firstObject').compact();
+    this.send('updateMetaDescription', description, sectionImages);
   },
 
   actions: {

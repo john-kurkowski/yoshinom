@@ -9,6 +9,7 @@
     "QUnit",
     "define",
     "console",
+    "sinon",
     "equal",
     "notEqual",
     "notStrictEqual",
