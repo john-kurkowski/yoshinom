@@ -55,15 +55,19 @@ export default Ember.Route.extend({
 
     const tags = spreadsheetPromise
     .then(function(items) {
-      return _(items)
+      const spreadsheetTags = _(items)
       .map('tags')
       .flatten()
       .groupBy()
       .map(function(group, tagName) {
-        return { name: tagName, count: group.length };
+        return { name: tagName, displayName: tagName, count: group.length };
       })
       .sortBy('name')
       .value();
+
+      const allTag = { name: '', displayName: 'Show All', count: items.length };
+
+      return spreadsheetTags.concat([allTag]);
     });
 
     return Ember.RSVP.hash({

@@ -4,7 +4,6 @@ import YoshinomItemArrayControllerMixin from 'yoshinom/mixins/yoshinom-item-arra
 
 export default Ember.ArrayController.extend(YoshinomItemArrayControllerMixin, {
 
-  q: 'West LA',
   s: 'ratings.food'
 
 });
