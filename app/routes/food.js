@@ -5,7 +5,8 @@ export default SectionRoute.extend({
   titleToken: 'Food',
 
   descriptionForQuery: function(q) {
-    return q ? `Wouldn't you rather be eating these? Photos & reviews for restaurants located in ${q}` : 'Restaurant reviews';
+    const preamble = 'Wouldn\'t you rather be eating these?';
+    return q ? `${preamble} Photos & reviews for restaurants located in ${q}` : preamble;
   },
 
   sorts: ['ratings.food', 'ratings.service', 'ratings.atmosphere', 'ratings.uniqueness', 'ratings.bathroom']

@@ -5,7 +5,8 @@ export default SectionRoute.extend({
   titleToken: 'Cocktails',
 
   descriptionForQuery: function(q) {
-    return q ? `Wouldn't you rather be drinking these? Cocktail recipes featuring ${q}` : 'Cocktail recipes';
+    const preamble = 'Wouldn\'t you rather be drinking these?';
+    return q ? `${preamble} Cocktail recipes featuring ${q}` : preamble;
   },
 
   sorts: []
