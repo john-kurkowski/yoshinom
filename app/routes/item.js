@@ -30,7 +30,14 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     model.set('showDetails', true);
     this._super.apply(this, arguments);
+
+    const description = model.get('review');
+    this.send('updateMetaDescription', description, model.get('images'));
   },
+
+  teardownMetaDescription: function() {
+    this.send('updateMetaDescription');
+  }.on('deactivate'),
 
   actions: {
 
@@ -38,9 +45,8 @@ export default Ember.Route.extend({
       const hideItem = !item.get('showDetails');
       if (hideItem) {
         this.transitionTo(this.get('parentRoute'));
-      } else {
-        return true;
       }
+      return true;
     },
 
     willTransition: function(/*transition*/) {
