@@ -24,8 +24,9 @@ const metaDescriptions = function() {
 
     andThen(function() {
       const metas = metaDescriptions();
-      equal(metas.length, 7, 'Expected # of meta descriptions');
-      equal(metas.toArray().filter(_.identity).length, 7, 'All meta contents non-empty');
+      const expectedNumMetas = 8;
+      equal(metas.length, expectedNumMetas, 'Expected # of meta descriptions');
+      equal(metas.toArray().filter(_.identity).length, expectedNumMetas, 'All meta contents non-empty');
     });
   });
 });

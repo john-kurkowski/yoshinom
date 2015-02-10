@@ -14,6 +14,7 @@ function updateMetaDescriptions(description, imageUrls) {
   const defaultImageUrls = ['/logo.png'];
   const imageMetas = (imageUrls || defaultImageUrls).map(function(imageUrl) {
     return Ember.$(`<meta property="og:image">`)
+    .add('<meta property="og:image:url">')
     .add('<meta property="twitter:image:src">')
     .attr('content', imageUrl);
   });
@@ -23,6 +24,7 @@ function updateMetaDescriptions(description, imageUrls) {
     'description',
     'og:description',
     'og:image',
+    'og:image:url',
     'og:title',
     'twitter:description',
     'twitter:image:src',
