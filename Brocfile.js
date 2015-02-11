@@ -20,6 +20,7 @@ var isProduction = EmberApp.env() === 'production';
 // along with the exports of each module as its value.
 
 app.import('bower_components/jquery.easing/js/jquery.easing.js');
+app.import('bower_components/underscore.string/dist/underscore.string.js');
 
  if (!isProduction) {
    app.import(app.bowerDirectory + '/sinon/index.js', { type: 'test' });
