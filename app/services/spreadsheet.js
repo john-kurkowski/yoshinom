@@ -83,14 +83,20 @@ function parseRow(entry) {
 }
 
 function parseYoshinomItemPromise(itemClass, item) {
+  const instagramRegex = /http:\/\/instagr\.?am(\.com)?/;
+
   const firstImage = item.images[0];
-  const isInstagramShortlink = /http:\/\/instagr\.?am(\.com)?/.test(firstImage);
+  const isInstagramShortlink = instagramRegex.test(firstImage);
   if (isInstagramShortlink) {
     item.imageLink = firstImage;
     item.image = `${firstImage.replace(/\/$/, '')}/media?size=l`;
   } else {
     item.image = firstImage;
   }
+
+  item.images = item.images.map(function(image) {
+    return instagramRegex.test(image) ? `${image.replace(/\/$/, '')}/media?size=l` : image;
+  });
 
   if (itemClass.fromSpreadsheetRow) {
     return itemClass.fromSpreadsheetRow(item);
