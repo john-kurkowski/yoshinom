@@ -31,7 +31,7 @@ export default Ember.Route.extend({
     model.set('showDetails', true);
     this._super.apply(this, arguments);
 
-    const description = `Yoshinom review of ${model.get('name')}. ${model.get('review')}`;
+    const description = `Yoshinom's review of ${model.get('name')}. ${model.get('review')}`;
     this.send('updateMetaDescription', description, model.get('images'));
   },
 
