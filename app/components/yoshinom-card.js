@@ -37,15 +37,17 @@ export default Ember.Component.extend({
   }.property('item.isImageLoaded', 'item.ratings'),
 
   setupImageEvents: function() {
-    const self = this;
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      const self = this;
 
-    this.$('img').one('load error', function setImageLoaded() {
-      self.set('item.isImageLoaded', true);
-    })
-    .each(function handleCachedImages() {
-      if (this.complete) {
-        Ember.$(this).load();
-      }
+      this.$('img').one('load error', function setImageLoaded() {
+        Ember.run(self, 'set', 'item.isImageLoaded', true);
+      })
+      .each(function handleCachedImages() {
+        if (this.complete) {
+          Ember.$(this).load();
+        }
+      });
     });
   }.on('didInsertElement'),
 
