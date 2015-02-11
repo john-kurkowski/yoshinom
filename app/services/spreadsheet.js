@@ -66,8 +66,14 @@ function parseRow(entry) {
     const text = cell.$t;
     const value = (function() {
       switch (normalizedKey) {
-        case 'images' :  return text.split(/\s+/);
-        case 'tags'   :  return text.split(/\n/);
+        case 'images' :  return text
+                                .split(/\s+/)
+                                .map(function(t) { return t.trim(); })
+                                .filter(_.identity);
+        case 'tags'   :  return text
+                                .split(/\n/)
+                                .map(function(t) { return t.trim(); })
+                                .filter(_.identity);
         default       :  return text;
       }
     })();
