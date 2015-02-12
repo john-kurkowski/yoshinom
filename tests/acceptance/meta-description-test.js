@@ -34,7 +34,7 @@ module('Acceptance: <meta> Description', {
 });
 
 const metaDescriptions = function() {
-  return $('meta[property=description][content], meta[property^=og][content], meta[property^=twitter][content]');
+  return $('meta[property=description][content], meta[property^=og][content], meta[name^=twitter][content]');
 };
 
 ['food', 'cocktails'].forEach(function(route) {
@@ -54,7 +54,7 @@ test('Strips HTML', function() {
   .click('.card .preview')
   .andThen(function() {
     const texts = metaDescriptions()
-    .filter('[property$=description]')
+    .filter('[property$=description], [name$=description]')
     .toArray()
     .map(function(text) {
       return $(text).attr('content');
