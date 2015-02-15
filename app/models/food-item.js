@@ -15,7 +15,7 @@ let FoodItemModel = YoshinomItem.extend({
 FoodItemModel.reopenClass({
 
   fromSpreadsheetRow: function(row) {
-    const ratingsProps = ['food', 'service', 'atmosphere', 'uniqueness', 'bathroom'];
+    const ratingsProps = ['food', 'drink', 'service', 'atmosphere', 'uniqueness', 'bathroom'];
     const ratings = _.pick(row, ratingsProps);
     const newRow = _.omit(row, ratingsProps);
     newRow.ratings = ratings;

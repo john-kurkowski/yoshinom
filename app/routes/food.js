@@ -9,6 +9,6 @@ export default SectionRoute.extend({
     return q ? `${preamble} Photos & reviews for restaurants located in ${q}` : preamble;
   },
 
-  sorts: ['ratings.food', 'ratings.service', 'ratings.atmosphere', 'ratings.uniqueness', 'ratings.bathroom']
+  sorts: ['ratings.food', 'ratings.service', 'ratings.drink', 'ratings.atmosphere', 'ratings.uniqueness', 'ratings.bathroom']
 
 });
