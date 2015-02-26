@@ -1,3 +1,5 @@
+import { test, module } from 'qunit';
+
 import {
   getOrElse
 } from 'yoshinom/helpers/get-or-else';
@@ -5,7 +7,7 @@ import {
 module('GetOrElseHelper');
 
 // Replace this with your real tests.
-test('it works', function() {
+test('it works', function(assert) {
   var result = getOrElse(42);
-  ok(result);
+  assert.ok(result);
 });

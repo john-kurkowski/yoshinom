@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
-import { test } from 'ember-qunit';
+import { test, module } from 'qunit';
 import _ from 'lodash';
 
 import FoodItem from 'yoshinom/models/food-item';
@@ -17,7 +17,7 @@ let application;
 let sandbox;
 
 module('Acceptance: <meta> Description', {
-  setup: function() {
+  beforeEach: function() {
     application = startApp();
 
     sandbox = sinon.sandbox.create();
@@ -26,7 +26,7 @@ module('Acceptance: <meta> Description', {
       return new Ember.RSVP.resolve(spreadsheetRowsStub);
     });
   },
-  teardown: function() {
+  afterEach: function() {
     sandbox.restore();
 
     Ember.run(application, 'destroy');
@@ -38,18 +38,18 @@ const metaDescriptions = function() {
 };
 
 ['food', 'cocktails'].forEach(function(route) {
-  test(`${route} route adds description tags`, function() {
+  test(`${route} route adds description tags`, function(assert) {
     return visit(`/${route}`)
     .andThen(function() {
       const metas = metaDescriptions();
       const expectedNumMetas = 8;
-      equal(metas.length, expectedNumMetas, 'Expected # of meta descriptions');
-      equal(metas.toArray().filter(_.identity).length, expectedNumMetas, 'All meta contents non-empty');
+      assert.equal(metas.length, expectedNumMetas, 'Expected # of meta descriptions');
+      assert.equal(metas.toArray().filter(_.identity).length, expectedNumMetas, 'All meta contents non-empty');
     });
   });
 });
 
-test('Strips HTML', function() {
+test('Strips HTML', function(assert) {
   return visit('/food')
   .click('.card .preview')
   .andThen(function() {
@@ -60,6 +60,6 @@ test('Strips HTML', function() {
       return $(text).attr('content');
     })
     .uniq();
-    deepEqual(texts, ['Yoshinom\'s review of Earl\'s. Da BOMB! Check out their website.']);
+    assert.deepEqual(texts, ['Yoshinom\'s review of Earl\'s. Da BOMB! Check out their website.']);
   });
 });
