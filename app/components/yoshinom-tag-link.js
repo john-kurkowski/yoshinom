@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  tag: null,
+  tagObject: null,
   indexRoute: '',
   maxCount: 0,
 
@@ -10,12 +10,12 @@ export default Ember.Component.extend({
   isVirtual: true,
 
   countTitle: function() {
-    return `${this.get('tag.count')} hits`;
-  }.property('tag.count'),
+    return `${this.get('tagObject.count')} hits`;
+  }.property('tagObject.count'),
 
   countStyle: function() {
-    const percent = this.get('tag.count') / this.get('maxCount') * 100;
+    const percent = this.get('tagObject.count') / this.get('maxCount') * 100;
     return `height: ${percent}%;`;
-  }.property('tag.count', 'maxCount')
+  }.property('tagObject.count', 'maxCount')
 
 });
