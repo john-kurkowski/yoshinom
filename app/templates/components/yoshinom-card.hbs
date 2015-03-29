@@ -1,5 +1,5 @@
 {{#link-to itemRoute item classNameBindings=":preview" action="toggleItem"}}
-  <img {{bind-attr src=item.image alt=item.imageAlt}} class="thumbnail"/>
+  <img src="{{item.image}}" alt="{{item.imageAlt}}" class="thumbnail"/>
   {{yoshinom-loading}}
 
   <h3 class="title">
@@ -11,12 +11,12 @@
 
   {{#if showRatings}}
     <ul class="ratings">
-      <li title="Food" {{bind-attr class=":rating item.ratings.food::unknown"}}><label>Food</label><span class="value">{{get-or-else item.ratings.food "N/A"}}</span></li>
-      <li title="Drink" {{bind-attr class=":rating item.ratings.drink::unknown"}}><label>Drink</label><span class="value">{{get-or-else item.ratings.drink "N/A"}}</span></li>
-      <li title="Service" {{bind-attr class=":rating item.ratings.service::unknown"}}><label>Srvce</label><span class="value">{{get-or-else item.ratings.service "N/A"}}</span></li>
-      <li title="Atmosphere" {{bind-attr class=":rating item.ratings.atmosphere::unknown"}}><label>Atmos</label><span class="value">{{get-or-else item.ratings.atmosphere "N/A"}}</span></li>
-      <li title="Uniqueness" {{bind-attr class=":rating item.ratings.uniqueness::unknown"}}><label>Uniq</label><span class="value">{{get-or-else item.ratings.uniqueness "N/A"}}</span></li>
-      <li title="Bathroom" {{bind-attr class=":rating item.ratings.bathroom::unknown"}}><label>Bthrm</label><span class="value">{{get-or-else item.ratings.bathroom "N/A"}}</span></li>
+      <li title="Food" class="rating {{if item.ratings.food '' 'unknown'}}"><label>Food</label><span class="value">{{get-or-else item.ratings.food "N/A"}}</span></li>
+      <li title="Drink" class="rating {{if item.ratings.drink '' 'unknown'}}"><label>Drink</label><span class="value">{{get-or-else item.ratings.drink "N/A"}}</span></li>
+      <li title="Service" class="rating {{if item.ratings.service '' 'unknown'}}"><label>Srvce</label><span class="value">{{get-or-else item.ratings.service "N/A"}}</span></li>
+      <li title="Atmosphere" class="rating {{if item.ratings.atmosphere '' 'unknown'}}"><label>Atmos</label><span class="value">{{get-or-else item.ratings.atmosphere "N/A"}}</span></li>
+      <li title="Uniqueness" class="rating {{if item.ratings.uniqueness '' 'unknown'}}"><label>Uniq</label><span class="value">{{get-or-else item.ratings.uniqueness "N/A"}}</span></li>
+      <li title="Bathroom" class="rating {{if item.ratings.bathroom '' 'unknown'}}"><label>Bthrm</label><span class="value">{{get-or-else item.ratings.bathroom "N/A"}}</span></li>
     </ul>
   {{/if}}
 {{/link-to}}
@@ -36,15 +36,11 @@
     {{/if}}
 
     {{#if item.imageLink}}
-      <li class="image_link"><a {{bind-attr href=item.imageLink}}>Instagram</a></li>
+      <li class="image_link"><a href="{{item.imageLink}}">Instagram</a></li>
     {{/if}}
   </ul>
 </div>
 
 {{#link-to itemRoute item classNameBindings=":show-more" action="toggleItem"}}
-  {{#if item.showDetails}}
-    show less
-  {{else}}
-    show more
-  {{/if}}
+  show {{if item.showDetails 'less' 'more'}}
 {{/link-to}}
