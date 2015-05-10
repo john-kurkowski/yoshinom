@@ -1,0 +1,27 @@
+@import '_color';
+
+$header-font-family: 'Comfortaa', cursive;
+$body-font-family: 'Open Sans', sans-serif;
+$monospace-font-family: 'Special Elite', 'Courier New', monospace;
+
+%font-header {
+  font-family: $header-font-family;
+  font-weight: 400;
+}
+
+@mixin hover-underline($selected-color: $white-color) {
+  text-decoration: none;
+
+  &:hover, &:active, &.active {
+    color: $selected-color;
+    text-decoration: underline;
+  }
+}
+
+$goldilocks-little: 38em;
+
+$font-size-title: 39px;
+$font-size-headline: 24px;
+$font-size-sub: 19px;
+$font-size-primary: 15px;
+$font-size-secondary: 12px;

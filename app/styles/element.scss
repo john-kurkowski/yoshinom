@@ -1,0 +1,43 @@
+@import '_color';
+@import '_typography';
+
+h1 {
+  @extend %font-header;
+  font-size: $font-size-title;
+  line-height: 45.304952px;
+
+  a {
+    @include hover-underline;
+  }
+}
+h2 {
+  @extend %font-header;
+  font-weight: 300;
+  font-size: $font-size-headline;
+}
+h3 {
+  font-size: $font-size-sub;
+}
+body {
+  background-color: $dark-color;
+  color: $white-color;
+  font-family: $body-font-family;
+  font-size: $font-size-primary;
+  font-weight: 300;
+  line-height: 1.61em;
+}
+small {
+  font-size: $font-size-secondary;
+}
+
+a {
+  color: $white-color;
+}
+
+#app {
+  padding: 1em 0;
+}
+
+.spinner {
+  margin: 1em auto;
+}

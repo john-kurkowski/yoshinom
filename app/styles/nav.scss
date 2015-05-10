@@ -8,14 +8,14 @@
   align-items: baseline;
   flex-flow: row wrap;
 
-  .font-header;
-  font-size: @font-size-sub;
+  @extend %font-header;
+  font-size: $font-size-sub;
   margin: 1em auto;
   padding: 0 1em;
-  max-width: @card_width;
+  max-width: $card_width;
 
   a, a:visited {
-    .hover-underline;
+    @include hover-underline;
   }
 
   > * {
@@ -28,7 +28,7 @@
 }
 
 .tags {
-  font-size: @font-size-primary;
+  font-size: $font-size-primary;
   font-weight: 300;
 
   .tag {
@@ -36,12 +36,12 @@
       text-decoration: none;
 
       .name {
-        .hover-underline;
+        @include hover-underline;
       }
 
       .count {
-        color: @chart-color;
-        font-size: @font-size-secondary;
+        color: $chart-color;
+        font-size: $font-size-secondary;
         padding-left: 0.38em;
         vertical-align: bottom;
       }
