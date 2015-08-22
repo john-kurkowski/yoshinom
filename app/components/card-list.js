@@ -1,30 +1,31 @@
 import Ember from 'ember';
 
-export default Ember.View.extend({
+export default Ember.Component.extend({
 
-  tagName: '',
-  isVirtual: true,
+  model: [],
+
+  directLinkToName: '',
 
   scrollToDirectLink: function() {
-    const name = this.get('controller.directLinkToName');
+    const name = this.get('directLinkToName');
     const areImagesBeforeThisOneLoaded = this.get('areImagesBeforeThisOneLoaded');
 
     if (!name || !areImagesBeforeThisOneLoaded) {
       return;
     }
 
-    this.set('controller.directLinkToName', '');
+    this.set('directLinkToName', '');
 
     const $scrollTo = this._cardWithName(name);
     Ember.run.scheduleOnce('afterRender', this, '_scrollTo', $scrollTo);
   }.observes(
-    'controller.directLinkToName',
+    'directLinkToName',
     'areImagesBeforeThisOneLoaded'
   )
   .on('didInsertElement'),
 
   areImagesBeforeThisOneLoaded: function() {
-    const name = this.get('controller.directLinkToName');
+    const name = this.get('directLinkToName');
 
     if (!name) {
       return false;
@@ -36,9 +37,9 @@ export default Ember.View.extend({
       return false;
     }
 
-    return this.get('controller.content').slice(0, i)
-    .everyBy('isImageLoaded');
-  }.property('controller.directLinkToName', 'controller.content.@each.isImageLoaded'),
+    return this.get('model').slice(0, i)
+    .isEvery('isImageLoaded');
+  }.property('directLinkToName', 'model.@each.isImageLoaded'),
 
   _cardWithName: function(name) {
     return Ember.$(`.card .name:contains(${name})`).closest('.card');

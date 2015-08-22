@@ -1,0 +1,22 @@
+<nav class="subnav">
+  <ul class="sections tags">
+    {{#each tags as |tag|}}
+      <li class="section tag">
+        {{yoshinom-tag-link tagObject=tag
+                            indexRoute=indexRoute
+                            maxCount=tagsMaxCount}}</li>
+    {{/each}}
+  </ul>
+</nav>
+
+{{#card-list tagName="ul"
+             class="cards"
+             model=arrangedContent
+             directLinkToName=directLinkToName}}
+  {{#each arrangedContent as |item|}}
+    {{yoshinom-card  item=item
+                     itemRoute=itemRoute
+                     action="toggleItem"
+                     tagName="li"}}
+  {{/each}}
+{{/card-list}}

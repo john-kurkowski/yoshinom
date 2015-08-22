@@ -12,6 +12,8 @@ export default Ember.Route.extend({
   titleToken: '',
   sorts: [],
 
+  templateName: 'section',
+
   descriptionForQuery: function(/*q*/) {
     throw new Ember.Error('Routes extending SectionRoute must specify descriptionForQuery(q: {String}) -> {String}.');
   },
@@ -96,13 +98,6 @@ export default Ember.Route.extend({
     });
 
     this._updateMetaDescription();
-  },
-
-  renderTemplate: function() {
-    this.render('section-subnav', {
-      outlet: 'subnav'
-    });
-    this.render('card-list');
   },
 
   _updateMetaDescription: function() {
