@@ -26,7 +26,7 @@
     "ember-cli-babel": "^5.1.3",
     "ember-cli-content-security-policy": "0.4.0",
     "ember-cli-dependency-checker": "^1.0.1",
-    "ember-cli-document-title": "0.0.1",
+    "ember-cli-document-title": "git://github.com/lucas-clemente/ember-cli-document-title.git#7b15044b2c8ea59cc089e77f4d0a8054c6c66848",
     "ember-cli-fastclick": "^1.0.3",
     "ember-cli-htmlbars": "0.7.9",
     "ember-cli-htmlbars-inline-precompile": "^0.2.0",
