@@ -6,12 +6,12 @@ let Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.resource('food', function() {
-    this.resource('food.item', { path: '/:name' });
+  this.route('food', function() {
+    this.route('item', { path: '/:name' });
   });
 
-  this.resource('cocktails', function() {
-    this.resource('cocktails.item', { path: '/:name' });
+  this.route('cocktails', function() {
+    this.route('item', { path: '/:name' });
   });
 });
 

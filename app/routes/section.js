@@ -85,28 +85,17 @@ export default Ember.Route.extend({
     controller.setProperties({
       indexRoute: this.routeName,
       itemRoute: `${this.routeName}.item`,
-      model: model.items,
-
-      // TODO: this shims old ArrayController properties, but mixins &
-      //       controllers are misaligned with "everything should be a component"
-      //       http://discuss.emberjs.com/t/ember-1-13-2-arraycontroller-replacement/8289/21
-      arrangedContent: Ember.ArrayProxy.extend(Ember.SortableMixin).create({
-        sortProperties: model.sorts,
-        sortAscending: false,
-        content: model.items
-      }),
-
-      tags: model.tags
+      model
     });
 
     this._updateMetaDescription();
   },
 
   _updateMetaDescription() {
-    const controller = this.controllerFor(this.routeName);
-    const q = controller.get('q');
-    const description = this.descriptionForQuery(q);
-    const sectionImages = controller.get('model').mapBy('images.firstObject').compact();
+    const query = this.paramsFor(this.routeName).q;
+    const description = this.descriptionForQuery(query);
+    const sectionItems = this.modelFor(this.routeName).items;
+    const sectionImages = sectionItems.mapBy('images.firstObject').compact();
     this.send('updateMetaDescription', description, sectionImages);
   },
 

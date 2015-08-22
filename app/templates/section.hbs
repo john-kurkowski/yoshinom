@@ -1,6 +1,6 @@
 <nav class="subnav">
   <ul class="sections tags">
-    {{#each tags as |tag|}}
+    {{#each model.tags as |tag|}}
       <li class="section tag">
         {{yoshinom-tag-link tagObject=tag
                             indexRoute=indexRoute
