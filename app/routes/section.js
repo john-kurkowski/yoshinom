@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import _ from 'lodash';
 
+import YoshinomSectionModel from 'yoshinom/models/yoshinom-section-model';
+
 /**
  * Base route for a section of the site, rendering a list of items, e.g.
  * restaurants, or cocktails.
@@ -85,7 +87,7 @@ export default Ember.Route.extend({
     controller.setProperties({
       indexRoute: this.routeName,
       itemRoute: `${this.routeName}.item`,
-      model
+      model: YoshinomSectionModel.create(model)
     });
 
     this._updateMetaDescription();

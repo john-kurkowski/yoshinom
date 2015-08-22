@@ -1,13 +1,11 @@
 import Ember from 'ember';
 
+import YoshinomSectionModel from 'yoshinom/models/yoshinom-section-model';
+
 export default Ember.Mixin.create({
 
   model: Ember.computed(function() {
-    return {
-      items: [],
-      sorts: [],
-      tags: []
-    };
+    return YoshinomSectionModel.create();
   }),
 
   /**
