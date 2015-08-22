@@ -40,11 +40,8 @@ export default Ember.Component.extend({
 
   setupImageEvents: Ember.on('didInsertElement', function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      const self = this;
-
-      this.$('img').one('load error', function setImageLoaded() {
-        Ember.run(self, 'set', 'item.isImageLoaded', true);
-      })
+      this.$('img')
+      .one('load error', Ember.run.bind(this, this.set, 'item.isImageLoaded', true))
       .each(function handleCachedImages() {
         if (this.complete) {
           Ember.$(this).load();
@@ -57,7 +54,11 @@ export default Ember.Component.extend({
     this.$('img').off('load error');
   }),
 
-  visuallyToggleDetails: Ember.on('didInsertElement', Ember.observer('item.showDetails', function() {
+  visuallyToggleDetailsOnDidInsertElement: Ember.on('didInsertElement', function() {
+    Ember.run.scheduleOnce('afterRender', this, this.visuallyToggleDetails);
+  }),
+
+  visuallyToggleDetails: Ember.observer('item.showDetails', function() {
     const expandTarget = this.$('.details');
 
     if (!this.get('_initialHiddenHeight')) {
@@ -73,7 +74,7 @@ export default Ember.Component.extend({
       newHeight = this.get('_initialHiddenHeight');
     }
     expandTarget.height(newHeight);
-  })),
+  }),
 
   actions: {
 

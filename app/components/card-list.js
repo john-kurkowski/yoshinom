@@ -6,7 +6,11 @@ export default Ember.Component.extend({
 
   directLinkToName: '',
 
-  scrollToDirectLink: Ember.on('didInsertElement', Ember.observer('directLinkToName', 'areImagesBeforeThisOneLoaded', function() {
+  scrollToDirectLinkOnDidInsertElement: Ember.on('didInsertElement', function() {
+    Ember.run.scheduleOnce('afterRender', this, this.scrollToDirectLink);
+  }),
+
+  scrollToDirectLink: Ember.observer('directLinkToName', 'areImagesBeforeThisOneLoaded', function() {
     const name = this.get('directLinkToName');
     const areImagesBeforeThisOneLoaded = this.get('areImagesBeforeThisOneLoaded');
 
@@ -17,8 +21,8 @@ export default Ember.Component.extend({
     this.set('directLinkToName', '');
 
     const $scrollTo = this._cardWithName(name);
-    Ember.run.scheduleOnce('afterRender', this, '_scrollTo', $scrollTo);
-  })),
+    this._scrollTo($scrollTo);
+  }),
 
   areImagesBeforeThisOneLoaded: Ember.computed('directLinkToName', 'model.@each.isImageLoaded', function() {
     const name = this.get('directLinkToName');
