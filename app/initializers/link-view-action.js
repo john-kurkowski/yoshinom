@@ -1,13 +1,13 @@
 import Ember from 'ember';
 
 /**
- * Reopen LinkView instances to allow an action. Specify any params with the
+ * Reopen LinkComponent instances to allow an action. Specify any params with the
  * `actionParam` attribute.
  *
  * From http://stackoverflow.com/a/20383651/62269
  */
 export function initialize(/* container, application */) {
-  Ember.LinkView.reopen({
+  Ember.LinkComponent.reopen({
 
     action: null,
 
@@ -20,7 +20,7 @@ export function initialize(/* container, application */) {
           event.stopPropagation();
         }
 
-        // trigger the action whatever surrounds the LinkView
+        // trigger the action whatever surrounds the LinkComponent
         this.get('parentView').send(action, this.get('actionParam'));
         return false;
       } else {

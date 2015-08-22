@@ -7,7 +7,7 @@ import YoshinomItem from 'yoshinom/models/yoshinom-item';
 let sheets = [];
 const sheetsByTitle = {};
 
-export default Ember.Object.extend({
+export default Ember.Service.extend({
 
   find: function(sheetTitle) {
     if (sheetsByTitle[sheetTitle]) {

@@ -1,12 +1,12 @@
 import Ember from 'ember';
 
 /**
- * Reopen LinkView instances to improve current-state accessibility via the
+ * Reopen LinkComponent instances to improve current-state accessibility via the
  * aria-selected attribute. There is some debate around this, but it does the
  * trick.
  */
 export function initialize(/* container, application */) {
-  Ember.LinkView.reopen({
+  Ember.LinkComponent.reopen({
 
     attributeBindings: ['ariaSelected:aria-selected'],
 

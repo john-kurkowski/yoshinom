@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
-import YoshinomItemArrayControllerMixin from 'yoshinom/mixins/yoshinom-item-array-controller';
+import YoshinomItemControllerMixin from 'yoshinom/mixins/yoshinom-item-controller';
 
-export default Ember.ArrayController.extend(YoshinomItemArrayControllerMixin, {
+export default Ember.Controller.extend(YoshinomItemControllerMixin, {
 
   s: 'ratings.food'
 

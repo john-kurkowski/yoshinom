@@ -82,8 +82,16 @@ export default Ember.Route.extend({
       indexRoute: this.routeName,
       itemRoute: `${this.routeName}.item`,
       model: model.items,
-      sortProperties: model.sorts,
-      sortAscending: false,
+
+      // TODO: this shims old ArrayController properties, but mixins &
+      //       controllers are misaligned with "everything should be a component"
+      //       http://discuss.emberjs.com/t/ember-1-13-2-arraycontroller-replacement/8289/21
+      arrangedContent: Ember.ArrayProxy.extend(Ember.SortableMixin).create({
+        sortProperties: model.sorts,
+        sortAscending: false,
+        content: model.items
+      }),
+
       tags: model.tags
     });
 
