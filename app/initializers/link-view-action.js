@@ -5,13 +5,15 @@ import Ember from 'ember';
  * `actionParam` attribute.
  *
  * From http://stackoverflow.com/a/20383651/62269
+ *
+ * @private
  */
 export function initialize(/* container, application */) {
   Ember.LinkComponent.reopen({
 
     action: null,
 
-    _invoke: function(event) {
+    _invoke(event) {
       const action = this.get('action');
       if (action) {
         // There was an action specified (in handlebars) so take custom action
@@ -34,5 +36,5 @@ export function initialize(/* container, application */) {
 
 export default {
   name: 'link-view-action',
-  initialize: initialize
+  initialize
 };

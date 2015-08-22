@@ -6,8 +6,7 @@ import {
 
 module('GetOrElseHelper');
 
-// Replace this with your real tests.
 test('it works', function(assert) {
-  var result = getOrElse(42);
-  assert.ok(result);
+  assert.strictEqual(getOrElse(42, 2501), 42,   'Handle truthy 1st param.');
+  assert.strictEqual(getOrElse('', 2501), 2501, 'Handle falsy 1st param.');
 });

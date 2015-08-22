@@ -9,15 +9,15 @@ const spreadsheetRowsStub = [
   FoodItem.create({
     name: 'Earl\'s',
     images: ['/earls-gourmet-grub.jpg'],
-    review: 'Da BOMB! Check out <a href="earls.com">their website</a>.',
+    review: 'Da BOMB! Check out <a href="earls.com">their website</a>.'
   })
 ];
 
 let application;
 let sandbox;
 
-module('Acceptance: <meta> Description', {
-  beforeEach: function() {
+module('Acceptance | <meta> Description', {
+  beforeEach() {
     application = startApp();
 
     sandbox = sinon.sandbox.create();
@@ -26,7 +26,8 @@ module('Acceptance: <meta> Description', {
       return new Ember.RSVP.resolve(spreadsheetRowsStub);
     });
   },
-  afterEach: function() {
+
+  afterEach() {
     sandbox.restore();
 
     Ember.run(application, 'destroy');

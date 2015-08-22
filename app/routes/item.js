@@ -3,15 +3,17 @@ import Ember from 'ember';
 /**
  * Base route for a single item on the site, such as a particular restaurant,
  * usually within a greater list of such items.
+ *
+ * @public
  */
 export default Ember.Route.extend({
 
-  parentRoute: function() {
+  parentRoute: Ember.computed('routeName', function() {
     const [, allButLastDot] = /(.*)\./.exec(this.get('routeName'));
     return allButLastDot;
-  }.property('routeName'),
+  }),
 
-  model: function(params) {
+  model(params) {
     const name = decodeURIComponent(params.name);
     const parentModel = this.modelFor(this.get('parentRoute'));
     const model = parentModel.items.findBy('name', name);
@@ -23,11 +25,11 @@ export default Ember.Route.extend({
     }
   },
 
-  titleToken: function(model) {
+  titleToken(model) {
     return model.get('name');
   },
 
-  setupController: function(controller, model) {
+  setupController(controller, model) {
     model.set('showDetails', true);
     this._super.apply(this, arguments);
 
@@ -35,13 +37,13 @@ export default Ember.Route.extend({
     this.send('updateMetaDescription', description, model.get('images'));
   },
 
-  teardownMetaDescription: function() {
+  teardownMetaDescription: Ember.on('deactivate', function() {
     this.send('updateMetaDescription');
-  }.on('deactivate'),
+  }),
 
   actions: {
 
-    toggleItem: function(item) {
+    toggleItem(item) {
       const hideItem = !item.get('showDetails');
       if (hideItem) {
         this.transitionTo(this.get('parentRoute'));
@@ -49,7 +51,7 @@ export default Ember.Route.extend({
       return true;
     },
 
-    willTransition: function(/*transition*/) {
+    willTransition(/*transition*/) {
       const model = this.modelFor(this.routeName);
       model.set('showDetails', false);
     }

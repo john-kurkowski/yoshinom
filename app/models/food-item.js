@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import _ from 'lodash';
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
@@ -6,15 +7,15 @@ let FoodItemModel = YoshinomItem.extend({
 
   ratings: {},
 
-  imageAlt: function() {
+  imageAlt: Ember.computed('name', function() {
     return `Photo of food & drink at ${this.get('name')}`;
-  }.property('name')
+  })
 
 });
 
 FoodItemModel.reopenClass({
 
-  fromSpreadsheetRow: function(row) {
+  fromSpreadsheetRow(row) {
     const ratingsProps = ['food', 'drink', 'service', 'atmosphere', 'uniqueness', 'bathroom'];
     const ratings = _.pick(row, ratingsProps);
     const newRow = _.omit(row, ratingsProps);

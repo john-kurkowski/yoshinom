@@ -2,7 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Mixin.create({
 
-  tags: function() { return []; }.property(),
+  tags: Ember.computed(function() {
+    return [];
+  }),
 
   tagCounts: Ember.computed.mapBy('tags', 'count'),
   tagsMaxCount: Ember.computed.max('tagCounts'),
@@ -16,8 +18,8 @@ export default Ember.Mixin.create({
 
   queryParams: ['q', 's'],
 
-  areImagesLoaded: function() {
+  areImagesLoaded: Ember.computed('model.@each.isImageLoaded', function() {
     return this.get('model').everyBy('isImageLoaded');
-  }.property('model.@each.isImageLoaded')
+  })
 
 });

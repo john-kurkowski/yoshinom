@@ -7,7 +7,7 @@ module('YoshinomItemControllerMixin');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  var YoshinomItemListControllerObject = Ember.Object.extend(YoshinomItemControllerMixin);
-  var subject = YoshinomItemListControllerObject.create();
+  const YoshinomItemListControllerObject = Ember.Object.extend(YoshinomItemControllerMixin);
+  const subject = YoshinomItemListControllerObject.create();
   assert.ok(subject);
 });

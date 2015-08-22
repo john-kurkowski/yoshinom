@@ -4,6 +4,8 @@ import _ from 'lodash';
 /**
  * Base route for a section of the site, rendering a list of items, e.g.
  * restaurants, or cocktails.
+ *
+ * @public
  */
 export default Ember.Route.extend({
 
@@ -14,7 +16,7 @@ export default Ember.Route.extend({
 
   templateName: 'section',
 
-  descriptionForQuery: function(/*q*/) {
+  descriptionForQuery(/*q*/) {
     throw new Ember.Error('Routes extending SectionRoute must specify descriptionForQuery(q: {String}) -> {String}.');
   },
 
@@ -23,7 +25,7 @@ export default Ember.Route.extend({
     s: { refreshModel: true }
   },
 
-  model: function(params) {
+  model(params) {
     const sheetTitle = this.get('titleToken');
     const sorts = this.get('sorts');
     const selectedSort = params.s || this.controllerFor(this.routeName).get('s');
@@ -75,11 +77,11 @@ export default Ember.Route.extend({
     return Ember.RSVP.hash({
       items: filteredItems,
       sorts: selectedSorts,
-      tags: tags
+      tags
     });
   },
 
-  setupController: function(controller, model) {
+  setupController(controller, model) {
     controller.setProperties({
       indexRoute: this.routeName,
       itemRoute: `${this.routeName}.item`,
@@ -100,7 +102,7 @@ export default Ember.Route.extend({
     this._updateMetaDescription();
   },
 
-  _updateMetaDescription: function() {
+  _updateMetaDescription() {
     const controller = this.controllerFor(this.routeName);
     const q = controller.get('q');
     const description = this.descriptionForQuery(q);
@@ -110,7 +112,7 @@ export default Ember.Route.extend({
 
   actions: {
 
-    toggleItem: function(item) {
+    toggleItem(item) {
       const showItem = item.get('showDetails');
       if (showItem) {
         this.transitionTo(`${this.routeName}.item`, item);
@@ -119,7 +121,7 @@ export default Ember.Route.extend({
       }
     },
 
-    updateMetaDescription: function(description/*, imageUrls*/) {
+    updateMetaDescription(description/*, imageUrls*/) {
       if (description) {
         return true;
       } else {

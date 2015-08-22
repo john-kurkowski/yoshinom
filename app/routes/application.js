@@ -1,6 +1,5 @@
 import Ember from 'ember';
 
-
 function updateMetaDescriptions(description, imageUrls) {
   const titleMeta = Ember.$('<meta property="og:title">')
   .add('<meta name="twitter:title">')
@@ -28,9 +27,11 @@ function updateMetaDescriptions(description, imageUrls) {
     'og:title',
     'twitter:description',
     'twitter:image:src',
-    'twitter:title',
+    'twitter:title'
   ]
-  .map(function(prop) { return `meta[name="${prop}"], meta[property="${prop}"]`; })
+  .map(function(prop) {
+    return `meta[name="${prop}"], meta[property="${prop}"]`;
+  })
   .join(', ');
   head.find(tagsToRemove).remove();
 
@@ -42,7 +43,7 @@ function updateMetaDescriptions(description, imageUrls) {
 
 export default Ember.Route.extend({
 
-  title: function(tokens) {
+  title(tokens) {
     tokens.reverse();
     tokens.push('Yoshinom');
     return tokens.join(' | ');
@@ -50,9 +51,9 @@ export default Ember.Route.extend({
 
   actions: {
 
-    updateMetaDescription: function(description, imageUrls) {
+    updateMetaDescription(description, imageUrls) {
       Ember.run.scheduleOnce('afterRender', null, updateMetaDescriptions, description, imageUrls);
-    },
+    }
 
   }
 

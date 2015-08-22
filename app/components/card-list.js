@@ -6,7 +6,7 @@ export default Ember.Component.extend({
 
   directLinkToName: '',
 
-  scrollToDirectLink: function() {
+  scrollToDirectLink: Ember.on('didInsertElement', Ember.observer('directLinkToName', 'areImagesBeforeThisOneLoaded', function() {
     const name = this.get('directLinkToName');
     const areImagesBeforeThisOneLoaded = this.get('areImagesBeforeThisOneLoaded');
 
@@ -18,13 +18,9 @@ export default Ember.Component.extend({
 
     const $scrollTo = this._cardWithName(name);
     Ember.run.scheduleOnce('afterRender', this, '_scrollTo', $scrollTo);
-  }.observes(
-    'directLinkToName',
-    'areImagesBeforeThisOneLoaded'
-  )
-  .on('didInsertElement'),
+  })),
 
-  areImagesBeforeThisOneLoaded: function() {
+  areImagesBeforeThisOneLoaded: Ember.computed('directLinkToName', 'model.@each.isImageLoaded', function() {
     const name = this.get('directLinkToName');
 
     if (!name) {
@@ -39,20 +35,20 @@ export default Ember.Component.extend({
 
     return this.get('model').slice(0, i)
     .isEvery('isImageLoaded');
-  }.property('directLinkToName', 'model.@each.isImageLoaded'),
+  }),
 
-  _cardWithName: function(name) {
+  _cardWithName(name) {
     return Ember.$(`.card .name:contains(${name})`).closest('.card');
   },
 
-  _scrollTo: function($element) {
+  _scrollTo($element) {
     const buffer = 32;
     const newTop = $element.offset().top - buffer;
     Ember.$('html, body').animate({
       scrollTop: newTop
     }, {
       duration: 1200,
-      easing: 'easeInOutQuint',
+      easing: 'easeInOutQuint'
     });
 
     $element.find('.card').focus();

@@ -5,6 +5,8 @@ import Ember from 'ember';
  * cocktail.
  *
  * Usually persisted as a spreadsheet row.
+ *
+ * @public
  */
 export default Ember.Object.extend({
 

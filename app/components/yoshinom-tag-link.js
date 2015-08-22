@@ -9,13 +9,13 @@ export default Ember.Component.extend({
   tagName: '',
   isVirtual: true,
 
-  countTitle: function() {
+  countTitle: Ember.computed('tagObject.count', function() {
     return `${this.get('tagObject.count')} hits`;
-  }.property('tagObject.count'),
+  }),
 
-  countStyle: function() {
+  countStyle: Ember.computed('tagObject.count', 'maxCount', function() {
     const percent = this.get('tagObject.count') / this.get('maxCount') * 100;
     return `height: ${percent}%;`;
-  }.property('tagObject.count', 'maxCount')
+  })
 
 });

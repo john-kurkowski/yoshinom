@@ -9,7 +9,7 @@ const sheetsByTitle = {};
 
 export default Ember.Service.extend({
 
-  find: function(sheetTitle) {
+  find(sheetTitle) {
     if (sheetsByTitle[sheetTitle]) {
       return sheetsByTitle[sheetTitle];
     }
@@ -68,11 +68,15 @@ function parseRow(entry) {
       switch (normalizedKey) {
         case 'images' :  return text
                                 .split(/\s+/)
-                                .map(function(t) { return t.trim(); })
+                                .map(function(t) {
+                                  return t.trim();
+                                })
                                 .filter(_.identity);
         case 'tags'   :  return text
                                 .split(/\n/)
-                                .map(function(t) { return t.trim(); })
+                                .map(function(t) {
+                                  return t.trim();
+                                })
                                 .filter(_.identity);
         default       :  return text;
       }
@@ -85,7 +89,7 @@ function parseRow(entry) {
 function parseYoshinomItemPromise(itemClass, item) {
   const instagramRegex = /http:\/\/instagr\.?am(\.com)?/;
 
-  const firstImage = item.images[0];
+  const [firstImage] = item.images;
   const isInstagramShortlink = instagramRegex.test(firstImage);
   if (isInstagramShortlink) {
     item.imageLink = firstImage;

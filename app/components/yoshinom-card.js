@@ -3,17 +3,19 @@ import _ from 'lodash';
 
 /**
  * Card-like display of a YoshinomItem.
+ *
+ * @public
  */
 export default Ember.Component.extend({
 
   item: null,
-  itemRoute: "",
+  itemRoute: '',
 
-  _initialHiddenHeight: "",
+  _initialHiddenHeight: '',
 
-  assertItem: function() {
+  assertItem: Ember.on('init', function() {
     Ember.assert('No item passed to yoshinom-card', this.get('item'));
-  }.on('init'),
+  }),
 
   classNameBindings: [
     ':card',
@@ -22,11 +24,11 @@ export default Ember.Component.extend({
     'item.showDetails:selected'
   ],
 
-  formattedReview: function() {
+  formattedReview: Ember.computed('item.review', function() {
     return `<p>${this.get('item.review').replace(/\n/g, '</p><p>')}</p>`.htmlSafe();
-  }.property('item.review'),
+  }),
 
-  showRatings: function() {
+  showRatings: Ember.computed('item.isImageLoaded', 'item.ratings', function() {
     if (!this.get('item.isImageLoaded')) {
       return false;
     }
@@ -34,9 +36,9 @@ export default Ember.Component.extend({
     const hasSomeRating = _.values(this.get('item.ratings'))
     .some(_.identity);
     return hasSomeRating;
-  }.property('item.isImageLoaded', 'item.ratings'),
+  }),
 
-  setupImageEvents: function() {
+  setupImageEvents: Ember.on('didInsertElement', function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
       const self = this;
 
@@ -49,13 +51,13 @@ export default Ember.Component.extend({
         }
       });
     });
-  }.on('didInsertElement'),
+  }),
 
-  teardownImageEvents: function() {
+  teardownImageEvents: Ember.on('willDestroyElement', function() {
     this.$('img').off('load error');
-  }.on('willDestroyElement'),
+  }),
 
-  visuallyToggleDetails: function() {
+  visuallyToggleDetails: Ember.on('didInsertElement', Ember.observer('item.showDetails', function() {
     const expandTarget = this.$('.details');
 
     if (!this.get('_initialHiddenHeight')) {
@@ -71,11 +73,11 @@ export default Ember.Component.extend({
       newHeight = this.get('_initialHiddenHeight');
     }
     expandTarget.height(newHeight);
-  }.observes('item.showDetails').on('didInsertElement'),
+  })),
 
   actions: {
 
-    toggleItem: function() {
+    toggleItem() {
       const item = this.get('item');
       item.toggleProperty('showDetails');
       this.sendAction('action', item);
