@@ -38,17 +38,19 @@ export default Ember.Component.extend({
     return hasSomeRating;
   }),
 
-  setupImageEvents: Ember.on('didInsertElement', function() {
-    Ember.run.scheduleOnce('afterRender', this, function() {
-      this.$('img')
-      .one('load error', Ember.run.bind(this, this.set, 'item.isImageLoaded', true))
-      .each(function handleCachedImages() {
-        if (this.complete) {
-          Ember.$(this).load();
-        }
-      });
-    });
+  setupImageEventsOnDidInsertElement: Ember.on('didInsertElement', function() {
+    Ember.run.scheduleOnce('afterRender', this, this.setupImageEvents);
   }),
+
+  setupImageEvents() {
+    this.$('img')
+    .one('load error', Ember.run.bind(this, this.set, 'item.isImageLoaded', true))
+    .each(function handleCachedImages() {
+      if (this.complete) {
+        Ember.$(this).load();
+      }
+    });
+  },
 
   teardownImageEvents: Ember.on('willDestroyElement', function() {
     this.$('img').off('load error');
