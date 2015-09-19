@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import _ from 'lodash';
+import _ from 'lodash/lodash';
 
 import YoshinomSectionModel from 'yoshinom/models/yoshinom-section-model';
 

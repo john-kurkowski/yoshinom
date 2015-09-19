@@ -1,5 +1,6 @@
 import Ember from 'ember';
-import _ from 'lodash';
+import identity from 'lodash/utility/identity';
+import values from 'lodash/object/values';
 
 /**
  * Card-like display of a YoshinomItem.
@@ -33,8 +34,8 @@ export default Ember.Component.extend({
       return false;
     }
 
-    const hasSomeRating = _.values(this.get('item.ratings'))
-    .some(_.identity);
+    const hasSomeRating = values(this.get('item.ratings'))
+    .some(identity);
     return hasSomeRating;
   }),
 

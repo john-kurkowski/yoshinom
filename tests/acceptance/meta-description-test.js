@@ -1,8 +1,8 @@
 import Ember from 'ember';
+import identity from 'lodash/utility/identity';
 import sinon from 'sinon';
 import startApp from '../helpers/start-app';
 import { test, module } from 'qunit';
-import _ from 'lodash';
 
 import FoodItem from 'yoshinom/models/food-item';
 
@@ -46,7 +46,7 @@ const metaDescriptions = function() {
       const metas = metaDescriptions();
       const expectedNumMetas = 8;
       assert.equal(metas.length, expectedNumMetas, 'Expected # of meta descriptions');
-      assert.equal(metas.toArray().filter(_.identity).length, expectedNumMetas, 'All meta contents non-empty');
+      assert.equal(metas.toArray().filter(identity).length, expectedNumMetas, 'All meta contents non-empty');
     });
   });
 });

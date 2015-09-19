@@ -1,6 +1,8 @@
+import curry from 'lodash/function/curry';
 import Ember from 'ember';
+import identity from 'lodash/utility/identity';
+import reduce from 'lodash/collection/reduce';
 import request from 'ic-ajax';
-import _ from 'lodash';
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
@@ -24,7 +26,7 @@ export default Ember.Service.extend({
 
       return rows
       .map(parseRow)
-      .map(_.curry(parseYoshinomItemPromise)(itemClass));
+      .map(curry(parseYoshinomItemPromise)(itemClass));
     });
   }
 
@@ -57,7 +59,7 @@ function rowsForSheet(sheetEntry) {
 
 function parseRow(entry) {
   const gsxRegex = /^gsx\$(.+)/;
-  return _.reduce(entry, function(acc, cell, key) {
+  return reduce(entry, function(acc, cell, key) {
     const [, normalizedKey] = gsxRegex.exec(key) || [];
     if (!normalizedKey) {
       return acc;
@@ -71,13 +73,13 @@ function parseRow(entry) {
                                 .map(function(t) {
                                   return t.trim();
                                 })
-                                .filter(_.identity);
+                                .filter(identity);
         case 'tags'   :  return text
                                 .split(/\n/)
                                 .map(function(t) {
                                   return t.trim();
                                 })
-                                .filter(_.identity);
+                                .filter(identity);
         default       :  return text;
       }
     })();
