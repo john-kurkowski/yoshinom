@@ -8,7 +8,6 @@
     "-Promise",
     "define",
     "console",
-    "sinon",
     "visit",
     "exists",
     "fillIn",

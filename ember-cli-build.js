@@ -25,9 +25,5 @@ module.exports = function(defaults) {
   app.import('bower_components/underscore.string/dist/underscore.string.js');
   app.import('vendor/analytics.js');
 
-  if (!isProduction) {
-    app.import(app.bowerDirectory + '/sinon/index.js', { type: 'test' });
-  }
-
   return app.toTree();
 };

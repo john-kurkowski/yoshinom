@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import sinon from 'sinon';
 import startApp from '../helpers/start-app';
 import { test, module } from 'qunit';
 import _ from 'lodash';
