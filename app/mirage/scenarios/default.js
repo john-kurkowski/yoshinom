@@ -1,17 +1,32 @@
 import { faker } from 'ember-cli-mirage';
+import _ from 'lodash/lodash';
 
 import YoshinomItemFactory from 'yoshinom/mirage/factories/yoshinom-item';
+
+export function createSheets(server) {
+  return _(['food', 'cocktails'])
+    .map(function(key) {
+      const sheet = server.create('sheet', {
+        title: {
+          $t: s.titleize(key)
+        }
+      });
+
+      return [`${key}Sheet`, sheet];
+    })
+    .zipObject()
+    .value();
+}
 
 export default function(server) {
   faker.seed(1);
 
-  // Food
+  const {
+    foodSheet,
+    cocktailsSheet
+  } = createSheets(server);
 
-  const foodSheet = server.create('sheet', {
-    title: {
-      $t: 'Food'
-    }
-  });
+  // Food
 
   // TODO: app should not rely on a magical value present in its data
   server.createList('yoshinom-item', 4, {
@@ -30,12 +45,6 @@ export default function(server) {
   });
 
   // Cocktails
-
-  const cocktailsSheet = server.create('sheet', {
-    title: {
-      $t: 'Cocktails'
-    }
-  });
 
   server.createList('yoshinom-item', 10, {
     sheet_id: cocktailsSheet.id // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
