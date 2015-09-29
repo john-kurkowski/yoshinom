@@ -1,6 +1,10 @@
+import { faker } from 'ember-cli-mirage';
+
 import YoshinomItemFactory from 'yoshinom/mirage/factories/yoshinom-item';
 
 export default function(server) {
+  faker.seed(1);
+
   // Food
 
   const foodSheet = server.create('sheet', {
