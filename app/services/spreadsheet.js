@@ -9,6 +9,8 @@ import YoshinomItem from 'yoshinom/models/yoshinom-item';
 let sheets = [];
 const sheetsByTitle = {};
 
+export const YOSHINOM_SHEETS_ID = '0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE';
+
 export default Ember.Service.extend({
 
   find(sheetTitle) {
@@ -36,7 +38,7 @@ function allSheets() {
   if (sheets.length) {
     return Ember.RSVP.resolve(sheets);
   } else {
-    const url = 'https://spreadsheets.google.com/feeds/worksheets/0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE/public/values';
+    const url = `https://spreadsheets.google.com/feeds/worksheets/${YOSHINOM_SHEETS_ID}/public/values`;
     return request(url, { data: { alt: 'json' } })
     .then(function(sheetsResponse) {
       sheets = sheetsResponse.feed.entry;

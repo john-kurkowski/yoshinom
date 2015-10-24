@@ -1,36 +1,33 @@
 import Ember from 'ember';
 import identity from 'lodash/utility/identity';
-import sinon from 'sinon';
 import startApp from '../helpers/start-app';
 import { test, module } from 'qunit';
 
-import FoodItem from 'yoshinom/models/food-item';
-
-const spreadsheetRowsStub = [
-  FoodItem.create({
-    name: 'Earl\'s',
-    images: ['/earls-gourmet-grub.jpg'],
-    review: 'Da BOMB! Check out <a href="earls.com">their website</a>.'
-  })
-];
+import { createSheets} from 'yoshinom/mirage/scenarios/default';
 
 let application;
-let sandbox;
 
 module('Acceptance | <meta> Description', {
   beforeEach() {
     application = startApp();
 
-    sandbox = sinon.sandbox.create();
-    const spreadsheetService = application.__container__.lookup('service:spreadsheet');
-    sinon.stub(spreadsheetService, 'find', function() {
-      return new Ember.RSVP.resolve(spreadsheetRowsStub);
+    const { foodSheet } = createSheets(server);
+
+    server.create('yoshinom-item', {
+      sheet_id: foodSheet.id, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+      gsx$name: {
+        $t: 'Earl\'s'
+      },
+      gsx$images: {
+        $t: '/earls-gourmet-grub.jpg'
+      },
+      gsx$review: {
+        $t: 'Da BOMB! Check out <a href="earls.com">their website</a>.'
+      }
     });
   },
 
   afterEach() {
-    sandbox.restore();
-
     Ember.run(application, 'destroy');
   }
 });
