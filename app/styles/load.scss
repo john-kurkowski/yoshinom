@@ -1,118 +1,15 @@
-.spinner{
-position:relative;
-width:52px;
-height:64px}
+@import '_color';
 
-.blockG{
-position:absolute;
-background-color:#FFFFFF;
-width:8px;
-height:20px;
-border-radius:7px 7px 0 0;
-transform:scale(0.4);
-animation-name:fadeG;
-animation-duration:1.04s;
-animation-iteration-count:infinite;
-animation-direction:linear;
+.spinner {
+  animation: sweep 1s infinite linear;
+  border-radius:75px;
+  border-bottom:5px solid $white-color;
+  height: 150px;
+  width: 150px;
 }
 
-#rotateG_01{
-left:0;
-top:23px;
-animation-delay:0.39s;
-transform:rotate(-90deg);
-}
-
-#rotateG_02{
-left:7px;
-top:8px;
-animation-delay:0.52s;
-transform:rotate(-45deg);
-}
-
-#rotateG_03{
-left:22px;
-top:2px;
-animation-delay:0.65s;
-transform:rotate(0deg);
-}
-
-#rotateG_04{
-right:7px;
-top:8px;
-animation-delay:0.78s;
-transform:rotate(45deg);
-}
-
-#rotateG_05{
-right:0;
-top:23px;
-animation-delay:0.9099999999999999s;
-transform:rotate(90deg);
-}
-
-#rotateG_06{
-right:7px;
-bottom:6px;
-animation-delay:1.04s;
-transform:rotate(135deg);
-}
-
-#rotateG_07{
-bottom:0;
-left:22px;
-animation-delay:1.1700000000000002s;
-transform:rotate(180deg);
-}
-
-#rotateG_08{
-left:7px;
-bottom:6px;
-animation-delay:1.3s;
-transform:rotate(-135deg);
-}
-
-@-moz-keyframes fadeG{
-0%{
-background-color:#000000}
-
-100%{
-background-color:#FFFFFF}
-
-}
-
-@-webkit-keyframes fadeG{
-0%{
-background-color:#000000}
-
-100%{
-background-color:#FFFFFF}
-
-}
-
-@-o-keyframes fadeG{
-0%{
-background-color:#000000}
-
-100%{
-background-color:#FFFFFF}
-
-}
-
-@-ms-keyframes fadeG{
-0%{
-background-color:#000000}
-
-100%{
-background-color:#FFFFFF}
-
-}
-
-@keyframes fadeG{
-0%{
-background-color:#000000}
-
-100%{
-background-color:#FFFFFF}
-
+@keyframes sweep {
+  to {
+    transform: rotate(360deg);
+  }
 }
