@@ -21,7 +21,7 @@ export default Ember.Route.extend({
       this.controllerFor(this.get('parentRoute')).set('directLinkToName', name);
       return model;
     } else {
-      return this.transitionTo('fourOhFour'); // TODO
+      throw new Error(`${this.constructor.toString()} not found: ${name}`);
     }
   },
 
