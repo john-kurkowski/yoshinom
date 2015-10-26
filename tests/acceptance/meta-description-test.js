@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import forEach from 'lodash/collection/forEach';
 import identity from 'lodash/utility/identity';
 import startApp from '../helpers/start-app';
 import { test, module } from 'qunit';
@@ -11,19 +12,21 @@ module('Acceptance | <meta> Description', {
   beforeEach() {
     application = startApp();
 
-    const { foodSheet } = createSheets(server);
+    const sheets = createSheets(server);
 
-    server.create('yoshinom-item', {
-      sheet_id: foodSheet.id, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
-      gsx$name: {
-        $t: 'Earl\'s'
-      },
-      gsx$images: {
-        $t: '/earls-gourmet-grub.jpg'
-      },
-      gsx$review: {
-        $t: 'Da BOMB! Check out <a href="earls.com">their website</a>.'
-      }
+    forEach(sheets, function(sheet) {
+      server.create('yoshinom-item', {
+        sheet_id: sheet.id, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+        gsx$name: {
+          $t: 'Earl\'s'
+        },
+        gsx$images: {
+          $t: '/earls-gourmet-grub.jpg'
+        },
+        gsx$review: {
+          $t: 'Da BOMB! Check out <a href="earls.com">their website</a>.'
+        }
+      });
     });
   },
 
