@@ -91,7 +91,7 @@ function parseRow(entry) {
 }
 
 function parseYoshinomItemPromise(itemClass, item) {
-  const instagramRegex = /http:\/\/instagr\.?am(\.com)?/;
+  const instagramRegex = /https?:\/\/instagr\.?am(\.com)?/;
 
   const [firstImage] = item.images;
   const isInstagramShortlink = instagramRegex.test(firstImage);
