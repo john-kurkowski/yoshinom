@@ -21,6 +21,10 @@ $ratings_width: 14%;
   transition: background-color .4s,
               box-shadow .4s;
 
+  &:not(.selected) {
+    height: 48em;
+  }
+
   .preview {
     display: inline-block;
     position: relative;

@@ -10,11 +10,9 @@ export default Ember.Component.extend({
     Ember.run.scheduleOnce('afterRender', this, this.scrollToDirectLink);
   }),
 
-  scrollToDirectLink: Ember.observer('directLinkToName', 'areImagesBeforeThisOneLoaded', function() {
+  scrollToDirectLink: Ember.observer('directLinkToName', function() {
     const name = this.get('directLinkToName');
-    const areImagesBeforeThisOneLoaded = this.get('areImagesBeforeThisOneLoaded');
-
-    if (!name || !areImagesBeforeThisOneLoaded) {
+    if (!name) {
       return;
     }
 
@@ -22,23 +20,6 @@ export default Ember.Component.extend({
 
     const $scrollTo = this._cardWithName(name);
     this._scrollTo($scrollTo);
-  }),
-
-  areImagesBeforeThisOneLoaded: Ember.computed('directLinkToName', 'model.@each.isImageLoaded', function() {
-    const name = this.get('directLinkToName');
-
-    if (!name) {
-      return false;
-    }
-
-    const $scrollTo = this._cardWithName(name);
-    const i = Ember.$('.card').index($scrollTo);
-    if (i < 0) {
-      return false;
-    }
-
-    return this.get('model').slice(0, i)
-    .isEvery('isImageLoaded');
   }),
 
   _cardWithName(name) {
