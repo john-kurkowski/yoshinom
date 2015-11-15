@@ -40,6 +40,8 @@ $ratings_width: 14%;
       left: 0;
       bottom: 0;
       right: 0;
+
+      animation: fadeIn 1.5s ease-out;
     }
 
     .title {
@@ -180,4 +182,14 @@ $ratings_width: 14%;
 }
 .rating + .rating {
   margin-top: 1px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
