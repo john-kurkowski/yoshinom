@@ -15,7 +15,7 @@ module('Acceptance | <meta> Description', {
     const sheets = createSheets(server);
 
     forEach(sheets, function(sheet) {
-      server.create('yoshinom-item', {
+      server.create('yoshinomItem', {
         sheet_id: sheet.id, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
         gsx$name: {
           $t: 'Earl\'s'

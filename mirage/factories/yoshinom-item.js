@@ -1,9 +1,9 @@
 import constant from 'lodash/utility/constant';
-import Mirage, { faker } from 'ember-cli-mirage';
+import { Factory, faker } from 'ember-cli-mirage';
 import partial from 'lodash/function/partial';
 import times from 'lodash/utility/times';
 
-export default Mirage.Factory.extend({
+export default Factory.extend({
 
   gsx$name: {
     $t() {

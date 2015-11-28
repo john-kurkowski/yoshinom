@@ -29,7 +29,7 @@ export default function(server) {
   // Food
 
   // TODO: app should not rely on a magical value present in its data
-  server.createList('yoshinom-item', 4, {
+  server.createList('yoshinomItem', 4, {
     sheet_id: foodSheet.id, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
     gsx$tags: {
       $t() {
@@ -40,13 +40,13 @@ export default function(server) {
     }
   });
 
-  server.createList('yoshinom-item', 6, {
+  server.createList('yoshinomItem', 6, {
     sheet_id: foodSheet.id // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
   });
 
   // Cocktails
 
-  server.createList('yoshinom-item', 10, {
+  server.createList('yoshinomItem', 10, {
     sheet_id: cocktailsSheet.id // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
   });
 }
