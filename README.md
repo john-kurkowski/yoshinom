@@ -1,4 +1,4 @@
-# Yoshinom [![Code Climate](https://codeclimate.com/github/john-kurkowski/yoshinom/badges/gpa.svg)](https://codeclimate.com/github/john-kurkowski/yoshinom)
+# Yoshinom [![Build Status](https://travis-ci.org/john-kurkowski/yoshinom.svg)](https://travis-ci.org/john-kurkowski/yoshinom) [![Code Climate](https://codeclimate.com/github/john-kurkowski/yoshinom/badges/gpa.svg)](https://codeclimate.com/github/john-kurkowski/yoshinom)
 
 A linkable photostream of the best of
 [@Yoshinom](http://instagram.com/yoshinom), with ratings of the restaurants and
