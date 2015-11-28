@@ -31,10 +31,6 @@ export default Ember.Mixin.create({
   q: '', // query / filter / tags
   s: '', // sort
 
-  queryParams: ['q', 's'],
-
-  areImagesLoaded: Ember.computed('model.items.@each.isImageLoaded', function() {
-    return this.get('model.items').everyBy('isImageLoaded');
-  })
+  queryParams: ['q', 's']
 
 });
