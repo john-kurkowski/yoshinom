@@ -4,10 +4,19 @@ import _ from 'lodash/lodash';
 import YoshinomSectionModel from 'yoshinom/models/yoshinom-section-model';
 
 /**
- * Base route for a section of the site, rendering a list of items, e.g.
+ * Abstract base route for a section of the site, rendering a list of items, e.g.
  * restaurants, or cocktails.
  *
- * @public
+ * Extending routes must override
+ *
+ * 1. `titleToken` - to know which sheet of the spreadsheet the route corresponds to
+ * 2. `descriptionForQuery` - to update the <meta> description of the current route
+ *
+ * Other overridable properties:
+ *
+ * 1. `sorts` - the possible and default sort of the section's sheet
+ *
+ * @protected
  */
 export default Ember.Route.extend({
 
