@@ -29,8 +29,6 @@ export default Ember.Route.extend({
 
   model(params) {
     const sheetTitle = this.get('titleToken');
-    const sorts = this.get('sorts');
-    const selectedSort = params.s || this.controllerFor(this.routeName).get('s');
     const errors = [];
 
     if (!sheetTitle) {
@@ -42,44 +40,10 @@ export default Ember.Route.extend({
 
     const spreadsheetPromise = this.get('spreadsheet').find(sheetTitle);
 
-    const filteredItems = spreadsheetPromise
-    .then(function(items) {
-      if (params.q) {
-        return items.filter(function(item) {
-          return (item.get('tags') || []).contains(params.q);
-        });
-      } else {
-        return items;
-      }
-    });
-
-    const selectedSorts = Ember.copy(sorts);
-    if (selectedSorts.contains(selectedSort)) {
-      selectedSorts.removeObject(selectedSort);
-      selectedSorts.unshift(selectedSort);
-    }
-
-    const tags = spreadsheetPromise
-    .then(function(items) {
-      const spreadsheetTags = _(items)
-      .map('tags')
-      .flatten()
-      .groupBy()
-      .map(function(group, tagName) {
-        return { name: tagName, displayName: tagName, count: group.length };
-      })
-      .sortBy('name')
-      .value();
-
-      const allTag = { name: '', displayName: 'Show All', count: items.length };
-
-      return spreadsheetTags.concat([allTag]);
-    });
-
     return Ember.RSVP.hash({
-      items: filteredItems,
-      sorts: selectedSorts,
-      tags
+      items: this._filterItems(spreadsheetPromise, params),
+      sorts: this._selectedSorts(params),
+      tags: this._tags(spreadsheetPromise)
     });
   },
 
@@ -121,6 +85,66 @@ export default Ember.Route.extend({
       }
     }
 
+  },
+
+  /**
+   * Filter Yoshinom spreadsheet items per the user's parameters.
+   *
+   * 1. If params.q is specified, includes only items with tags matching
+   *    params.q.
+   *
+   * @private
+   */
+  _filterItems(spreadsheetPromise, params) {
+    if (params.q) {
+      return spreadsheetPromise.then(function(items) {
+        return items.filter(function(item) {
+          return (item.get('tags') || []).contains(params.q);
+        });
+      });
+    } else {
+      return spreadsheetPromise;
+    }
+  },
+
+  /**
+   * Sorts to be applied on an Ember.Controller via Ember.computed.sort.
+   *
+   * @private
+   */
+  _selectedSorts(params) {
+    const sorts = this.get('sorts');
+    const selectedSort = params.s || this.controllerFor(this.routeName).get('s');
+    const selectedSorts = Ember.copy(sorts);
+    if (selectedSorts.contains(selectedSort)) {
+      selectedSorts.removeObject(selectedSort);
+      selectedSorts.unshift(selectedSort);
+    }
+    return selectedSorts;
+  },
+
+  /**
+   * Count all distinct tags in the Yoshinom spreadsheet.
+   *
+   * @private
+   */
+  _tags(spreadsheetPromise) {
+    return spreadsheetPromise
+    .then(function(items) {
+      const spreadsheetTags = _(items)
+      .map('tags')
+      .flatten()
+      .groupBy()
+      .map(function(group, tagName) {
+        return { name: tagName, displayName: tagName, count: group.length };
+      })
+      .sortBy('name')
+      .value();
+
+      const allTag = { name: '', displayName: 'Show All', count: items.length };
+
+      return spreadsheetTags.concat([allTag]);
+    });
   }
 
 });
