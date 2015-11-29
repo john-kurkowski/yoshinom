@@ -1,8 +1,3 @@
-@import 'reset';
-@import 'load';
+@import 'pods';
 
-@import 'header';
-@import 'element';
-@import 'nav';
-@import 'section';
-@import 'card-list';
+@import 'section'; // TODO: colocate with a "Section" pod
