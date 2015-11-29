@@ -69,31 +69,32 @@ function parseRow(entry) {
   const gsxRegex = /^gsx\$(.+)/;
   return reduce(entry, function(acc, cell, key) {
     const [, normalizedKey] = gsxRegex.exec(key) || [];
-    if (!normalizedKey) {
-      return acc;
+    if (normalizedKey) {
+      acc[normalizedKey] = parseCell(normalizedKey, cell);
     }
-
-    const text = cell.$t;
-    const value = (function() {
-      switch (normalizedKey) {
-        case 'images' :  return text
-                                .split(/\s+/)
-                                .map(function(t) {
-                                  return t.trim();
-                                })
-                                .filter(identity);
-        case 'tags'   :  return text
-                                .split(/\n/)
-                                .map(function(t) {
-                                  return t.trim();
-                                })
-                                .filter(identity);
-        default       :  return text;
-      }
-    })();
-    acc[normalizedKey] = value;
     return acc;
   }, {});
+}
+
+function parseCell(normalizedKey, cell) {
+  const text = cell.$t;
+  return (function() {
+    switch (normalizedKey) {
+      case 'images' :  return text
+                              .split(/\s+/)
+                              .map(function(t) {
+                                return t.trim();
+                              })
+                              .filter(identity);
+      case 'tags'   :  return text
+                              .split(/\n/)
+                              .map(function(t) {
+                                return t.trim();
+                              })
+                              .filter(identity);
+      default       :  return text;
+    }
+  })();
 }
 
 function parseYoshinomItemPromise(itemClass, item) {
