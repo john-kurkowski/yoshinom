@@ -1,13 +1,13 @@
 import Ember from 'ember';
 import { test, module } from 'qunit';
 
-import YoshinomItemControllerMixin from 'yoshinom/mixins/yoshinom-item-controller';
+import YoshinomSectionControllerMixin from 'yoshinom/mixins/yoshinom-section-controller';
 
-module('YoshinomItemControllerMixin');
+module('YoshinomSectionControllerMixin');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  const YoshinomItemListControllerObject = Ember.Object.extend(YoshinomItemControllerMixin);
-  const subject = YoshinomItemListControllerObject.create();
+  const YoshinomSectionController = Ember.Controller.extend(YoshinomSectionControllerMixin);
+  const subject = YoshinomSectionController.create();
   assert.ok(subject);
 });
