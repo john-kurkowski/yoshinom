@@ -1,10 +1,13 @@
 import Ember from 'ember';
 
 /**
- * Base route for a single item on the site, such as a particular restaurant,
- * usually within a greater list of such items.
+ * Abstract base route for a single item on the site, such as a particular
+ * restaurant, usually within a greater list of such items.
  *
- * @public
+ * Enough is inferred from extending routes' path name that they shouldn't have
+ * to override any property.
+ *
+ * @protected
  */
 export default Ember.Route.extend({
 

@@ -4,13 +4,15 @@ import _ from 'lodash/lodash';
 import YoshinomSectionModel from 'yoshinom/models/yoshinom-section-model';
 
 /**
- * Abstract base route for a section of the site, rendering a list of items, e.g.
- * restaurants, or cocktails.
+ * Abstract base route for a section of the site, rendering a list of items,
+ * e.g. restaurants, or cocktails.
  *
  * Extending routes must override
  *
- * 1. `titleToken` - to know which sheet of the spreadsheet the route corresponds to
- * 2. `descriptionForQuery` - to update the <meta> description of the current route
+ * 1. `titleToken` - to know which sheet of the spreadsheet the route
+ *    corresponds to
+ * 2. `descriptionForQuery` - to update the <meta> description of the current
+ *    route
  *
  * Other overridable properties:
  *
