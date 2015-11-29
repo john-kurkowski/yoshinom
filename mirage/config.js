@@ -18,7 +18,7 @@ export default function() {
 
   this.get('https://spreadsheets.google.com/feeds/list/:sheetId/od7/public/values', function(db, request) {
     const { sheetId } = request.params;
-    const yoshinomItems = db['yoshinomItems']
+    const yoshinomItems = db.yoshinomItems
       .where({
         sheet_id: sheetId // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
       });

@@ -2,6 +2,11 @@ import Ember from 'ember';
 
 import YoshinomSectionModel from 'yoshinom/models/yoshinom-section-model';
 
+/**
+ * Model decorations common to all Yoshinom sections.
+ *
+ * @public
+ */
 export default Ember.Mixin.create({
 
   model: Ember.computed(function() {

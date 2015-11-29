@@ -1,5 +1,10 @@
 import { Factory, faker } from 'ember-cli-mirage';
 
+/**
+ * Google Sheets sheet factory.
+ *
+ * @protected
+ */
 export default Factory.extend({
 
   title: {

@@ -3,6 +3,12 @@ import { Factory, faker } from 'ember-cli-mirage';
 import partial from 'lodash/function/partial';
 import times from 'lodash/utility/times';
 
+/**
+ * Single row of a Google Sheets sheet, with Yoshinom's idiosyncratic schema
+ * for e.g. restaurants, cocktails. Ultimately displayed in the UI as a card.
+ *
+ * @protected
+ */
 export default Factory.extend({
 
   gsx$name: {

@@ -11,6 +11,12 @@ const sheetsByTitle = {};
 
 export const YOSHINOM_SHEETS_ID = '0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE';
 
+/**
+ * Adapt Google Sheets responses, with Yoshinom's idiosyncratic row schema, to
+ * Yoshinom model objects.
+ *
+ * @public
+ */
 export default Ember.Service.extend({
 
   find(sheetTitle) {
