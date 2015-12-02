@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import _ from 'lodash/lodash';
 
-import YoshinomSectionModel from 'yoshinom/models/yoshinom-section-model';
+import YoshinomSectionModel from './model';
 
 /**
  * Abstract base route for a section of the site, rendering a list of items,
@@ -27,7 +27,7 @@ export default Ember.Route.extend({
   titleToken: '',
   sorts: [],
 
-  templateName: 'section',
+  templateName: 'yoshinom-section',
 
   descriptionForQuery(/*q*/) {
     throw new Ember.Error('Routes extending SectionRoute must specify descriptionForQuery(q: {String}) -> {String}.');
@@ -52,6 +52,8 @@ export default Ember.Route.extend({
     const spreadsheetPromise = this.get('spreadsheet').find(sheetTitle);
 
     return Ember.RSVP.hash({
+      indexRoute: this.routeName,
+      itemRoute: `${this.routeName}.item`,
       items: this._filterItems(spreadsheetPromise, params),
       sorts: this._selectedSorts(params),
       tags: this._tags(spreadsheetPromise)
@@ -60,8 +62,6 @@ export default Ember.Route.extend({
 
   setupController(controller, model) {
     controller.setProperties({
-      indexRoute: this.routeName,
-      itemRoute: `${this.routeName}.item`,
       model: YoshinomSectionModel.create(model)
     });
 

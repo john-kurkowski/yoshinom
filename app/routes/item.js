@@ -21,7 +21,7 @@ export default Ember.Route.extend({
     const parentModel = this.modelFor(this.get('parentRoute'));
     const model = parentModel.items.findBy('name', name);
     if (model) {
-      this.controllerFor(this.get('parentRoute')).set('directLinkToName', name);
+      this.controllerFor(this.get('parentRoute')).set('model.directLinkToName', name);
       return model;
     } else {
       throw new Error(`${this.constructor.toString()} not found: ${name}`);

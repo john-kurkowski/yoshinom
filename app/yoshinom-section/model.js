@@ -7,6 +7,9 @@ import Ember from 'ember';
  */
 export default Ember.Object.extend({
 
+  directLinkToName: '',
+  indexRoute: '',
+  itemRoute: '',
   items: [],
   sorts: [],
   tags: []

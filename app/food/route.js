@@ -1,4 +1,4 @@
-import SectionRoute from 'yoshinom/routes/section';
+import SectionRoute from 'yoshinom/yoshinom-section/route';
 
 export default SectionRoute.extend({
 

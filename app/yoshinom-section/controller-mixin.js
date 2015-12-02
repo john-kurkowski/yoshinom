@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-import YoshinomSectionModel from 'yoshinom/models/yoshinom-section-model';
+import YoshinomSectionModel from './model';
 
 /**
  * Model decorations common to all Yoshinom sections.
@@ -28,10 +28,6 @@ export default Ember.Mixin.create({
 
   tagCounts: Ember.computed.mapBy('model.tags', 'count'),
   tagsMaxCount: Ember.computed.max('tagCounts'),
-
-  indexRoute: '',
-
-  directLinkToName: '',
 
   q: '', // query / filter / tags
   s: '', // sort
