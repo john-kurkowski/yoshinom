@@ -1,17 +1,12 @@
-import Ember from 'ember';
 import forEach from 'lodash/collection/forEach';
 import identity from 'lodash/utility/identity';
-import startApp from '../helpers/start-app';
-import { test, module } from 'qunit';
+import moduleForAcceptance from '../helpers/module-for-acceptance';
+import { test } from 'qunit';
 
 import { createSheets} from 'yoshinom/mirage/scenarios/default';
 
-let application;
-
-module('Acceptance | <meta> Description', {
+moduleForAcceptance('Acceptance | <meta> Description', {
   beforeEach() {
-    application = startApp();
-
     const sheets = createSheets(server);
 
     forEach(sheets, function(sheet) {
@@ -28,16 +23,12 @@ module('Acceptance | <meta> Description', {
         }
       });
     });
-  },
-
-  afterEach() {
-    Ember.run(application, 'destroy');
   }
 });
 
-const metaDescriptions = function() {
+function metaDescriptions() {
   return $('meta[property=description][content], meta[property^=og][content], meta[name^=twitter][content]');
-};
+}
 
 ['food', 'cocktails'].forEach(function(route) {
   test(`${route} route adds description tags`, function(assert) {

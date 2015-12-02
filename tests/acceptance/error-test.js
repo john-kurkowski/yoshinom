@@ -1,18 +1,9 @@
-import Ember from 'ember';
+import moduleForAcceptance from '../helpers/module-for-acceptance';
 import QUnit from 'qunit';
-import { module/*, test*/ } from 'qunit';
-import startApp from 'yoshinom/tests/helpers/start-app';
 
 import { createSheets} from 'yoshinom/mirage/scenarios/default';
 
-module('Acceptance | error', {
-  beforeEach() {
-    this.application = startApp();
-  },
-
-  afterEach() {
-    Ember.run(this.application, 'destroy');
-  }
+moduleForAcceptance('Acceptance | error', {
 });
 
 // TODO: Ember fails any test that triggers the default error handler. How to
