@@ -1,5 +1,8 @@
 import { Factory, faker } from 'ember-cli-mirage';
 
+const localFaker = faker.makeNewInstance();
+localFaker.seed(1);
+
 /**
  * Google Sheets sheet factory.
  *
@@ -8,7 +11,7 @@ import { Factory, faker } from 'ember-cli-mirage';
 export default Factory.extend({
 
   title: {
-    $t: faker.name.jobArea
+    $t: localFaker.name.jobArea
   },
 
   link: [

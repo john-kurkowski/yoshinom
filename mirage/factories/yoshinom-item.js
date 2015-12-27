@@ -3,6 +3,9 @@ import { Factory, faker } from 'ember-cli-mirage';
 import partial from 'lodash/function/partial';
 import times from 'lodash/utility/times';
 
+const localFaker = faker.makeNewInstance();
+localFaker.seed(1);
+
 /**
  * Single row of a Google Sheets sheet, with Yoshinom's idiosyncratic schema
  * for e.g. restaurants, cocktails. Ultimately displayed in the UI as a card.
@@ -13,13 +16,13 @@ export default Factory.extend({
 
   gsx$name: {
     $t() {
-      return faker.company.companyName();
+      return localFaker.company.companyName();
     }
   },
 
   gsx$tags: {
     $t() {
-      return times(oneToFive(), partial(faker.random.arrayElement, [
+      return times(oneToFive(), partial(localFaker.random.arrayElement, [
           'dynamic',
           'heuristic',
           'needs-based',
@@ -37,11 +40,11 @@ export default Factory.extend({
   },
 
   gsx$geo1: {
-    $t: faker.address.country
+    $t: localFaker.address.country
   },
 
   gsx$geo2: {
-    $t: faker.address.city
+    $t: localFaker.address.city
   },
 
   gsx$images: {
@@ -85,8 +88,8 @@ export default Factory.extend({
 
   gsx$review: {
     $t() {
-      const n = (faker.random.number() % 2) + 1;
-      return faker.lorem.paragraphs(n, '@@@')
+      const n = (localFaker.random.number() % 2) + 1;
+      return localFaker.lorem.paragraphs(n, '@@@')
         .replace(/\n/g, ' ')
         .replace(/@@@/g, '\n');
     }
@@ -95,5 +98,5 @@ export default Factory.extend({
 });
 
 function oneToFive() {
-  return (faker.random.number() % 5) + 1;
+  return (localFaker.random.number() % 5) + 1;
 }

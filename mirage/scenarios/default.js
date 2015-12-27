@@ -1,4 +1,3 @@
-import { faker } from 'ember-cli-mirage';
 import _ from 'lodash/lodash';
 
 import YoshinomItemFactory from 'yoshinom/mirage/factories/yoshinom-item';
@@ -19,8 +18,6 @@ export function createSheets(server) {
 }
 
 export default function(server) {
-  faker.seed(1);
-
   const {
     foodSheet,
     cocktailsSheet
