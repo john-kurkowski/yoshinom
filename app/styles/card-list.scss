@@ -1,119 +1,26 @@
-@import '_color';
-@import '_typography';
+@import 'color';
+@import 'typography';
 
-$card_width: 40em;
-$card-caption-color: rgba(0, 0, 0, 0.5);
-$ratings_width: 14%;
+$card-width: 40em;
+$card-caption-color: rgba(0, 0, 0, .5);
+$ratings-width: 14%;
 
 .cards {
+  align-items: center;
   display: flex;
   flex-flow: column;
   justify-content: space-around;
-  align-items: center;
 }
 
 .card {
-  position: relative;
-  width: $card_width;
-  max-width: 100%;
   margin: 1.5em 0;
-
-  transition: background-color .4s,
-              box-shadow .4s;
+  max-width: 100%;
+  position: relative;
+  transition: background-color .4s, box-shadow .4s;
+  width: $card-width;
 
   &:not(.selected) {
     height: 48em;
-  }
-
-  .preview {
-    display: inline-block;
-    position: relative;
-    width: $card_width;
-    max-width: 100%;
-
-    img {
-      visibility: hidden;
-
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-
-      animation: fadeIn 1.5s ease-out;
-    }
-
-    .title {
-      font-family: $monospace-font-family;
-      background-color: $card-caption-color;
-      border-radius: 4px;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      margin: 4px;
-      padding: 4px 6px 0;
-
-      .price {
-        font-size: $font-size-primary;
-
-        &:before {
-          content: "";
-          margin-left: 0.618034em;
-        }
-      }
-    }
-
-    &:after {
-      content: "";
-      display: block;
-      margin-top: 100%;
-    }
-  }
-
-  .details {
-    padding: 0 8px 8px;
-
-    height: 4em;
-    overflow: hidden;
-    transition: height .6s;
-
-    > * + * {
-      margin-top: 1em;
-    }
-
-    .links {
-      .image_link {
-        width: 2em;
-        height: 2em;
-      }
-    }
-
-    .review {
-      p + p {
-        margin-top: 1em;
-      }
-
-      i { // recipe instructions
-        font-style: italic;
-      }
-    }
-  }
-
-  .show-more {
-    @include hover-underline;
-    color: $grey-color;
-    display: block;
-    font-family: $monospace-font-family;
-    text-align: center;
-
-    &::before {
-      content: "+";
-    }
-  }
-
-  .details, .show-more {
-    margin-top: 1em;
   }
 
   &.loaded {
@@ -127,7 +34,8 @@ $ratings_width: 14%;
   }
 
   &:hover {
-    .name, .show-more {
+    .name,
+    .show-more {
       color: $white-color;
       text-decoration: underline;
     }
@@ -136,52 +44,145 @@ $ratings_width: 14%;
   &.selected {
     background-color: $details-color;
     box-shadow: 0 0 3em 2em $details-color;
+  }
+}
 
-    .name {
-      text-decoration: underline;
-    }
+.selected {
+  .name {
+    text-decoration: underline;
+  }
 
-    .show-more {
-      @include hover-underline;
-      color: $white-color;
+  .show-more {
+    @include hover-underline;
+    color: $white-color;
 
-      &::before {
-        content: "-";
-      }
+    &::before {
+      content: '-';
     }
   }
+}
+
+.preview {
+  display: inline-block;
+  max-width: 100%;
+  position: relative;
+  width: $card-width;
+
+  img {
+    animation: fadeIn 1.5s ease-out;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+  }
+
+  .title {
+    background-color: $card-caption-color;
+    border-radius: 4px;
+    bottom: 0;
+    font-family: $monospace-font-family;
+    left: 0;
+    margin: 4px;
+    padding: 4px 6px 0;
+    position: absolute;
+  }
+
+  .price {
+    font-size: $font-size-primary;
+
+    &:before {
+      content: '';
+      margin-left: .618034em;
+    }
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+  }
+}
+
+.details {
+  height: 4em;
+  overflow: hidden;
+  padding: 0 8px 8px;
+  transition: height .6s;
+
+  > * + * {
+    margin-top: 1em;
+  }
+
+  .links {
+    .image-link {
+      height: 2em;
+      width: 2em;
+    }
+  }
+
+  .review {
+    p + p {
+      margin-top: 1em;
+    }
+
+    i { // recipe instructions
+      font-style: italic;
+    }
+  }
+}
+
+.show-more {
+  @include hover-underline;
+  color: $grey-color;
+  display: block;
+  font-family: $monospace-font-family;
+  text-align: center;
+
+  &::before {
+    content: '+';
+  }
+}
+
+.details,
+.show-more {
+  margin-top: 1em;
 }
 
 .ratings {
   @extend %font-header;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1px;
-  text-align: center;
-  width: $ratings_width;
+  justify-content: space-between;
   list-style: none;
+  padding: 1px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: $ratings-width;
 }
+
 .rating {
   background-color: $card-caption-color;
-  flex: 1;
-  font-size: $font-size-headline;
-
   display: flex;
+  flex: 1;
   flex-direction: column;
+  font-size: $font-size-headline;
   justify-content: center;
 
-  &.unknown, label {
-    font-weight: 300;
+  &.unknown,
+  label {
     font-size: $font-size-secondary;
+    font-weight: 300;
   }
-}
-.rating + .rating {
-  margin-top: 1px;
+
+  + .rating {
+    margin-top: 1px;
+  }
 }
 
 @keyframes fadeIn {

@@ -14,7 +14,7 @@
   },
   "repository": "https://github.com/john-kurkowski/yoshinom",
   "engines": {
-    "node": "~0.12.0"
+    "node": "4.2.6"
   },
   "author": "",
   "license": "MIT",
@@ -36,6 +36,7 @@
     "ember-cli-qunit": "^1.0.4",
     "ember-cli-release": "0.2.8",
     "ember-cli-sass": "^5.0.1",
+    "ember-cli-sass-lint": "john-kurkowski/ember-cli-sass-lint#feature/ignore-files",
     "ember-cli-sri": "^1.2.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-disable-proxy-controllers": "^1.0.1",

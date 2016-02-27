@@ -1,0 +1,5 @@
+files:
+  ignore:
+    - '**/*reset*'
+rules:
+  no-url-protocols: 0

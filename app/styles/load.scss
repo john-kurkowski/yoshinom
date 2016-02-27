@@ -1,9 +1,9 @@
-@import '_color';
+@import 'color';
 
 .spinner {
   animation: sweep 1s infinite linear;
-  border-radius:75px;
-  border-bottom:5px solid $white-color;
+  border-bottom: 5px solid $white-color;
+  border-radius: 75px;
   height: 150px;
   width: 150px;
 }
