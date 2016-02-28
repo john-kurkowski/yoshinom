@@ -1,10 +1,10 @@
-import curry from 'lodash/function/curry';
 import Ember from 'ember';
 import identity from 'lodash/utility/identity';
+import partial from 'lodash/function/partial';
 import reduce from 'lodash/collection/reduce';
 import request from 'ic-ajax';
 
-const { getOwner, RSVP, Service } = Ember;
+const { computed, getOwner, RSVP, Service } = Ember;
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
@@ -42,7 +42,7 @@ export default Service.extend({
 
       return rows
       .map(parseRow)
-      .map(curry(parseYoshinomItemPromise)(itemClass));
+      .map(partial(parseYoshinomItemPromise, itemClass, this.get('_isSecure')));
     });
 
     this.set(`_sheetsByTitle.${sheetTitle}`, spreadsheetPromise);
@@ -63,7 +63,11 @@ export default Service.extend({
         return sheets;
       });
     }
-  }
+  },
+
+  _isSecure: computed(function() {
+    return window.location.protocol === 'https:';
+  })
 
 });
 
@@ -111,7 +115,13 @@ function parseCell(normalizedKey, cell) {
   })();
 }
 
-function parseYoshinomItemPromise(itemClass, item) {
+function parseYoshinomItemPromise(itemClass, isSecure, item) {
+  if (isSecure) {
+    item.images = item.images.map(function(image) {
+      return image.replace(/^http:/, 'https:');
+    });
+  }
+
   const instagramRegex = /https?:\/\/instagr\.?am(\.com)?/;
 
   const [firstImage] = item.images;
