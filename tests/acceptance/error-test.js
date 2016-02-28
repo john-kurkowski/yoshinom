@@ -3,6 +3,8 @@ import QUnit from 'qunit';
 import { module/*, test*/ } from 'qunit';
 import startApp from 'yoshinom/tests/helpers/start-app';
 
+const { run } = Ember;
+
 import { createSheets} from 'yoshinom/mirage/scenarios/default';
 
 module('Acceptance | error', {
@@ -11,7 +13,7 @@ module('Acceptance | error', {
   },
 
   afterEach() {
-    Ember.run(this.application, 'destroy');
+    run(this.application, 'destroy');
   }
 });
 

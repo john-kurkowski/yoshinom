@@ -1,16 +1,18 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+const { Component, observer, on, run, $ } = Ember;
+
+export default Component.extend({
 
   model: [],
 
   directLinkToName: '',
 
-  scrollToDirectLinkOnDidInsertElement: Ember.on('didInsertElement', function() {
-    Ember.run.scheduleOnce('afterRender', this, this.scrollToDirectLink);
+  scrollToDirectLinkOnDidInsertElement: on('didInsertElement', function() {
+    run.scheduleOnce('afterRender', this, this.scrollToDirectLink);
   }),
 
-  scrollToDirectLink: Ember.observer('directLinkToName', function() {
+  scrollToDirectLink: observer('directLinkToName', function() {
     const name = this.get('directLinkToName');
     if (!name) {
       return;
@@ -23,13 +25,13 @@ export default Ember.Component.extend({
   }),
 
   _cardWithName(name) {
-    return Ember.$(`.card .name:contains(${name})`).closest('.card');
+    return $(`.card .name:contains(${name})`).closest('.card');
   },
 
   _scrollTo($element) {
     const buffer = 32;
     const newTop = $element.offset().top - buffer;
-    Ember.$('html, body').animate({
+    $('html, body').animate({
       scrollTop: newTop
     }, {
       duration: 1200,

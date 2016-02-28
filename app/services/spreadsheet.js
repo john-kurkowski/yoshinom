@@ -4,7 +4,7 @@ import identity from 'lodash/utility/identity';
 import reduce from 'lodash/collection/reduce';
 import request from 'ic-ajax';
 
-const { getOwner } = Ember;
+const { getOwner, RSVP, Service } = Ember;
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
@@ -19,7 +19,7 @@ export const YOSHINOM_SHEETS_ID = '0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE'
  *
  * @public
  */
-export default Ember.Service.extend({
+export default Service.extend({
 
   find(sheetTitle) {
     if (sheetsByTitle[sheetTitle]) {
@@ -44,7 +44,7 @@ export default Ember.Service.extend({
 
 function allSheets() {
   if (sheets.length) {
-    return Ember.RSVP.resolve(sheets);
+    return RSVP.resolve(sheets);
   } else {
     const url = `https://spreadsheets.google.com/feeds/worksheets/${YOSHINOM_SHEETS_ID}/public/values`;
     return request(url, { data: { alt: 'json' } })

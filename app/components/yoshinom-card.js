@@ -2,20 +2,22 @@ import Ember from 'ember';
 import identity from 'lodash/utility/identity';
 import values from 'lodash/object/values';
 
+const { assert, Component, computed, observer, on, run, $ } = Ember;
+
 /**
  * Card-like display of a YoshinomItem.
  *
  * @public
  */
-export default Ember.Component.extend({
+export default Component.extend({
 
   item: null,
   itemRoute: '',
 
   _initialHiddenHeight: '',
 
-  assertItem: Ember.on('init', function() {
-    Ember.assert('No item passed to yoshinom-card', this.get('item'));
+  assertItem: on('init', function() {
+    assert('No item passed to yoshinom-card', this.get('item'));
   }),
 
   classNameBindings: [
@@ -25,11 +27,11 @@ export default Ember.Component.extend({
     'item.showDetails:selected'
   ],
 
-  formattedReview: Ember.computed('item.review', function() {
+  formattedReview: computed('item.review', function() {
     return `<p>${this.get('item.review').replace(/\n/g, '</p><p>')}</p>`.htmlSafe();
   }),
 
-  showRatings: Ember.computed('item.isImageLoaded', 'item.ratings', function() {
+  showRatings: computed('item.isImageLoaded', 'item.ratings', function() {
     if (!this.get('item.isImageLoaded')) {
       return false;
     }
@@ -39,29 +41,29 @@ export default Ember.Component.extend({
     return hasSomeRating;
   }),
 
-  setupImageEventsOnDidInsertElement: Ember.on('didInsertElement', function() {
-    Ember.run.scheduleOnce('afterRender', this, this.setupImageEvents);
+  setupImageEventsOnDidInsertElement: on('didInsertElement', function() {
+    run.scheduleOnce('afterRender', this, this.setupImageEvents);
   }),
 
   setupImageEvents() {
     this.$('img')
-    .one('load error', Ember.run.bind(this, this.set, 'item.isImageLoaded', true))
+    .one('load error', run.bind(this, this.set, 'item.isImageLoaded', true))
     .each(function handleCachedImages() {
       if (this.complete) {
-        Ember.$(this).load();
+        $(this).load();
       }
     });
   },
 
-  teardownImageEvents: Ember.on('willDestroyElement', function() {
+  teardownImageEvents: on('willDestroyElement', function() {
     this.$('img').off('load error');
   }),
 
-  visuallyToggleDetailsOnDidInsertElement: Ember.on('didInsertElement', function() {
-    Ember.run.scheduleOnce('afterRender', this, this.visuallyToggleDetails);
+  visuallyToggleDetailsOnDidInsertElement: on('didInsertElement', function() {
+    run.scheduleOnce('afterRender', this, this.visuallyToggleDetails);
   }),
 
-  visuallyToggleDetails: Ember.observer('item.showDetails', function() {
+  visuallyToggleDetails: observer('item.showDetails', function() {
     const expandTarget = this.$('.details');
 
     if (!this.get('_initialHiddenHeight')) {

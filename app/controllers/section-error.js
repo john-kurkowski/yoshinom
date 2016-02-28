@@ -1,8 +1,10 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
+const { computed, Controller } = Ember;
 
-  isNotFound: Ember.computed('model.message', function() {
+export default Controller.extend({
+
+  isNotFound: computed('model.message', function() {
     const message = this.get('model.message');
     return message && message.toLowerCase().indexOf('not found') >= 0;
   })

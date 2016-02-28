@@ -4,6 +4,8 @@ import identity from 'lodash/utility/identity';
 import startApp from '../helpers/start-app';
 import { test, module } from 'qunit';
 
+const { run } = Ember;
+
 import { createSheets} from 'yoshinom/mirage/scenarios/default';
 
 let application;
@@ -31,7 +33,7 @@ module('Acceptance | <meta> Description', {
   },
 
   afterEach() {
-    Ember.run(application, 'destroy');
+    run(application, 'destroy');
   }
 });
 

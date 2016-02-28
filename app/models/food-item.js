@@ -2,13 +2,15 @@ import Ember from 'ember';
 import omit from 'lodash/object/omit';
 import pick from 'lodash/object/pick';
 
+const { computed } = Ember;
+
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
 let FoodItemModel = YoshinomItem.extend({
 
   ratings: {},
 
-  imageAlt: Ember.computed('name', function() {
+  imageAlt: computed('name', function() {
     return `Photo of food & drink at ${this.get('name')}`;
   })
 

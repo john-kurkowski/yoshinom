@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { computed } = Ember;
+
 /**
  * A generic top-level item in the Yoshinom ecosystem, such as a restaurant or
  * cocktail.
@@ -17,6 +19,6 @@ export default Ember.Object.extend({
   imageLink: '',
   review: '',
 
-  imageAlt: Ember.computed.reads('name')
+  imageAlt: computed.reads('name')
 
 });

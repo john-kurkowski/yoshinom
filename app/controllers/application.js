@@ -1,8 +1,10 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
+const { computed, Controller } = Ember;
 
-  isDrinking: Ember.computed('currentPath', function() {
+export default Controller.extend({
+
+  isDrinking: computed('currentPath', function() {
     return /cocktails/.test(this.get('currentPath'));
   })
 
