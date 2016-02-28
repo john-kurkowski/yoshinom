@@ -15,9 +15,14 @@
       "X-Frame-Options": "SAMEORIGIN",
       "X-XSS-Protection": "1; mode=block"
     },
-    "/assets/**": { "Cache-Control": "public, max-age=512000" },
-    "/robots.txt": { "Cache-Control": "public, max-age=512000" },
-    "/crossdomain.xml": { "Cache-Control": "public, max-age=512000" }
+    "/assets/**": {
+      "Cache-Control": "public, max-age=512000"
+    },
+    "/robots.txt": {
+      "Cache-Control": "public, max-age=512000"
+    },
+    "/crossdomain.xml": {
+      "Cache-Control": "public, max-age=512000"
+    }
   }
 }
-
