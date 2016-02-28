@@ -4,6 +4,8 @@ import identity from 'lodash/utility/identity';
 import reduce from 'lodash/collection/reduce';
 import request from 'ic-ajax';
 
+const { getOwner } = Ember;
+
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
 let sheets = [];
@@ -29,7 +31,7 @@ export default Ember.Service.extend({
       return rowsForSheet(sheets.findBy('title.$t', sheetTitle));
     })
     .then((rows) => {
-      const model = this.container.lookup(`model:${sheetTitle.dasherize()}-item`);
+      const model = getOwner(this).lookup(`model:${sheetTitle.dasherize()}-item`);
       const itemClass = (model && model.constructor) || YoshinomItem;
 
       return rows
