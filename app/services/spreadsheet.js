@@ -118,7 +118,9 @@ function parseCell(normalizedKey, cell) {
 function parseYoshinomItemPromise(itemClass, isSecure, item) {
   if (isSecure) {
     item.images = item.images.map(function(image) {
-      return image.replace(/^http:/, 'https:');
+      return image
+        .replace(/^http:/, 'https:')
+        .replace(/instagr.am\//, 'instagram.com/');
     });
   }
 
