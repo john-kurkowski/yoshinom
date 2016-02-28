@@ -4,6 +4,11 @@
   "scripts": {
   },
   "env": {
+    "EMBER_ENV": {
+      "description": "Environment desired for ember-cli builds",
+      "value": "production"
+    },
+    "NODE_ENV": "production",
     "NPM_CONFIG_PRODUCTION": {
       "required": true
     }
