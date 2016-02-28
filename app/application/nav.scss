@@ -1,20 +1,21 @@
-@import '_color';
-@import '_typography';
-@import '_variables';
+@import 'color';
+@import 'typography';
+@import 'variables';
 
 .sections {
-  display: flex;
-  justify-content: space-around;
-  align-items: baseline;
-  flex-flow: row wrap;
-
   @extend %font-header;
-  font-size: $font-size-sub;
-  margin: 1em auto;
-  padding: 0 1em;
-  max-width: $card_width;
 
-  a, a:visited {
+  align-items: baseline;
+  display: flex;
+  flex-flow: row wrap;
+  font-size: $font-size-sub;
+  justify-content: space-around;
+  margin: 1em auto;
+  max-width: $card-width;
+  padding: 0 1em;
+
+  a,
+  :visited {
     @include hover-underline;
   }
 
@@ -30,27 +31,29 @@
 .tags {
   font-size: $font-size-primary;
   font-weight: 300;
+}
 
-  .tag {
-    a {
-      text-decoration: none;
+.tag {
+  a {
+    text-decoration: none;
+  }
 
-      .name {
-        @include hover-underline;
-      }
+  .name {
+    @include hover-underline;
+  }
 
-      .count {
-        color: $chart-color;
-        font-size: $font-size-secondary;
-        padding-left: 0.38em;
-        vertical-align: bottom;
-      }
+  .count {
+    color: $chart-color;
+    font-size: $font-size-secondary;
+    padding-left: .38em;
+    vertical-align: bottom;
+  }
 
-      &:hover, &:active, &.active {
-        .name {
-          text-decoration: underline;
-        }
-      }
+  :hover,
+  :active,
+  .active {
+    .name {
+      text-decoration: underline;
     }
   }
 }

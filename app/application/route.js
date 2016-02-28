@@ -1,24 +1,26 @@
 import Ember from 'ember';
 
+const { Route, run, $ } = Ember;
+
 function updateMetaDescriptions(description, imageUrls) {
-  const titleMeta = Ember.$('<meta property="og:title">')
+  const titleMeta = $('<meta property="og:title">')
   .add('<meta name="twitter:title">')
   .attr('content', document.title);
 
-  const descriptionMeta = Ember.$('<meta property="description">')
+  const descriptionMeta = $('<meta property="description">')
   .add('<meta property="og:description">')
   .add('<meta name="twitter:description">')
   .attr('content', description);
 
   const defaultImageUrls = ['/logo.png'];
   const imageMetas = (imageUrls || defaultImageUrls).map(function(imageUrl) {
-    return Ember.$(`<meta property="og:image">`)
+    return $(`<meta property="og:image">`)
     .add('<meta property="og:image:url">')
     .add('<meta name="twitter:image:src">')
     .attr('content', imageUrl);
   });
 
-  const head = Ember.$('head');
+  const head = $('head');
   const tagsToRemove = [
     'description',
     'og:description',
@@ -41,7 +43,7 @@ function updateMetaDescriptions(description, imageUrls) {
   .append(imageMetas);
 }
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   title(tokens) {
     tokens.reverse();
@@ -52,7 +54,7 @@ export default Ember.Route.extend({
   actions: {
 
     updateMetaDescription(description, imageUrls) {
-      Ember.run.scheduleOnce('afterRender', null, updateMetaDescriptions, description, imageUrls);
+      run.scheduleOnce('afterRender', null, updateMetaDescriptions, description, imageUrls);
     }
 
   }

@@ -3,6 +3,8 @@ import moduleForAcceptance from '../helpers/module-for-acceptance';
 import sinon from 'sinon';
 import { test } from 'qunit';
 
+const { Test } = Ember;
+
 import { createSheets} from 'yoshinom/mirage/scenarios/default';
 
 moduleForAcceptance('Acceptance | error', {
@@ -14,7 +16,7 @@ moduleForAcceptance('Acceptance | error', {
      *
      * @private
      */
-    this.sandbox.stub(Ember.Test.adapter, 'exception');
+    this.sandbox.stub(Test.adapter, 'exception');
   },
 
   afterEach() {

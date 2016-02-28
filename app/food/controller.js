@@ -1,8 +1,10 @@
 import Ember from 'ember';
 
+const { Controller } = Ember;
+
 import YoshinomSectionControllerMixin from 'yoshinom/yoshinom-section/controller-mixin';
 
-export default Ember.Controller.extend(YoshinomSectionControllerMixin, {
+export default Controller.extend(YoshinomSectionControllerMixin, {
 
   s: 'ratings.food'
 

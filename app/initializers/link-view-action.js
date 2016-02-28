@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { LinkComponent } = Ember;
+
 /**
  * Reopen LinkComponent instances to allow an action. Specify any params with the
  * `actionParam` attribute.
@@ -9,7 +11,7 @@ import Ember from 'ember';
  * @private
  */
 export function initialize(/* container, application */) {
-  Ember.LinkComponent.reopen({
+  LinkComponent.reopen({
 
     action: null,
 

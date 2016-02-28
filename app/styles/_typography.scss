@@ -1,4 +1,4 @@
-@import '_color';
+@import 'color';
 
 $header-font-family: 'Comfortaa', cursive;
 $body-font-family: 'Open Sans', sans-serif;
@@ -12,7 +12,9 @@ $monospace-font-family: 'Special Elite', 'Courier New', monospace;
 @mixin hover-underline($selected-color: $white-color) {
   text-decoration: none;
 
-  &:hover, &:active, &.active {
+  &:hover,
+  &:active,
+  &.active {
     color: $selected-color;
     text-decoration: underline;
   }

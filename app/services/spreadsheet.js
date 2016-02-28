@@ -4,6 +4,8 @@ import identity from 'lodash/utility/identity';
 import reduce from 'lodash/collection/reduce';
 import request from 'ic-ajax';
 
+const { getOwner, RSVP, Service } = Ember;
+
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
 export const YOSHINOM_SHEETS_ID = '0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE';
@@ -14,7 +16,7 @@ export const YOSHINOM_SHEETS_ID = '0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE'
  *
  * @public
  */
-export default Ember.Service.extend({
+export default Service.extend({
 
   _sheets: Ember.computed(function() {
     return [];
@@ -35,7 +37,7 @@ export default Ember.Service.extend({
       return rowsForSheet(sheets.findBy('title.$t', sheetTitle));
     })
     .then((rows) => {
-      const model = this.container.lookup(`model:${sheetTitle.dasherize()}-item`);
+      const model = getOwner(this).lookup(`model:${sheetTitle.dasherize()}-item`);
       const itemClass = (model && model.constructor) || YoshinomItem;
 
       return rows
@@ -51,7 +53,7 @@ export default Ember.Service.extend({
   _allSheets() {
     let sheets = this.get('_sheets');
     if (sheets.length) {
-      return Ember.RSVP.resolve(sheets);
+      return RSVP.resolve(sheets);
     } else {
       const url = `https://spreadsheets.google.com/feeds/worksheets/${YOSHINOM_SHEETS_ID}/public/values`;
       return request(url, { data: { alt: 'json' } })

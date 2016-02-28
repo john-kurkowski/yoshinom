@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { computed, on, Route } = Ember;
+
 /**
  * Abstract base route for a single item on the site, such as a particular
  * restaurant, usually within a greater list of such items.
@@ -9,9 +11,9 @@ import Ember from 'ember';
  *
  * @protected
  */
-export default Ember.Route.extend({
+export default Route.extend({
 
-  parentRoute: Ember.computed('routeName', function() {
+  parentRoute: computed('routeName', function() {
     const [, allButLastDot] = /(.*)\./.exec(this.get('routeName'));
     return allButLastDot;
   }),
@@ -40,7 +42,7 @@ export default Ember.Route.extend({
     this.send('updateMetaDescription', description, model.get('images'));
   },
 
-  teardownMetaDescription: Ember.on('deactivate', function() {
+  teardownMetaDescription: on('deactivate', function() {
     this.send('updateMetaDescription');
   }),
 

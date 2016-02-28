@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { computed, Mixin } = Ember;
+
 import YoshinomSectionModel from './model';
 
 /**
@@ -7,27 +9,27 @@ import YoshinomSectionModel from './model';
  *
  * @public
  */
-export default Ember.Mixin.create({
+export default Mixin.create({
 
-  model: Ember.computed(function() {
+  model: computed(function() {
     return YoshinomSectionModel.create();
   }),
 
   /**
-   * Shim query params into Ember.computed.sort's sortDefinition format.
+   * Shim query params into computed.sort's sortDefinition format.
    *
    * @private
    */
-  _sorts2SortDefinition: Ember.computed('model.sorts.[]', function() {
+  _sorts2SortDefinition: computed('model.sorts.[]', function() {
     return this.get('model.sorts').map(function(sort) {
       return `${sort}:desc`;
     });
   }),
 
-  arrangedContent: Ember.computed.sort('model.items.[]', '_sorts2SortDefinition'),
+  arrangedContent: computed.sort('model.items.[]', '_sorts2SortDefinition'),
 
-  tagCounts: Ember.computed.mapBy('model.tags', 'count'),
-  tagsMaxCount: Ember.computed.max('tagCounts'),
+  tagCounts: computed.mapBy('model.tags', 'count'),
+  tagsMaxCount: computed.max('tagCounts'),
 
   q: '', // query / filter / tags
   s: '', // sort

@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { computed, LinkComponent } = Ember;
+
 /**
  * Reopen LinkComponent instances to improve current-state accessibility via the
  * aria-selected attribute. There is some debate around this, but it does the
@@ -8,11 +10,11 @@ import Ember from 'ember';
  * @private
  */
 export function initialize(/* container, application */) {
-  Ember.LinkComponent.reopen({
+  LinkComponent.reopen({
 
     attributeBindings: ['ariaSelected:aria-selected'],
 
-    ariaSelected: Ember.computed('active', function() {
+    ariaSelected: computed('active', function() {
       return this.get('active') ? 'true' : 'false';
     })
 

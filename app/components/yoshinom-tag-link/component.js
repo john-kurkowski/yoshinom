@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+const { Component, computed } = Ember;
+
+export default Component.extend({
 
   tagObject: null,
   indexRoute: '',
@@ -9,11 +11,11 @@ export default Ember.Component.extend({
   tagName: '',
   isVirtual: true,
 
-  countTitle: Ember.computed('tagObject.count', function() {
+  countTitle: computed('tagObject.count', function() {
     return `${this.get('tagObject.count')} hits`;
   }),
 
-  countStyle: Ember.computed('tagObject.count', 'maxCount', function() {
+  countStyle: computed('tagObject.count', 'maxCount', function() {
     const percent = this.get('tagObject.count') / this.get('maxCount') * 100;
     return `height: ${percent}%;`;
   })

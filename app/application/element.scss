@@ -1,5 +1,5 @@
-@import '_color';
-@import '_typography';
+@import 'color';
+@import 'typography';
 
 h1 {
   @extend %font-header;
@@ -10,14 +10,17 @@ h1 {
     @include hover-underline;
   }
 }
+
 h2 {
   @extend %font-header;
-  font-weight: 300;
   font-size: $font-size-headline;
+  font-weight: 300;
 }
+
 h3 {
   font-size: $font-size-sub;
 }
+
 body {
   background-color: $dark-color;
   color: $white-color;
@@ -26,16 +29,13 @@ body {
   font-weight: 300;
   line-height: 1.61em;
 }
+
 small {
   font-size: $font-size-secondary;
 }
 
 a {
   color: $white-color;
-}
-
-#app {
-  padding: 1em 0;
 }
 
 .spinner {

@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import _ from 'lodash/lodash';
 
+const { copy, inject, Route, RSVP } = Ember;
+
 import YoshinomSectionModel from './model';
 
 /**
@@ -20,9 +22,9 @@ import YoshinomSectionModel from './model';
  *
  * @protected
  */
-export default Ember.Route.extend({
+export default Route.extend({
 
-  spreadsheet: Ember.inject.service(),
+  spreadsheet: inject.service(),
 
   titleToken: '',
   sorts: [],
@@ -51,7 +53,7 @@ export default Ember.Route.extend({
 
     const spreadsheetPromise = this.get('spreadsheet').find(sheetTitle);
 
-    return Ember.RSVP.hash({
+    return RSVP.hash({
       indexRoute: this.routeName,
       itemRoute: `${this.routeName}.item`,
       items: this._filterItems(spreadsheetPromise, params),
@@ -119,14 +121,14 @@ export default Ember.Route.extend({
   },
 
   /**
-   * Sorts to be applied on an Ember.Controller via Ember.computed.sort.
+   * Sorts to be applied on a Controller via computed.sort.
    *
    * @private
    */
   _selectedSorts(params) {
     const sorts = this.get('sorts');
     const selectedSort = params.s || this.controllerFor(this.routeName).get('s');
-    const selectedSorts = Ember.copy(sorts);
+    const selectedSorts = copy(sorts);
     if (selectedSorts.contains(selectedSort)) {
       selectedSorts.removeObject(selectedSort);
       selectedSorts.unshift(selectedSort);
