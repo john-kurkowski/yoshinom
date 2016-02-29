@@ -6,6 +6,13 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     sassLint: {
       configPath: '.sass-lint.yml'
+    },
+
+    sassOptions: {
+      includePaths: [
+        'app',
+        'app/styles'
+      ]
     }
   });
 

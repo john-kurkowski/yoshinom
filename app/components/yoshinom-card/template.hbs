@@ -1,0 +1,46 @@
+{{#link-to itemRoute item classNameBindings=":preview" action="toggleItem"}}
+  <img src="{{item.image}}" alt="{{item.imageAlt}}" class="thumbnail"/>
+  {{yoshinom-loader}}
+
+  <h3 class="title">
+    <span class="name">{{item.name}}</span>
+    {{#if price}}
+      <span class="price">{{item.price}}</span>
+    {{/if}}
+  </h3>
+
+  {{#if showRatings}}
+    <ul class="ratings">
+      <li title="Food" class="rating {{if item.ratings.food '' 'unknown'}}"><label>Food</label><span class="value">{{get-or-else item.ratings.food "N/A"}}</span></li>
+      <li title="Drink" class="rating {{if item.ratings.drink '' 'unknown'}}"><label>Drink</label><span class="value">{{get-or-else item.ratings.drink "N/A"}}</span></li>
+      <li title="Service" class="rating {{if item.ratings.service '' 'unknown'}}"><label>Srvce</label><span class="value">{{get-or-else item.ratings.service "N/A"}}</span></li>
+      <li title="Atmosphere" class="rating {{if item.ratings.atmosphere '' 'unknown'}}"><label>Atmos</label><span class="value">{{get-or-else item.ratings.atmosphere "N/A"}}</span></li>
+      <li title="Uniqueness" class="rating {{if item.ratings.uniqueness '' 'unknown'}}"><label>Uniq</label><span class="value">{{get-or-else item.ratings.uniqueness "N/A"}}</span></li>
+      <li title="Bathroom" class="rating {{if item.ratings.bathroom '' 'unknown'}}"><label>Bthrm</label><span class="value">{{get-or-else item.ratings.bathroom "N/A"}}</span></li>
+    </ul>
+  {{/if}}
+{{/link-to}}
+
+<div class="details">
+  <div class="review">
+    {{#if item.review}}
+      {{formattedReview}}
+    {{else}}
+      No review yet.
+    {{/if}}
+  </div>
+
+  <ul class="links">
+    {{#if item.mapLink}}
+      <li class="map-link">{{item.mapLink}}</li>
+    {{/if}}
+
+    {{#if item.imageLink}}
+      <li class="image-link"><a href="{{item.imageLink}}">Instagram</a></li>
+    {{/if}}
+  </ul>
+</div>
+
+{{#link-to itemRoute item classNameBindings=":show-more" action="toggleItem"}}
+  show {{if item.showDetails 'less' 'more'}}
+{{/link-to}}

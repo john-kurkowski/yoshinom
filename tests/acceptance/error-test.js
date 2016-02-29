@@ -1,35 +1,65 @@
 import Ember from 'ember';
-import QUnit from 'qunit';
-import { module/*, test*/ } from 'qunit';
-import startApp from 'yoshinom/tests/helpers/start-app';
+import flatten from 'lodash/array/flatten';
+import moduleForAcceptance from '../helpers/module-for-acceptance';
+import sinon from 'sinon';
+import { test } from 'qunit';
 
-const { run } = Ember;
+const { Test } = Ember;
 
-import { createSheets} from 'yoshinom/mirage/scenarios/default';
+import defaultScenario from 'yoshinom/mirage/scenarios/default';
 
-module('Acceptance | error', {
+moduleForAcceptance('Acceptance | error', {
   beforeEach() {
-    this.application = startApp();
+    this.sandbox = sinon.sandbox.create();
+
+    // Override Ember.Test's default failure on uncaught errors. See http://stackoverflow.com/a/34138273/62269
+    this.sandbox.stub(Test.adapter, 'exception');
   },
 
   afterEach() {
-    run(this.application, 'destroy');
+    if (Ember.Test.adapter.exception.callCount) {
+      console.warn('Exceptions encountered while stubbing:', flatten(Test.adapter.exception.args));
+    }
+
+    this.sandbox.restore();
   }
 });
 
-// TODO: Ember fails any test that triggers the default error handler. How to
-//       work around?
+test('section page error', function(assert) {
+  assert.expect(3);
 
-QUnit.skip('section page error', function(/*assert*/) {
-});
+  // Don't create any data, to force fatal error.
+  //   defaultScenario(server);
 
-QUnit.skip('detail page 404', function(assert) {
-  createSheets(server);
-
-  const unlikelyDetailRoute = '/food/unlikely-restaurant-name';
-  visit(unlikelyDetailRoute);
+  visit('/');
 
   andThen(function() {
-    assert.equal(currentURL(), unlikelyDetailRoute);
+    assert.equal(currentURL(), '/');
+
+    const defaultRoute = 'food';
+    assert.equal(currentRouteName(), `${defaultRoute}_error`, 'Entered default route error substate');
+
+    const errorMessage = find('.error').text().trim();
+    assert.ok(errorMessage.indexOf('nom nom') >= 0, `Error message: "${errorMessage}"`);
+  });
+});
+
+['food', 'cocktails'].forEach(function(section) {
+  test(`${section} detail page 404`, function(assert) {
+    assert.expect(3);
+
+    defaultScenario(server);
+
+    const unlikelyDetailRoute = `/${section}/unlikely-restaurant-name`;
+
+    visit(unlikelyDetailRoute);
+
+    andThen(function() {
+      assert.equal(currentURL(), unlikelyDetailRoute);
+      assert.equal(currentRouteName(), `${section}.item_error`, 'Entered detail route error substate');
+
+      const errorMessage = find('.error').text().trim();
+      assert.ok(errorMessage.indexOf('couldn\'t find that one') >= 0, `Error message: "${errorMessage}"`);
+    });
   });
 });

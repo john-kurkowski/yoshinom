@@ -1,15 +1,12 @@
-import curry from 'lodash/function/curry';
 import Ember from 'ember';
 import identity from 'lodash/utility/identity';
+import partial from 'lodash/function/partial';
 import reduce from 'lodash/collection/reduce';
 import request from 'ic-ajax';
 
-const { getOwner, RSVP, Service } = Ember;
+const { computed, getOwner, RSVP, Service } = Ember;
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
-
-let sheets = [];
-const sheetsByTitle = {};
 
 export const YOSHINOM_SHEETS_ID = '0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE';
 
@@ -21,12 +18,21 @@ export const YOSHINOM_SHEETS_ID = '0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE'
  */
 export default Service.extend({
 
+  _sheets: Ember.computed(function() {
+    return [];
+  }),
+
+  _sheetsByTitle: Ember.computed(function() {
+    return {};
+  }),
+
   find(sheetTitle) {
-    if (sheetsByTitle[sheetTitle]) {
-      return sheetsByTitle[sheetTitle];
+    const cachedSheet = this.get(`_sheetsByTitle.${sheetTitle}`);
+    if (cachedSheet) {
+      return cachedSheet;
     }
 
-    return sheetsByTitle[sheetTitle] = allSheets()
+    const spreadsheetPromise = this._allSheets()
     .then(function(sheets) {
       return rowsForSheet(sheets.findBy('title.$t', sheetTitle));
     })
@@ -36,24 +42,34 @@ export default Service.extend({
 
       return rows
       .map(parseRow)
-      .map(curry(parseYoshinomItemPromise)(itemClass));
+      .map(partial(parseYoshinomItemPromise, itemClass, this.get('_isSecure')));
     });
-  }
+
+    this.set(`_sheetsByTitle.${sheetTitle}`, spreadsheetPromise);
+
+    return spreadsheetPromise;
+  },
+
+  _allSheets() {
+    let sheets = this.get('_sheets');
+    if (sheets.length) {
+      return RSVP.resolve(sheets);
+    } else {
+      const url = `https://spreadsheets.google.com/feeds/worksheets/${YOSHINOM_SHEETS_ID}/public/values`;
+      return request(url, { data: { alt: 'json' } })
+      .then((sheetsResponse) => {
+        sheets = sheetsResponse.feed.entry;
+        this.set('_sheets', sheets);
+        return sheets;
+      });
+    }
+  },
+
+  _isSecure: computed(function() {
+    return window.location.protocol === 'https:';
+  })
 
 });
-
-function allSheets() {
-  if (sheets.length) {
-    return RSVP.resolve(sheets);
-  } else {
-    const url = `https://spreadsheets.google.com/feeds/worksheets/${YOSHINOM_SHEETS_ID}/public/values`;
-    return request(url, { data: { alt: 'json' } })
-    .then(function(sheetsResponse) {
-      sheets = sheetsResponse.feed.entry;
-      return sheets;
-    });
-  }
-}
 
 function rowsForSheet(sheetEntry) {
   const url = sheetEntry.link.find(function(link) {
@@ -99,7 +115,15 @@ function parseCell(normalizedKey, cell) {
   })();
 }
 
-function parseYoshinomItemPromise(itemClass, item) {
+function parseYoshinomItemPromise(itemClass, isSecure, item) {
+  if (isSecure) {
+    item.images = item.images.map(function(image) {
+      return image
+        .replace(/^http:/, 'https:')
+        .replace(/instagr.am\//, 'instagram.com/');
+    });
+  }
+
   const instagramRegex = /https?:\/\/instagr\.?am(\.com)?/;
 
   const [firstImage] = item.images;
