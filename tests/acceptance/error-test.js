@@ -1,25 +1,26 @@
 import Ember from 'ember';
+import flatten from 'lodash/array/flatten';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 import sinon from 'sinon';
 import { test } from 'qunit';
 
 const { Test } = Ember;
 
-import { createSheets} from 'yoshinom/mirage/scenarios/default';
+import defaultScenario from 'yoshinom/mirage/scenarios/default';
 
 moduleForAcceptance('Acceptance | error', {
   beforeEach() {
     this.sandbox = sinon.sandbox.create();
 
-    /**
-     * Override Ember.Test's default failure on uncaught errors.
-     *
-     * @private
-     */
+    // Override Ember.Test's default failure on uncaught errors. See http://stackoverflow.com/a/34138273/62269
     this.sandbox.stub(Test.adapter, 'exception');
   },
 
   afterEach() {
+    if (Ember.Test.adapter.exception.callCount) {
+      console.warn('Exceptions encountered while stubbing:', flatten(Test.adapter.exception.args));
+    }
+
     this.sandbox.restore();
   }
 });
@@ -27,8 +28,8 @@ moduleForAcceptance('Acceptance | error', {
 test('section page error', function(assert) {
   assert.expect(3);
 
-  // Don't createSheets to force fatal error.
-  //   createSheets(server);
+  // Don't create any data, to force fatal error.
+  //   defaultScenario(server);
 
   visit('/');
 
@@ -36,27 +37,29 @@ test('section page error', function(assert) {
     assert.equal(currentURL(), '/');
 
     const defaultRoute = 'food';
-    assert.equal(currentRouteName(), `${defaultRoute}_error`);
+    assert.equal(currentRouteName(), `${defaultRoute}_error`, 'Entered default route error substate');
 
     const errorMessage = find('.error').text().trim();
     assert.ok(errorMessage.indexOf('nom nom') >= 0, `Error message: "${errorMessage}"`);
   });
 });
 
-test('detail page 404', function(assert) {
-  assert.expect(3);
+['food', 'cocktails'].forEach(function(section) {
+  test(`${section} detail page 404`, function(assert) {
+    assert.expect(3);
 
-  createSheets(server);
+    defaultScenario(server);
 
-  const unlikelyDetailRoute = '/food/unlikely-restaurant-name';
+    const unlikelyDetailRoute = `/${section}/unlikely-restaurant-name`;
 
-  visit(unlikelyDetailRoute);
+    visit(unlikelyDetailRoute);
 
-  andThen(function() {
-    assert.equal(currentURL(), unlikelyDetailRoute);
-    assert.equal(currentRouteName(), 'food.item_error');
+    andThen(function() {
+      assert.equal(currentURL(), unlikelyDetailRoute);
+      assert.equal(currentRouteName(), `${section}.item_error`, 'Entered detail route error substate');
 
-    const errorMessage = find('.error').text().trim();
-    assert.ok(errorMessage.indexOf('couldn\'t find that one') >= 0, `Error message: "${errorMessage}"`);
+      const errorMessage = find('.error').text().trim();
+      assert.ok(errorMessage.indexOf('couldn\'t find that one') >= 0, `Error message: "${errorMessage}"`);
+    });
   });
 });
