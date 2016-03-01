@@ -17,7 +17,7 @@ moduleForAcceptance('Acceptance | error', {
   },
 
   afterEach() {
-    if (Ember.Test.adapter.exception.callCount) {
+    if (Test.adapter.exception.callCount) {
       console.warn('Exceptions encountered while stubbing:', flatten(Test.adapter.exception.args));
     }
 
