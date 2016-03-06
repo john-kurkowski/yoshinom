@@ -36,7 +36,7 @@
     "ember-cli-qunit": "^1.2.1",
     "ember-cli-release": "0.2.8",
     "ember-cli-sass": "^5.0.1",
-    "ember-cli-sass-lint": "john-kurkowski/ember-cli-sass-lint#feature/ignore-files",
+    "ember-cli-sass-lint": "^1.0.1",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-disable-proxy-controllers": "^1.0.1",
