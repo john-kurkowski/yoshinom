@@ -43,7 +43,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-* `git push heroku master`
+* `git push origin master`
 
 ## Further Reading / Useful Links
 
