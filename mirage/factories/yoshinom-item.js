@@ -4,21 +4,20 @@ import partial from 'lodash/function/partial';
 import times from 'lodash/utility/times';
 
 /**
- * Single row of a Google Sheets sheet, with Yoshinom's idiosyncratic schema
- * for e.g. restaurants, cocktails. Ultimately displayed in the UI as a card.
+ * Single row of the database, with Yoshinom's idiosyncratic schema for e.g.
+ * restaurants, cocktails. Ultimately displayed in the UI as a card.
  *
  * @protected
  */
 export default Factory.extend({
 
-  gsx$name: {
-    $t() {
-      return faker.company.companyName();
-    }
-  },
+  id: faker.internet.password,
 
-  gsx$tags: {
-    $t() {
+  fields: {
+
+    Name: faker.company.companyName,
+
+    Tags() {
       return times(oneToFive(), partial(faker.random.arrayElement, [
           'dynamic',
           'heuristic',
@@ -31,65 +30,39 @@ export default Factory.extend({
           'viral',
           'zero defect'
         ]))
-        .uniq()
-        .join('\n');
-    }
-  },
+        .uniq();
+    },
 
-  gsx$geo1: {
-    $t: faker.address.country
-  },
-
-  gsx$geo2: {
-    $t: faker.address.city
-  },
-
-  gsx$images: {
-    $t(i) {
+    Images(i) {
       const pseudoRandomNightlife = function() {
         return `http://lorempixel.com/640/480/nightlife/${i % 11}`;
       };
       return times(oneToFive(), pseudoRandomNightlife).join('\n');
-    }
-  },
+    },
 
-  gsx$price: {
-    $t() {
+    Price() {
       return times(oneToFive(), constant('$')).join('');
-    }
-  },
+    },
 
-  gsx$food: {
-    $t: oneToFive
-  },
+    Food: oneToFive,
 
-  gsx$drink: {
-    $t: oneToFive
-  },
+    Drink: oneToFive,
 
-  gsx$service: {
-    $t: oneToFive
-  },
+    Service: oneToFive,
 
-  gsx$atmosphere: {
-    $t: oneToFive
-  },
+    Atmosphere: oneToFive,
 
-  gsx$uniqueness: {
-    $t: oneToFive
-  },
+    Uniqueness: oneToFive,
 
-  gsx$bathroom: {
-    $t: oneToFive
-  },
+    Bathroom: oneToFive,
 
-  gsx$review: {
-    $t() {
+    Review() {
       const n = (faker.random.number() % 2) + 1;
       return faker.lorem.paragraphs(n, '@@@')
         .replace(/\n/g, ' ')
         .replace(/@@@/g, '\n');
     }
+
   }
 
 });

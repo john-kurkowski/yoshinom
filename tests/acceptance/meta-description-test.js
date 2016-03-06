@@ -1,25 +1,17 @@
-import forEach from 'lodash/collection/forEach';
 import identity from 'lodash/utility/identity';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 import { test } from 'qunit';
 
-import { createSheets} from 'yoshinom/mirage/scenarios/default';
-
 moduleForAcceptance('Acceptance | <meta> Description', {
   beforeEach() {
-    const sheets = createSheets(server);
-
-    forEach(sheets, function(sheet) {
+    const sheetTitles = ['Food', 'Cocktails'];
+    sheetTitles.forEach(function(sheetTitle) {
       server.create('yoshinomItem', {
-        sheet_id: sheet.id, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
-        gsx$name: {
-          $t: 'Earl\'s'
-        },
-        gsx$images: {
-          $t: '/earls-gourmet-grub.jpg'
-        },
-        gsx$review: {
-          $t: 'Da BOMB! Check out <a href="earls.com">their website</a>.'
+        sheet_id: sheetTitle, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+        fields: {
+          Name: 'Earl\'s',
+          Images: '/earls-gourmet-grub.jpg',
+          Review: 'Da BOMB! Check out <a href="earls.com">their website</a>.'
         }
       });
     });
@@ -30,7 +22,8 @@ function metaDescriptions() {
   return $('meta[property=description][content], meta[property^=og][content], meta[name^=twitter][content]');
 }
 
-['food', 'cocktails'].forEach(function(route) {
+const routes = ['food', 'cocktails'];
+routes.forEach(function(route) {
   test(`${route} route adds description tags`, function(assert) {
     return visit(`/${route}`)
     .andThen(function() {
