@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import flatten from 'lodash/array/flatten';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 import sinon from 'sinon';
 import { test } from 'qunit';
@@ -17,10 +16,6 @@ moduleForAcceptance('Acceptance | error', {
   },
 
   afterEach() {
-    if (Test.adapter.exception.callCount) {
-      console.warn('Exceptions encountered while stubbing:', flatten(Test.adapter.exception.args));
-    }
-
     this.sandbox.restore();
   }
 });
