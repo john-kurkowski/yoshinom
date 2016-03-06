@@ -23,12 +23,12 @@
     "ember-ajax": "0.7.1",
     "ember-cli": "2.3.0",
     "ember-cli-app-version": "^1.0.0",
-    "ember-cli-autoprefixer": "^0.5.0",
+    "ember-cli-autoprefixer": "^0.6.0",
     "ember-cli-babel": "^5.1.5",
-    "ember-cli-content-security-policy": "0.4.0",
+    "ember-cli-content-security-policy": "^0.5.0",
+    "ember-cli-dependency-checker": "^1.2.0",
     "ember-cli-document-title": "0.3.0",
     "ember-cli-fastclick": "^1.0.3",
-    "ember-cli-dependency-checker": "^1.2.0",
     "ember-cli-htmlbars": "^1.0.1",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-ic-ajax": "0.2.4",
@@ -45,8 +45,8 @@
     "ember-load-initializers": "^0.5.0",
     "ember-lodash": "0.0.6",
     "ember-resolver": "^2.0.3",
-    "ember-sinon": "^0.3.0",
-    "ember-suave": "^1.0.0",
+    "ember-sinon": "^0.5.0",
+    "ember-suave": "^2.0.1",
     "loader.js": "^4.0.0"
   }
 }

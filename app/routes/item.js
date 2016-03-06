@@ -36,7 +36,7 @@ export default Route.extend({
 
   setupController(controller, model) {
     model.set('showDetails', true);
-    this._super.apply(this, arguments);
+    this._super(...arguments);
 
     const description = `Yoshinom's review of ${model.get('name')}. ${s.stripTags(model.get('review'))}`;
     this.send('updateMetaDescription', description, model.get('images'));
