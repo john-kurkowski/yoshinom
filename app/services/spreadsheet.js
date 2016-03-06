@@ -2,9 +2,8 @@ import Ember from 'ember';
 import identity from 'lodash/utility/identity';
 import partial from 'lodash/function/partial';
 import reduce from 'lodash/collection/reduce';
-import request from 'ic-ajax';
 
-const { computed, getOwner, RSVP, Service } = Ember;
+const { computed, getOwner, inject, RSVP, Service } = Ember;
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
@@ -17,6 +16,8 @@ export const YOSHINOM_SHEETS_ID = '0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE'
  * @public
  */
 export default Service.extend({
+
+  ajax: inject.service(),
 
   _sheets: Ember.computed(function() {
     return [];
@@ -33,8 +34,8 @@ export default Service.extend({
     }
 
     const spreadsheetPromise = this._allSheets()
-    .then(function(sheets) {
-      return rowsForSheet(sheets.findBy('title.$t', sheetTitle));
+    .then((sheets) => {
+      return this._rowsForSheet(sheets.findBy('title.$t', sheetTitle));
     })
     .then((rows) => {
       const model = getOwner(this).lookup(`model:${sheetTitle.dasherize()}-item`);
@@ -56,7 +57,7 @@ export default Service.extend({
       return RSVP.resolve(sheets);
     } else {
       const url = `https://spreadsheets.google.com/feeds/worksheets/${YOSHINOM_SHEETS_ID}/public/values`;
-      return request(url, { data: { alt: 'json' } })
+      return this.get('ajax').request(url, { data: { alt: 'json' } })
       .then((sheetsResponse) => {
         sheets = sheetsResponse.feed.entry;
         this.set('_sheets', sheets);
@@ -65,23 +66,23 @@ export default Service.extend({
     }
   },
 
+  _rowsForSheet(sheetEntry) {
+    const url = sheetEntry.link.find(function(link) {
+      return /#listfeed$/.test(link.rel);
+    }).href;
+
+    return this.get('ajax').request(url, { data: { alt: 'json' } })
+    .then(function(sheet) {
+      const rows = sheet.feed.entry;
+      return rows;
+    });
+  },
+
   _isSecure: computed(function() {
     return window.location.protocol === 'https:';
   })
 
 });
-
-function rowsForSheet(sheetEntry) {
-  const url = sheetEntry.link.find(function(link) {
-    return /#listfeed$/.test(link.rel);
-  }).href;
-
-  return request(url, { data: { alt: 'json' } })
-  .then(function(sheet) {
-    const rows = sheet.feed.entry;
-    return rows;
-  });
-}
 
 function parseRow(entry) {
   const gsxRegex = /^gsx\$(.+)/;
