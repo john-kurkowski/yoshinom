@@ -49,15 +49,23 @@ export default Service.extend({
     return spreadsheetPromise;
   },
 
-  _rowsForSheet(sheetTitle) {
+  _rowsForSheet(sheetTitle, data = {}) {
     const url = `https://api.airtable.com/v0/appwg2eHszZjuZh69/${sheetTitle}`;
     return this.get('ajax').request(url, {
       headers: {
         'Authorization': `Bearer ${READ_ONLY_API_KEY}`,
         'X-API-VERSION': '0.1.0'
-      }
+      },
+      data
     })
-    .then((sheet) => sheet.records);
+    .then(({ offset, records }) => {
+      if (offset) {
+        return this._rowsForSheet(sheetTitle, { offset })
+        .then((nextRecords) => records.concat(nextRecords));
+      } else {
+        return records;
+      }
+    });
   },
 
   _isSecure: computed(function() {
