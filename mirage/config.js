@@ -3,7 +3,7 @@ import Mirage from 'ember-cli-mirage';
 const SOME_OFFSET = 'abcdef123456';
 
 export default function() {
-  this.get('https://api.airtable.com/v0/appwg2eHszZjuZh69/:sheetId', function(db, request) {
+  this.get('https://api.airtable.com/v0/appwg2eHszZjuZh69/:sheetId', function(schema, request) {
     const {
       params: {
         sheetId
@@ -13,7 +13,7 @@ export default function() {
       }
     } = request;
 
-    const yoshinomItems = db.yoshinomItems
+    const yoshinomItems = schema.db.yoshinomItems
       .where({
         sheet_id: sheetId // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
       });
