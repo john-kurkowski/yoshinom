@@ -15,7 +15,9 @@ export default Factory.extend({
 
   fields: {
 
-    Name: faker.company.companyName,
+    Name() {
+      return faker.company.companyName();
+    },
 
     Tags() {
       return times(oneToFive(), partial(faker.random.arrayElement, [
