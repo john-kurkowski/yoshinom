@@ -1,17 +1,17 @@
 import Ember from 'ember';
 import identity from 'lodash/utility/identity';
+import mapKeys from 'lodash/object/mapKeys';
+import mapValues from 'lodash/object/mapValues';
 import partial from 'lodash/function/partial';
-import reduce from 'lodash/collection/reduce';
 
-const { computed, getOwner, inject, RSVP, Service } = Ember;
+const { computed, getOwner, inject, Service } = Ember;
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
-export const YOSHINOM_SHEETS_ID = '0AqhwsCsZYnVDdHBnMTBuUjFWRVNnZFo4V2xtRW5HLUE';
+const READ_ONLY_API_KEY = 'keyqXVAT2U5xdynJb';
 
 /**
- * Adapt Google Sheets responses, with Yoshinom's idiosyncratic row schema, to
- * Yoshinom model objects.
+ * Adapt database responses to Yoshinom model objects.
  *
  * @public
  */
@@ -33,16 +33,14 @@ export default Service.extend({
       return cachedSheet;
     }
 
-    const spreadsheetPromise = this._allSheets()
-    .then((sheets) => {
-      return this._rowsForSheet(sheets.findBy('title.$t', sheetTitle));
-    })
+    const spreadsheetPromise = this._rowsForSheet(sheetTitle)
     .then((rows) => {
       const model = getOwner(this).lookup(`model:${sheetTitle.dasherize()}-item`);
       const itemClass = (model && model.constructor) || YoshinomItem;
 
       return rows
-      .map(parseRow)
+      .map(toEmberFriendlyObject)
+      .map(partial(mapValues, partial.placeholder, parseCell))
       .map(partial(parseYoshinomItemPromise, itemClass, this.get('_isSecure')));
     });
 
@@ -51,30 +49,22 @@ export default Service.extend({
     return spreadsheetPromise;
   },
 
-  _allSheets() {
-    let sheets = this.get('_sheets');
-    if (sheets.length) {
-      return RSVP.resolve(sheets);
-    } else {
-      const url = `https://spreadsheets.google.com/feeds/worksheets/${YOSHINOM_SHEETS_ID}/public/values`;
-      return this.get('ajax').request(url, { data: { alt: 'json' } })
-      .then((sheetsResponse) => {
-        sheets = sheetsResponse.feed.entry;
-        this.set('_sheets', sheets);
-        return sheets;
-      });
-    }
-  },
-
-  _rowsForSheet(sheetEntry) {
-    const url = sheetEntry.link.find(function(link) {
-      return /#listfeed$/.test(link.rel);
-    }).href;
-
-    return this.get('ajax').request(url, { data: { alt: 'json' } })
-    .then(function(sheet) {
-      const rows = sheet.feed.entry;
-      return rows;
+  _rowsForSheet(sheetTitle, data = {}) {
+    const url = `https://api.airtable.com/v0/appwg2eHszZjuZh69/${sheetTitle}`;
+    return this.get('ajax').request(url, {
+      headers: {
+        'Authorization': `Bearer ${READ_ONLY_API_KEY}`,
+        'X-API-VERSION': '0.1.0'
+      },
+      data
+    })
+    .then(({ offset, records }) => {
+      if (offset) {
+        return this._rowsForSheet(sheetTitle, { offset })
+        .then((nextRecords) => records.concat(nextRecords));
+      } else {
+        return records;
+      }
     });
   },
 
@@ -84,29 +74,26 @@ export default Service.extend({
 
 });
 
-function parseRow(entry) {
-  const gsxRegex = /^gsx\$(.+)/;
-  return reduce(entry, function(acc, cell, key) {
-    const [, normalizedKey] = gsxRegex.exec(key) || [];
-    if (normalizedKey) {
-      acc[normalizedKey] = parseCell(normalizedKey, cell);
-    }
-    return acc;
-  }, {});
+/*
+  Flatten the object returned by the database to be more like a POJO that Ember
+  expects.
+*/
+function toEmberFriendlyObject(record) {
+  const newObject = mapKeys(record.fields, function withEmberFriendlyKeys(v, k) {
+    return Ember.String.camelize(k);
+  });
+  newObject.id = record.id;
+  return newObject;
 }
 
-function parseCell(normalizedKey, cell) {
-  const text = cell.$t;
+/*
+  Cell-specific transformations, common to all Yoshinom item types.
+*/
+function parseCell(text, key) {
   return (function() {
-    switch (normalizedKey) {
+    switch (key) {
       case 'images' :  return text
                               .split(/\s+/)
-                              .map(function(t) {
-                                return t.trim();
-                              })
-                              .filter(identity);
-      case 'tags'   :  return text
-                              .split(/\n/)
                               .map(function(t) {
                                 return t.trim();
                               })
@@ -116,6 +103,9 @@ function parseCell(normalizedKey, cell) {
   })();
 }
 
+/*
+  Convert the item into the specified Yoshinom class.
+*/
 function parseYoshinomItemPromise(itemClass, isSecure, item) {
   if (isSecure) {
     item.images = item.images.map(function(image) {

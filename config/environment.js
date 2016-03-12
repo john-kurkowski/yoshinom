@@ -8,7 +8,7 @@ module.exports = function(environment) {
     locationType: 'auto',
 
     contentSecurityPolicy: {
-      'connect-src': "'self' https://spreadsheets.google.com",
+      'connect-src': "'self' https://api.airtable.com",
       'img-src': "*",
       'font-src': "'self' http://fonts.gstatic.com",
       'script-src': "'self' http://www.google-analytics.com",
