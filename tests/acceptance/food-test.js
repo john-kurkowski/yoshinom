@@ -7,42 +7,52 @@ import { defaultTestScenario } from 'yoshinom/mirage/scenarios/default';
 moduleForAcceptance('Acceptance | food', {
   beforeEach() {
     defaultTestScenario(server);
-
-    const matchingYoshinomItems = server.db.yoshinomItems
-      .where({ sheet_id: 'Food' }); // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
-
-    visit('/food');
-
-    waitUntil(function isSectionLoaded() {
-      return find('.card.loaded').length === matchingYoshinomItems.length;
-    });
   }
 });
 
 test('visiting /food', function(assert) {
-  assert.equal(currentURL(), '/food');
+  visit('/food');
+
+  andThen(() => {
+    assert.equal(currentURL(), '/food');
+  });
 });
 
 test('failed images', function(assert) {
-  const images = find('.card .preview img')
-    .toArray()
-    .map(this.application.$);
+  visit('/food');
 
-  assert.equal(images.length, 10, 'Total image count');
+  andThen(waitUntilSectionLoaded);
 
-  const missingImageOverrides = images
-    .map((el) => el.is('.is-error'));
+  andThen(() => {
+    const images = find('.card .preview img')
+      .toArray()
+      .map(this.application.$);
 
-  assert.deepEqual(missingImageOverrides, [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    true,
-    false,
-    false,
-    false
-  ], 'Not found images');
+    assert.equal(images.length, 10, 'Total image count');
+
+    const missingImageOverrides = images
+      .map((el) => el.is('.is-error'));
+
+    assert.deepEqual(missingImageOverrides, [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false
+    ], 'Not found images');
+  });
 });
+
+function waitUntilSectionLoaded() {
+  const matchingYoshinomItems = server.db.yoshinomItems
+    .where({ sheet_id: 'Food' }); // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+
+  waitUntil(function isSectionLoaded() {
+    return find('.card.loaded').length === matchingYoshinomItems.length;
+  });
+}
