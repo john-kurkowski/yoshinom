@@ -1,5 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'yoshinom/tests/helpers/module-for-acceptance';
+import waitUntil from 'yoshinom/tests/helpers/wait-until';
 
 import { defaultTestScenario } from 'yoshinom/mirage/scenarios/default';
 
@@ -7,18 +8,19 @@ moduleForAcceptance('Acceptance | food', {
   beforeEach() {
     defaultTestScenario(server);
 
+    const matchingYoshinomItems = server.db.yoshinomItems
+      .where({ sheet_id: 'Food' }); // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+
     visit('/food');
+
+    waitUntil(function isSectionLoaded() {
+      return find('.card.loaded').length === matchingYoshinomItems.length;
+    });
   }
 });
 
 test('visiting /food', function(assert) {
   assert.equal(currentURL(), '/food');
-
-  const cards = find('.card');
-  assert.equal(cards.length, 10, 'Total cards');
-
-  const loadedCards = cards.filter('.loaded');
-  assert.equal(loadedCards.length, 10, 'All cards load');
 });
 
 test('failed images', function(assert) {
