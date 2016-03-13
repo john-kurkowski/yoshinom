@@ -1,5 +1,5 @@
 {{#link-to itemRoute item classNameBindings=":preview" action="toggleItem"}}
-  <img src="{{item.image}}" alt="{{item.imageAlt}}" class="thumbnail"/>
+  {{img-wrap src=item.image alt=item.imageAlt class="thumbnail"}}
   {{yoshinom-loader}}
 
   <h3 class="title">

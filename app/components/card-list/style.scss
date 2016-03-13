@@ -78,6 +78,11 @@ $ratings-width: 14%;
     top: 0;
     visibility: hidden;
     width: 100%;
+
+    &.is-error {
+      $preview-img-placeholdit-color: str-slice(inspect($dark-color), 2);
+      content: url('https://placehold.it/612x612/#{$preview-img-placeholdit-color}?text=Coming %F0%9F%93%B7 Soon');
+    }
   }
 
   .title {
