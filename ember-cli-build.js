@@ -29,5 +29,9 @@ module.exports = function(defaults) {
   app.import('bower_components/underscore.string/dist/underscore.string.js');
   app.import('vendor/analytics.js');
 
+  if (EmberApp.env() === 'test') {
+    app.import('vendor/tests.css', { type: 'test' });
+  }
+
   return app.toTree();
 };

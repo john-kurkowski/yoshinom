@@ -1,6 +1,7 @@
 import { faker } from 'ember-cli-mirage';
+import flatten from 'lodash/array/flatten';
 
-export default function(server) {
+export default function defaultScenario(server) {
   faker.seed(1);
 
   // Food
@@ -9,10 +10,15 @@ export default function(server) {
   const recordsWithHardcodedDefaultTag = server.createList('yoshinomItem', 4, {
     sheet_id: 'Food' // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
   });
-  recordsWithHardcodedDefaultTag.forEach(function putRecord(record) {
+
+  recordsWithHardcodedDefaultTag.forEach(function(record) {
     const hardcodedDefaultTag = 'West LA';
     record.fields.Tags.push(hardcodedDefaultTag);
-    server.db.yoshinomItems.update(record.id, record);
+  });
+
+  const recordsWithMissingImage = recordsWithHardcodedDefaultTag.slice(2, 3);
+  recordsWithMissingImage.forEach(function(record) {
+    record.fields.Images = '/non-existent.jpg';
   });
 
   server.createList('yoshinomItem', 6, {
@@ -23,5 +29,32 @@ export default function(server) {
 
   server.createList('yoshinomItem', 10, {
     sheet_id: 'Cocktails' // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+  });
+
+  const recordsToUpdate = flatten([
+    recordsWithHardcodedDefaultTag,
+    recordsWithMissingImage
+  ]);
+  recordsToUpdate.forEach(function putRecord(record) {
+    server.db.yoshinomItems.update(record.id, record);
+  });
+}
+
+/*
+  Test-specific optimizations for the default scenario.
+*/
+export function defaultTestScenario(server) {
+  defaultScenario(server);
+
+  const recordsToUpdate = server.db.yoshinomItems;
+
+  recordsToUpdate.forEach(function useLocallyHostedImage(record) {
+    if (record.fields.Images.indexOf('http') === 0) {
+      record.fields.Images = '/logo.png';
+    }
+  });
+
+  recordsToUpdate.forEach(function putRecord(record) {
+    server.db.yoshinomItems.update(record.id, record);
   });
 }

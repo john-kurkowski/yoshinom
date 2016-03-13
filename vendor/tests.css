@@ -1,0 +1,7 @@
+/* Avoid remote image requests during the test suite. */
+header::before {
+  background: none !important;
+}
+img.is-error {
+  content: none !important;
+}

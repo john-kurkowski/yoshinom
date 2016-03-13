@@ -6,7 +6,10 @@ import {
 
 moduleForComponent('yoshinom-card', 'YoshinomCardComponent', {
   // specify the other units that are required for this test
-  needs: ['component:yoshinom-loader']
+  needs: [
+    'component:img-wrap',
+    'component:yoshinom-loader'
+  ]
 });
 
 test('it renders', function(assert) {

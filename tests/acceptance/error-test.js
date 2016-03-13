@@ -5,7 +5,7 @@ import { test } from 'qunit';
 
 const { Test } = Ember;
 
-import defaultScenario from 'yoshinom/mirage/scenarios/default';
+import { defaultTestScenario } from 'yoshinom/mirage/scenarios/default';
 
 moduleForAcceptance('Acceptance | error', {
   beforeEach() {
@@ -24,7 +24,7 @@ test('section page error', function(assert) {
   assert.expect(3);
 
   // Don't create any data, to force fatal error.
-  //   defaultScenario(server);
+  //   defaultTestScenario(server);
 
   visit('/');
 
@@ -43,7 +43,7 @@ test('section page error', function(assert) {
   test(`${section} detail page 404`, function(assert) {
     assert.expect(3);
 
-    defaultScenario(server);
+    defaultTestScenario(server);
 
     const unlikelyDetailRoute = `/${section}/unlikely-restaurant-name`;
 
