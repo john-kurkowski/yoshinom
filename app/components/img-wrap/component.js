@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { $, on, run } = Ember;
+const { $, computed, K, on, run } = Ember;
 
 export default Ember.Component.extend({
 
@@ -13,6 +13,13 @@ export default Ember.Component.extend({
     @public
   */
   src: null,
+
+  /*
+    @public
+  */
+  onLoad: computed(function() {
+    return K;
+  }),
 
   tagName: 'img',
   attributeBindings: [
@@ -32,6 +39,9 @@ export default Ember.Component.extend({
     this.$()
       .one('load', run.bind(this, this.setProperties, { isLoaded: true }))
       .one('error', run.bind(this, this.setProperties, { isLoaded: true, isError: true }))
+      .one('load error', run.bind(this, function() {
+        this.get('onLoad')(this);
+      }))
       .each(function handleCachedImages() {
         if (this.complete) {
           $(this).load();

@@ -2,7 +2,7 @@ import Ember from 'ember';
 import identity from 'lodash/utility/identity';
 import values from 'lodash/object/values';
 
-const { assert, Component, computed, observer, on, run, $ } = Ember;
+const { assert, Component, computed, observer, on, run } = Ember;
 
 /**
  * Card-like display of a YoshinomItem.
@@ -41,24 +41,6 @@ export default Component.extend({
     return hasSomeRating;
   }),
 
-  setupImageEventsOnDidInsertElement: on('didInsertElement', function() {
-    run.scheduleOnce('afterRender', this, this.setupImageEvents);
-  }),
-
-  setupImageEvents() {
-    this.$('img')
-    .one('load error', run.bind(this, this.set, 'item.isImageLoaded', true))
-    .each(function handleCachedImages() {
-      if (this.complete) {
-        $(this).load();
-      }
-    });
-  },
-
-  teardownImageEvents: on('willDestroyElement', function() {
-    this.$('img').off('load error');
-  }),
-
   visuallyToggleDetailsOnDidInsertElement: on('didInsertElement', function() {
     run.scheduleOnce('afterRender', this, this.visuallyToggleDetails);
   }),
@@ -82,6 +64,10 @@ export default Component.extend({
   }),
 
   actions: {
+
+    onImageLoad() {
+      this.set('item.isImageLoaded', true);
+    },
 
     toggleItem() {
       const item = this.get('item');
