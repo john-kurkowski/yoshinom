@@ -20,8 +20,16 @@ $ratings-width: 14%;
   transition: background-color .4s, box-shadow .4s;
   width: $card-width;
 
-  &:not(.selected) {
-    height: 48em;
+  @media screen and (max-width: $goldilocks-little) {
+    &:not(.selected) {
+      height: 36em;
+    }
+  }
+
+  @media screen and (min-width: $goldilocks-little) {
+    &:not(.selected) {
+      height: 48em;
+    }
   }
 
   &.loaded {
