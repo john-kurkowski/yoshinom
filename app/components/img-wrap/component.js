@@ -35,7 +35,11 @@ export default Ember.Component.extend({
 
   isLoaded: false,
 
-  setupImageEvents: on('didInsertElement', function() {
+  setupImageEventsOnDidInsertElement: on('didInsertElement', function() {
+    run.scheduleOnce('afterRender', this, this.setupImageEvents);
+  }),
+
+  setupImageEvents() {
     this.$()
       .one('load', run.bind(this, this.setProperties, { isLoaded: true }))
       .one('error', run.bind(this, this.setProperties, { isLoaded: true, isError: true }))
@@ -47,7 +51,7 @@ export default Ember.Component.extend({
           $(this).load();
         }
       });
-  }),
+  },
 
   teardownImageEvents: on('willDestroyElement', function() {
     this.$().off('load error');
