@@ -1,4 +1,5 @@
 import { test } from 'qunit';
+
 import moduleForAcceptance from 'yoshinom/tests/helpers/module-for-acceptance';
 import waitUntil from 'yoshinom/tests/helpers/wait-until';
 
@@ -7,6 +8,8 @@ import { defaultTestScenario } from 'yoshinom/mirage/scenarios/default';
 moduleForAcceptance('Acceptance | food', {
   beforeEach() {
     defaultTestScenario(server);
+
+    this.scrollTop = () => this.application.$('#ember-testing-container').scrollTop();
   }
 });
 
@@ -15,6 +18,12 @@ test('visiting /food', function(assert) {
 
   andThen(() => {
     assert.equal(currentURL(), '/food');
+  });
+
+  andThen(waitUntilSectionLoaded);
+
+  andThen(() => {
+    assert.ok(this.scrollTop() < 100, 'App loads close to top');
   });
 });
 
@@ -45,6 +54,24 @@ test('failed images', function(assert) {
       false,
       false
     ], 'Not found images');
+  });
+});
+
+test('direct link', function(assert) {
+  const belowTheFoldItemName = 'Dibbert Group';
+  visit(`/food/${belowTheFoldItemName}`);
+
+  andThen(waitUntilSectionLoaded);
+
+  andThen(() => {
+    const linkedCard = find(`.card .name:contains(${belowTheFoldItemName})`).closest('.card');
+    assert.equal(linkedCard.length, 1, 'Found linked card on page');
+    assert.ok(linkedCard.is('.selected'), 'Linked card is selected');
+
+    const cardIndex = find('.card').index(linkedCard);
+    assert.ok(cardIndex > 2, `Card is below the fold (card #${cardIndex})`);
+
+    assert.ok(this.scrollTop() > 100, 'App auto scrolled to card');
   });
 });
 

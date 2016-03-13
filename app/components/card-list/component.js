@@ -2,6 +2,15 @@ import Ember from 'ember';
 
 const { Component, observer, on, run, $ } = Ember;
 
+import config from 'yoshinom/config/environment';
+
+const SCROLL_DURATION = config.environment === 'test' ? 0 : 1200;
+
+/*
+  Scroll the app in either production or test.
+*/
+const SCROLL_TARGET = '#ember-testing-container, .ember-application';
+
 export default Component.extend({
 
   model: [],
@@ -31,10 +40,10 @@ export default Component.extend({
   _scrollTo($element) {
     const buffer = 32;
     const newTop = $element.offset().top - buffer;
-    $('html, body').animate({
+    $(SCROLL_TARGET).animate({
       scrollTop: newTop
     }, {
-      duration: 1200,
+      duration: SCROLL_DURATION,
       easing: 'easeInOutQuint'
     });
 
