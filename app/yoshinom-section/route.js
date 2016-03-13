@@ -54,19 +54,16 @@ export default Route.extend({
     const spreadsheetPromise = this.get('spreadsheet').find(sheetTitle);
 
     return RSVP.hash({
-      indexRoute: this.routeName,
-      itemRoute: `${this.routeName}.item`,
-      items: this._filterItems(spreadsheetPromise, params),
-      sorts: this._selectedSorts(params),
-      tags: this._tags(spreadsheetPromise)
-    });
+        indexRoute: this.routeName,
+        itemRoute: `${this.routeName}.item`,
+        items: this._filterItems(spreadsheetPromise, params),
+        sorts: this._selectedSorts(params),
+        tags: this._tags(spreadsheetPromise)
+      })
+      .then(YoshinomSectionModel.create.bind(YoshinomSectionModel));
   },
 
-  setupController(controller, model) {
-    controller.setProperties({
-      model: YoshinomSectionModel.create(model)
-    });
-
+  afterModel() {
     this._updateMetaDescription();
   },
 
