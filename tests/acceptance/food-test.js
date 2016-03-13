@@ -13,6 +13,12 @@ moduleForAcceptance('Acceptance | food', {
 
 test('visiting /food', function(assert) {
   assert.equal(currentURL(), '/food');
+
+  const cards = find('.card');
+  assert.equal(cards.length, 10, 'Total cards');
+
+  const loadedCards = cards.filter('.loaded');
+  assert.equal(loadedCards.length, 10, 'All cards load');
 });
 
 test('failed images', function(assert) {
