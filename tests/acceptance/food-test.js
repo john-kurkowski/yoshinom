@@ -1,11 +1,11 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'yoshinom/tests/helpers/module-for-acceptance';
 
-import defaultScenario from 'yoshinom/mirage/scenarios/default';
+import { defaultTestScenario } from 'yoshinom/mirage/scenarios/default';
 
 moduleForAcceptance('Acceptance | food', {
   beforeEach() {
-    defaultScenario(server);
+    defaultTestScenario(server);
 
     visit('/food');
   }

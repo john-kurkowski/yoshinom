@@ -1,7 +1,7 @@
 import { faker } from 'ember-cli-mirage';
 import flatten from 'lodash/array/flatten';
 
-export default function(server) {
+export default function defaultScenario(server) {
   faker.seed(1);
 
   // Food
@@ -35,6 +35,25 @@ export default function(server) {
     recordsWithHardcodedDefaultTag,
     recordsWithMissingImage
   ]);
+  recordsToUpdate.forEach(function putRecord(record) {
+    server.db.yoshinomItems.update(record.id, record);
+  });
+}
+
+/*
+  Test-specific optimizations for the default scenario.
+*/
+export function defaultTestScenario(server) {
+  defaultScenario(server);
+
+  const recordsToUpdate = server.db.yoshinomItems;
+
+  recordsToUpdate.forEach(function useLocallyHostedImage(record) {
+    if (record.fields.Images.indexOf('http') === 0) {
+      record.fields.Images = '/logo.png';
+    }
+  });
+
   recordsToUpdate.forEach(function putRecord(record) {
     server.db.yoshinomItems.update(record.id, record);
   });
