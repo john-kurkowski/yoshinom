@@ -15,11 +15,10 @@ before_script:
   - sleep 3 # give xvfb some time to start
 
 before_install:
-  - "npm config set spin false"
-  - "npm install -g npm@^2"
+  - npm config set spin false
+  - npm install -g bower
 
 install:
-  - npm install -g bower
   - npm install
   - bower install
 
