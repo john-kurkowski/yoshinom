@@ -3,7 +3,7 @@
 A linkable photostream of the best of
 [@Yoshinom](http://instagram.com/yoshinom), with ratings of the restaurants and
 recipes. May cause salivation. Please do not lick your screen.
-[http://www.yoshinom.com](http://www.yoshinom.com)
+[https://yoshinom.herokuapp.com](https://yoshinom.herokuapp.com)
 
 ## Prerequisites
 
