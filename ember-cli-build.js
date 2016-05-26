@@ -27,7 +27,6 @@ module.exports = function(defaults) {
 
   app.import('bower_components/jquery.easing/js/jquery.easing.js');
   app.import('bower_components/underscore.string/dist/underscore.string.js');
-  app.import('vendor/analytics.js');
 
   if (EmberApp.env() === 'test') {
     app.import('vendor/tests.css', { type: 'test' });

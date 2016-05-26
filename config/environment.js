@@ -11,7 +11,6 @@ module.exports = function(environment) {
       'connect-src': "'self' https://api.airtable.com",
       'img-src': "*",
       'font-src': "'self' http://fonts.gstatic.com",
-      'script-src': "'self' http://www.google-analytics.com",
       'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com"
     },
 
