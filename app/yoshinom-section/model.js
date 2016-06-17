@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import EmberObject from 'ember-object';
 
 /**
  * Properties common to all Yoshinom sections.
  *
  * @public
  */
-export default Ember.Object.extend({
+export default EmberObject.extend({
 
   directLinkToName: '',
   indexRoute: '',

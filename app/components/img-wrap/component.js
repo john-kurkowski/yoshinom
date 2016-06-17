@@ -1,8 +1,9 @@
+import Component from 'ember-component';
 import Ember from 'ember';
 
 const { $, computed, K, on, run } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
 
   /*
     @public

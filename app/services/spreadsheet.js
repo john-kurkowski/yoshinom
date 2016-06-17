@@ -1,3 +1,4 @@
+import { camelize } from 'ember-string';
 import Ember from 'ember';
 import identity from 'lodash/utility/identity';
 import mapKeys from 'lodash/object/mapKeys';
@@ -19,11 +20,11 @@ export default Service.extend({
 
   ajax: inject.service(),
 
-  _sheets: Ember.computed(function() {
+  _sheets: computed(function() {
     return [];
   }),
 
-  _sheetsByTitle: Ember.computed(function() {
+  _sheetsByTitle: computed(function() {
     return {};
   }),
 
@@ -80,7 +81,7 @@ export default Service.extend({
 */
 function toEmberFriendlyObject(record) {
   const newObject = mapKeys(record.fields, function withEmberFriendlyKeys(v, k) {
-    return Ember.String.camelize(k);
+    return camelize(k);
   });
   newObject.id = record.id;
   return newObject;

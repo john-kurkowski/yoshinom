@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import EmberObject from 'ember-object';
 
 const { computed } = Ember;
 
@@ -10,7 +11,7 @@ const { computed } = Ember;
  *
  * @public
  */
-export default Ember.Object.extend({
+export default EmberObject.extend({
 
   name: '',
   tags: [],

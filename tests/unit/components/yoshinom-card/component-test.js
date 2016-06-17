@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import EmberObject from 'ember-object';
 import {
   moduleForComponent,
   test
@@ -17,7 +17,7 @@ test('it renders', function(assert) {
 
   // creates the component instance
   const component = this.subject({
-    item: Ember.Object.create({
+    item: EmberObject.create({
       ratings: {}
     })
   });

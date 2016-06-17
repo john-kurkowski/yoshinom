@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import _ from 'lodash/lodash';
 
-const { copy, inject, Route, RSVP } = Ember;
+const { copy, Error: EmberError, inject, Route, RSVP } = Ember;
 
 import YoshinomSectionModel from './model';
 
@@ -32,7 +32,7 @@ export default Route.extend({
   templateName: 'yoshinom-section',
 
   descriptionForQuery(/*q*/) {
-    throw new Ember.Error('Routes extending SectionRoute must specify descriptionForQuery(q: {String}) -> {String}.');
+    throw new EmberError('Routes extending SectionRoute must specify descriptionForQuery(q: {String}) -> {String}.');
   },
 
   queryParams: {
@@ -48,7 +48,7 @@ export default Route.extend({
       errors.push('Routes extending SectionRoute must specify a titleToken.');
     }
     if (errors.length) {
-      throw new Ember.Error(errors.join('\n'));
+      throw new EmberError(errors.join('\n'));
     }
 
     const spreadsheetPromise = this.get('spreadsheet').find(sheetTitle);
