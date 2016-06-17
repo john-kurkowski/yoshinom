@@ -1,6 +1,5 @@
-import Ember from 'ember';
-
-const { computed, Mixin } = Ember;
+import computed from 'ember-computed';
+import Mixin from 'ember-metal/mixin';
 
 import YoshinomSectionModel from './model';
 

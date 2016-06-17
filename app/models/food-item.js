@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import computed from 'ember-computed';
 import omit from 'lodash/object/omit';
 import pick from 'lodash/object/pick';
-
-const { computed } = Ember;
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 

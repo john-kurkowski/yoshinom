@@ -1,8 +1,11 @@
-import Ember from 'ember';
+import { assert } from 'ember-metal/utils';
+import Component from 'ember-component';
+import computed from 'ember-computed';
 import identity from 'lodash/utility/identity';
+import observer from 'ember-metal/observer';
+import on from 'ember-evented/on';
+import run from 'ember-runloop';
 import values from 'lodash/object/values';
-
-const { assert, Component, computed, observer, on, run } = Ember;
 
 /**
  * Card-like display of a YoshinomItem.

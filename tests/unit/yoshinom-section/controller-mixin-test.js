@@ -1,7 +1,5 @@
-import Ember from 'ember';
+import Controller from 'ember-controller';
 import { test, module } from 'qunit';
-
-const { Controller } = Ember;
 
 import YoshinomSectionControllerMixin from 'yoshinom/yoshinom-section/controller-mixin';
 

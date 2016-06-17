@@ -1,7 +1,11 @@
+import { copy } from 'ember-metal/utils';
 import Ember from 'ember';
+import Route from 'ember-route';
+import RSVP from 'rsvp';
+import service from 'ember-service/inject';
 import _ from 'lodash/lodash';
 
-const { copy, Error: EmberError, inject, Route, RSVP } = Ember;
+const { Error: EmberError } = Ember;
 
 import YoshinomSectionModel from './model';
 
@@ -24,7 +28,7 @@ import YoshinomSectionModel from './model';
  */
 export default Route.extend({
 
-  spreadsheet: inject.service(),
+  spreadsheet: service(),
 
   titleToken: '',
   sorts: [],

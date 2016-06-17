@@ -1,9 +1,7 @@
-import Ember from 'ember';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 import sinon from 'sinon';
+import Test from 'ember-test';
 import { test } from 'qunit';
-
-const { Test } = Ember;
 
 import { defaultTestScenario } from 'yoshinom/mirage/scenarios/default';
 

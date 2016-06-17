@@ -1,11 +1,14 @@
 import { camelize } from 'ember-string';
+import computed from 'ember-computed';
 import Ember from 'ember';
 import identity from 'lodash/utility/identity';
 import mapKeys from 'lodash/object/mapKeys';
 import mapValues from 'lodash/object/mapValues';
 import partial from 'lodash/function/partial';
+import Service from 'ember-service';
+import service from 'ember-service/inject';
 
-const { computed, getOwner, inject, Service } = Ember;
+const { getOwner } = Ember;
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 
@@ -18,7 +21,7 @@ const READ_ONLY_API_KEY = 'keyqXVAT2U5xdynJb';
  */
 export default Service.extend({
 
-  ajax: inject.service(),
+  ajax: service(),
 
   _sheets: computed(function() {
     return [];

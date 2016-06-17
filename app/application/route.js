@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { Route, run, $ } = Ember;
+import Route from 'ember-route';
+import run from 'ember-runloop';
+import $ from 'jquery';
 
 function updateMetaDescriptions(description, imageUrls) {
   const titleMeta = $('<meta property="og:title">')

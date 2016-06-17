@@ -1,7 +1,11 @@
 import Component from 'ember-component';
+import computed from 'ember-computed';
 import Ember from 'ember';
+import on from 'ember-evented/on';
+import run from 'ember-runloop';
+import $ from 'jquery';
 
-const { $, computed, K, on, run } = Ember;
+const { K } = Ember;
 
 export default Component.extend({
 

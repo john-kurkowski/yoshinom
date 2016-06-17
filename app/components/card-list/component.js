@@ -1,6 +1,8 @@
-import Ember from 'ember';
-
-const { Component, observer, on, run, $ } = Ember;
+import Component from 'ember-component';
+import observer from 'ember-metal/observer';
+import on from 'ember-evented/on';
+import run from 'ember-runloop';
+import $ from 'jquery';
 
 import config from 'yoshinom/config/environment';
 

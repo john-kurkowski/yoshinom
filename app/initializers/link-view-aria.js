@@ -1,6 +1,7 @@
+import computed from 'ember-computed';
 import Ember from 'ember';
 
-const { computed, LinkComponent } = Ember;
+const { LinkComponent } = Ember;
 
 /**
  * Reopen LinkComponent instances to improve current-state accessibility via the

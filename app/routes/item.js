@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { computed, on, Route } = Ember;
+import computed from 'ember-computed';
+import on from 'ember-evented/on';
+import Route from 'ember-route';
 
 /**
  * Abstract base route for a single item on the site, such as a particular

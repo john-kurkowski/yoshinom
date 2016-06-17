@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const { computed } = Ember;
+import computed from 'ember-computed';
 
 import YoshinomItem from 'yoshinom/models/yoshinom-item';
 

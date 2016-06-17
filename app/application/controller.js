@@ -1,6 +1,5 @@
-import Ember from 'ember';
-
-const { computed, Controller } = Ember;
+import computed from 'ember-computed';
+import Controller from 'ember-controller';
 
 export default Controller.extend({
 

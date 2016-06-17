@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const { Helper } = Ember;
+import Helper from 'ember-helper';
 
 export function getOrElse(value, alt) {
   return value || alt;
