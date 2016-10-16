@@ -16,11 +16,11 @@ before_script:
 
 before_install:
   - npm config set spin false
-  - npm install -g bower
+  - npm install -g bower yarn
 
 install:
-  - npm install
+  - yarn install
   - bower install
 
 script:
-  - npm test
+  - yarn run ember test
