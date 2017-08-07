@@ -107,13 +107,13 @@ $ratings-width: 14%;
   .price {
     font-size: $font-size-primary;
 
-    &:before {
+    &::before {
       content: '';
       margin-left: .618034em;
     }
   }
 
-  &:after {
+  &::after {
     content: '';
     display: block;
     margin-top: 100%;
