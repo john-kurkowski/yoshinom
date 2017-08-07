@@ -8,7 +8,7 @@ moduleForComponent('img-wrap', 'Integration | Component | img wrap', {
 
   beforeEach() {
     this.isLoaded = () => this.$('img').is('.is-loaded');
-  }
+  },
 });
 
 test('it has the expected HTML', function(assert) {

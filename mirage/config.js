@@ -6,20 +6,19 @@ export default function() {
   this.get('https://api.airtable.com/v0/appwg2eHszZjuZh69/:sheetId', function(schema, request) {
     const {
       params: {
-        sheetId
+        sheetId,
       },
       queryParams: {
-        offset
-      }
+        offset,
+      },
     } = request;
 
     const yoshinomItems = schema.db.yoshinomItems
       .where({
-        sheet_id: sheetId // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+        sheet_id: sheetId, // eslint-disable-line camelcase
       });
 
-    let nextOffset;
-    let records;
+    let nextOffset, records;
     if (!yoshinomItems.length) {
       return new Mirage.Response(404);
     } else if (offset === SOME_OFFSET) {
@@ -32,7 +31,7 @@ export default function() {
 
     return {
       offset: nextOffset,
-      records
+      records,
     };
   });
 }

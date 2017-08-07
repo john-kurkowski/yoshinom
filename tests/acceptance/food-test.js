@@ -10,7 +10,7 @@ moduleForAcceptance('Acceptance | food', {
     defaultTestScenario(server);
 
     this.scrollTop = () => this.application.$('#ember-testing-container').scrollTop();
-  }
+  },
 });
 
 test('visiting /food', function(assert) {
@@ -52,7 +52,7 @@ test('failed images', function(assert) {
       true,
       false,
       false,
-      false
+      false,
     ], 'Not found images');
   });
 });
@@ -77,7 +77,7 @@ test('direct link', function(assert) {
 
 function waitUntilSectionLoaded() {
   const matchingYoshinomItems = server.db.yoshinomItems
-    .where({ sheet_id: 'Food' }); // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+    .where({ sheet_id: 'Food' }); // eslint-disable-line camelcase
 
   waitUntil(function isSectionLoaded() {
     return find('.card.loaded').length === matchingYoshinomItems.length;

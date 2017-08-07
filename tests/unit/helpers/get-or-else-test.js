@@ -1,7 +1,7 @@
 import { test, module } from 'qunit';
 
 import {
-  getOrElse
+  getOrElse,
 } from 'yoshinom/helpers/get-or-else';
 
 module('GetOrElseHelper');

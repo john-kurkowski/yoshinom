@@ -18,6 +18,6 @@ export default EmberObject.extend({
   imageLink: '',
   review: '',
 
-  imageAlt: computed.reads('name')
+  imageAlt: computed.reads('name'),
 
 });

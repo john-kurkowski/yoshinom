@@ -8,9 +8,9 @@ module.exports = function(defaults) {
     sassOptions: {
       includePaths: [
         'app',
-        'app/styles'
-      ]
-    }
+        'app/styles',
+      ],
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

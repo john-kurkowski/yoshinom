@@ -5,6 +5,6 @@ export default Controller.extend({
 
   isDrinking: computed('currentPath', function() {
     return /cocktails/.test(this.get('currentPath'));
-  })
+  }),
 
 });

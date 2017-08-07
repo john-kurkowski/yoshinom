@@ -12,6 +12,6 @@ export default EmberObject.extend({
   itemRoute: '',
   items: [],
   sorts: [],
-  tags: []
+  tags: [],
 
 });

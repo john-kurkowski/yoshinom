@@ -10,7 +10,7 @@ let FoodItemModel = YoshinomItem.extend({
 
   imageAlt: computed('name', function() {
     return `Photo of food & drink at ${this.get('name')}`;
-  })
+  }),
 
 });
 
@@ -23,7 +23,7 @@ FoodItemModel.reopenClass({
     newRow.ratings = ratings;
 
     return FoodItemModel.create(newRow);
-  }
+  },
 
 });
 

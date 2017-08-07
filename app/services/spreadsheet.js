@@ -38,15 +38,15 @@ export default Service.extend({
     }
 
     const spreadsheetPromise = this._rowsForSheet(sheetTitle)
-    .then((rows) => {
-      const model = getOwner(this).lookup(`model:${sheetTitle.dasherize()}-item`);
-      const itemClass = (model && model.constructor) || YoshinomItem;
+      .then((rows) => {
+        const model = getOwner(this).lookup(`model:${sheetTitle.dasherize()}-item`);
+        const itemClass = (model && model.constructor) || YoshinomItem;
 
-      return rows
-      .map(toEmberFriendlyObject)
-      .map(partial(mapValues, partial.placeholder, parseCell))
-      .map(partial(parseYoshinomItemPromise, itemClass, this.get('_isSecure')));
-    });
+        return rows
+          .map(toEmberFriendlyObject)
+          .map(partial(mapValues, partial.placeholder, parseCell))
+          .map(partial(parseYoshinomItemPromise, itemClass, this.get('_isSecure')));
+      });
 
     this.set(`_sheetsByTitle.${sheetTitle}`, spreadsheetPromise);
 
@@ -58,23 +58,23 @@ export default Service.extend({
     return this.get('ajax').request(url, {
       headers: {
         'Authorization': `Bearer ${READ_ONLY_API_KEY}`,
-        'X-API-VERSION': '0.1.0'
+        'X-API-VERSION': '0.1.0',
       },
-      data
+      data,
     })
-    .then(({ offset, records }) => {
-      if (offset) {
-        return this._rowsForSheet(sheetTitle, { offset })
-        .then((nextRecords) => records.concat(nextRecords));
-      } else {
-        return records;
-      }
-    });
+      .then(({ offset, records }) => {
+        if (offset) {
+          return this._rowsForSheet(sheetTitle, { offset })
+            .then((nextRecords) => records.concat(nextRecords));
+        } else {
+          return records;
+        }
+      });
   },
 
   _isSecure: computed(function() {
     return window.location.protocol === 'https:';
-  })
+  }),
 
 });
 
@@ -97,11 +97,11 @@ function parseCell(text, key) {
   return (function() {
     switch (key) {
       case 'images' :  return text
-                              .split(/\s+/)
-                              .map(function(t) {
-                                return t.trim();
-                              })
-                              .filter(identity);
+        .split(/\s+/)
+        .map(function(t) {
+          return t.trim();
+        })
+        .filter(identity);
       default       :  return text;
     }
   })();

@@ -9,6 +9,6 @@ export default SectionRoute.extend({
     return q ? `${preamble} Cocktail recipes featuring ${q}` : preamble;
   },
 
-  sorts: []
+  sorts: [],
 
 });

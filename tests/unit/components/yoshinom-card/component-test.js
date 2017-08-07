@@ -1,15 +1,15 @@
 import EmberObject from 'ember-object';
 import {
   moduleForComponent,
-  test
+  test,
 } from 'ember-qunit';
 
 moduleForComponent('yoshinom-card', 'YoshinomCardComponent', {
   // specify the other units that are required for this test
   needs: [
     'component:img-wrap',
-    'component:yoshinom-loader'
-  ]
+    'component:yoshinom-loader',
+  ],
 });
 
 test('it renders', function(assert) {
@@ -18,8 +18,8 @@ test('it renders', function(assert) {
   // creates the component instance
   const component = this.subject({
     item: EmberObject.create({
-      ratings: {}
-    })
+      ratings: {},
+    }),
   });
   assert.equal(component._state, 'preRender');
 

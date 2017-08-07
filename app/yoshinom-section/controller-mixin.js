@@ -33,6 +33,6 @@ export default Mixin.create({
   q: '', // query / filter / tags
   s: '', // sort
 
-  queryParams: ['q', 's']
+  queryParams: ['q', 's'],
 
 });

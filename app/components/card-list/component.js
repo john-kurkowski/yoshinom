@@ -43,13 +43,13 @@ export default Component.extend({
     const buffer = 32;
     const newTop = $element.offset().top - buffer;
     $(SCROLL_TARGET).animate({
-      scrollTop: newTop
+      scrollTop: newTop,
     }, {
       duration: SCROLL_DURATION,
-      easing: 'easeInOutQuint'
+      easing: 'easeInOutQuint',
     });
 
     $element.find('.card').focus();
-  }
+  },
 
 });

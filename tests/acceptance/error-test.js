@@ -15,7 +15,7 @@ moduleForAcceptance('Acceptance | error', {
 
   afterEach() {
     this.sandbox.restore();
-  }
+  },
 });
 
 test('section page error', function(assert) {

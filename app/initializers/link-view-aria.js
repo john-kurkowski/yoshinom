@@ -17,12 +17,12 @@ export function initialize(/* container, application */) {
 
     ariaSelected: computed('active', function() {
       return this.get('active') ? 'true' : 'false';
-    })
+    }),
 
   });
 }
 
 export default {
   name: 'link-view-aria',
-  initialize
+  initialize,
 };

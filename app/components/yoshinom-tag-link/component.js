@@ -17,6 +17,6 @@ export default Component.extend({
   countStyle: computed('tagObject.count', 'maxCount', function() {
     const percent = this.get('tagObject.count') / this.get('maxCount') * 100;
     return `height: ${percent}%;`;
-  })
+  }),
 
 });

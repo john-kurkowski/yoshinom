@@ -31,12 +31,12 @@ export function initialize(/* container, application */) {
         // no action to take, handle the link-to normally
         return this._super(event);
       }
-    }
+    },
 
   });
 }
 
 export default {
   name: 'link-view-action',
-  initialize
+  initialize,
 };

@@ -21,17 +21,17 @@ export default Factory.extend({
 
     Tags() {
       return times(oneToFive(), partial(faker.random.arrayElement, [
-          'dynamic',
-          'heuristic',
-          'needs-based',
-          'next-generation',
-          'optimal',
-          'scalable',
-          'synergistic',
-          'value-added',
-          'viral',
-          'zero defect'
-        ]))
+        'dynamic',
+        'heuristic',
+        'needs-based',
+        'next-generation',
+        'optimal',
+        'scalable',
+        'synergistic',
+        'value-added',
+        'viral',
+        'zero defect',
+      ]))
         .uniq();
     },
 
@@ -63,9 +63,9 @@ export default Factory.extend({
       return faker.lorem.paragraphs(n, '@@@')
         .replace(/\n/g, ' ')
         .replace(/@@@/g, '\n');
-    }
+    },
 
-  }
+  },
 
 });
 

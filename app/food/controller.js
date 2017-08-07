@@ -4,6 +4,6 @@ import YoshinomSectionControllerMixin from 'yoshinom/yoshinom-section/controller
 
 export default Controller.extend(YoshinomSectionControllerMixin, {
 
-  s: 'ratings.food'
+  s: 'ratings.food',
 
 });

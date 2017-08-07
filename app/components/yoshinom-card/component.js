@@ -27,7 +27,7 @@ export default Component.extend({
     ':card',
     'item.isImageLoaded:loaded',
     'item.review:reviewed',
-    'item.showDetails:selected'
+    'item.showDetails:selected',
   ],
 
   formattedReview: computed('item.review', function() {
@@ -40,7 +40,7 @@ export default Component.extend({
     }
 
     const hasSomeRating = values(this.get('item.ratings'))
-    .some(identity);
+      .some(identity);
     return hasSomeRating;
   }),
 
@@ -76,8 +76,8 @@ export default Component.extend({
       const item = this.get('item');
       item.toggleProperty('showDetails');
       this.sendAction('action', item);
-    }
+    },
 
-  }
+  },
 
 });

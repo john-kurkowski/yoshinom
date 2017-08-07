@@ -56,11 +56,11 @@ export default Route.extend({
       return true;
     },
 
-    willTransition(/*transition*/) {
+    willTransition(/* transition*/) {
       const model = this.modelFor(this.routeName);
       model.set('showDetails', false);
-    }
+    },
 
-  }
+  },
 
 });

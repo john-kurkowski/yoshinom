@@ -35,13 +35,13 @@ export default Route.extend({
 
   templateName: 'yoshinom-section',
 
-  descriptionForQuery(/*q*/) {
+  descriptionForQuery(/* q*/) {
     throw new EmberError('Routes extending SectionRoute must specify descriptionForQuery(q: {String}) -> {String}.');
   },
 
   queryParams: {
     q: { refreshModel: true },
-    s: { refreshModel: true }
+    s: { refreshModel: true },
   },
 
   model(params) {
@@ -58,12 +58,12 @@ export default Route.extend({
     const spreadsheetPromise = this.get('spreadsheet').find(sheetTitle);
 
     return RSVP.hash({
-        indexRoute: this.routeName,
-        itemRoute: `${this.routeName}.item`,
-        items: this._filterItems(spreadsheetPromise, params),
-        sorts: this._selectedSorts(params),
-        tags: this._tags(spreadsheetPromise)
-      })
+      indexRoute: this.routeName,
+      itemRoute: `${this.routeName}.item`,
+      items: this._filterItems(spreadsheetPromise, params),
+      sorts: this._selectedSorts(params),
+      tags: this._tags(spreadsheetPromise),
+    })
       .then(YoshinomSectionModel.create.bind(YoshinomSectionModel));
   },
 
@@ -90,14 +90,14 @@ export default Route.extend({
       }
     },
 
-    updateMetaDescription(description/*, imageUrls*/) {
+    updateMetaDescription(description/* , imageUrls*/) {
       if (description) {
         return true;
       } else {
         this._updateMetaDescription();
         return false;
       }
-    }
+    },
 
   },
 
@@ -144,21 +144,21 @@ export default Route.extend({
    */
   _tags(spreadsheetPromise) {
     return spreadsheetPromise
-    .then(function(items) {
-      const spreadsheetTags = _(items)
-      .map('tags')
-      .flatten()
-      .groupBy()
-      .map(function(group, tagName) {
-        return { name: tagName, displayName: tagName, count: group.length };
-      })
-      .sortBy('name')
-      .value();
+      .then(function(items) {
+        const spreadsheetTags = _(items)
+          .map('tags')
+          .flatten()
+          .groupBy()
+          .map(function(group, tagName) {
+            return { name: tagName, displayName: tagName, count: group.length };
+          })
+          .sortBy('name')
+          .value();
 
-      const allTag = { name: '', displayName: 'Show All', count: items.length };
+        const allTag = { name: '', displayName: 'Show All', count: items.length };
 
-      return spreadsheetTags.concat([allTag]);
-    });
-  }
+        return spreadsheetTags.concat([allTag]);
+      });
+  },
 
 });

@@ -29,11 +29,11 @@ export default Component.extend({
   tagName: 'img',
   attributeBindings: [
     'alt',
-    'src'
+    'src',
   ],
   classNameBindings: [
     'isError',
-    'isLoaded'
+    'isLoaded',
   ],
 
   isError: false,
@@ -60,6 +60,6 @@ export default Component.extend({
 
   teardownImageEvents: on('willDestroyElement', function() {
     this.$().off('load error');
-  })
+  }),
 
 });

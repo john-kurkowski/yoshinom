@@ -8,7 +8,7 @@ export default function defaultScenario(server) {
 
   // TODO: app should not rely on a magical value present in its data
   const recordsWithHardcodedDefaultTag = server.createList('yoshinomItem', 4, {
-    sheet_id: 'Food' // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+    sheet_id: 'Food', // eslint-disable-line camelcase
   });
 
   recordsWithHardcodedDefaultTag.forEach(function(record) {
@@ -22,18 +22,18 @@ export default function defaultScenario(server) {
   });
 
   server.createList('yoshinomItem', 6, {
-    sheet_id: 'Food' // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+    sheet_id: 'Food', // eslint-disable-line camelcase
   });
 
   // Cocktails
 
   server.createList('yoshinomItem', 10, {
-    sheet_id: 'Cocktails' // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+    sheet_id: 'Cocktails', // eslint-disable-line camelcase
   });
 
   const recordsToUpdate = flatten([
     recordsWithHardcodedDefaultTag,
-    recordsWithMissingImage
+    recordsWithMissingImage,
   ]);
   recordsToUpdate.forEach(function putRecord(record) {
     server.db.yoshinomItems.update(record.id, record);
