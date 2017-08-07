@@ -53,7 +53,7 @@ export default Component.extend({
       }))
       .each(function handleCachedImages() {
         if (this.complete) {
-          $(this).load();
+          $(this).trigger('load');
         }
       });
   },
