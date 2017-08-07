@@ -1,6 +1,7 @@
 import identity from 'lodash/utility/identity';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 import { test } from 'qunit';
+import $ from 'jquery';
 
 moduleForAcceptance('Acceptance | <meta> Description', {
   beforeEach() {

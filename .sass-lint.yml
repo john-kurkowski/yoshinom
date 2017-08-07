@@ -2,4 +2,5 @@ files:
   ignore:
     - '**/*reset*'
 rules:
+  no-url-domains: 0
   no-url-protocols: 0
